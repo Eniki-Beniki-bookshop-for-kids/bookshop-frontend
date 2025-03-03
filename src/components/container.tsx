@@ -1,12 +1,8 @@
 import { ReactNode } from "react"
 
-interface ContainerProps {
-	children: ReactNode
-}
-
-export default function Container({ children }: ContainerProps) {
+export default function Container({ children }: { children: ReactNode }) {
 	return (
-		<div className="fixed top-0 left-80 right-80 bottom-[106px] bg-white z-10">
+		<div className="w-full box-border px-5 md:px-20 lg:px-[80px] bg-white">
 			{children}
 		</div>
 	)
