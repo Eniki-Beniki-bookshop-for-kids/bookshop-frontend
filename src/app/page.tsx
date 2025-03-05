@@ -1,17 +1,21 @@
-import Image from "next/image"
-import hero from "../../public/images/hero.png"
+"use client"
+
+import {
+	HeartCardIcon,
+	HeartHeaderIcon,
+	HeartUserIcon,
+} from "../components/svg"
 
 export default function Home() {
+	const handleToggleFavorite = (isFavorite: boolean) => {
+		console.log("Favorite status: ", isFavorite)
+	}
+
 	return (
-		<div className="text-center mx-auto my-0">
-			<h1>{"Книгарня Еники-Беники"}</h1>
-			<Image
-				src={hero}
-				alt="Hero"
-				width={1280}
-				height={760}
-				layout="responsive"
-			/>
+		<div className="text-center mx-auto my-0 justify-center items-center flex">
+			<HeartCardIcon onToggle={handleToggleFavorite} />
+			<HeartHeaderIcon />
+			<HeartUserIcon />
 		</div>
 	)
 }
