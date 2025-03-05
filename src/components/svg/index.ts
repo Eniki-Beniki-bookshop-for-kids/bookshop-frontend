@@ -1,5 +1,3 @@
-import { HeartCardIcon } from "./heartCardIcon"
-import { HeartHeaderIcon } from "./heartHeaderIcon"
-import { HeartUserIcon } from "./heartUserIcon"
+import { HeartIcon } from "./heartIcon"
 
-export { HeartCardIcon, HeartHeaderIcon, HeartUserIcon }
+export { HeartIcon }
