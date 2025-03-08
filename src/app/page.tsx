@@ -1,7 +1,13 @@
 "use client"
 
-import ButtonsAndIconsUI from "../components/temporary/ButtonsAndIconsUI"
+import { ButtonsUI } from "../components/temporary/ButtonsUI"
+import IconsUI from "../components/temporary/IconsUI"
 
 export default function Home() {
-	return <ButtonsAndIconsUI />
+	return (
+		<div className="justify-center flex py-5 gap-20">
+			<ButtonsUI />
+			<IconsUI />
+		</div>
+	)
 }

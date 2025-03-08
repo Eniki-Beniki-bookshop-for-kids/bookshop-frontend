@@ -25,8 +25,10 @@ import { PigIcon } from "./svg/pigIcon"
 import { SearchIcon } from "./svg/searchIcon"
 import { SettingIcon } from "./svg/settingsIcon"
 import { WalletIcon } from "./svg/walletIcon"
+import { ButtonTemplate } from "./buttons/buttonTemplate"
 
 export {
+	ButtonTemplate,
 	BasketIconBtn,
 	BellIcon,
 	BookCatalogIcon,

@@ -29,7 +29,7 @@ import {
 	WalletIcon,
 } from "../ui"
 
-export default function ButtonsAndIconsUI() {
+export default function IconsUI() {
 	return (
 		<div className="mx-auto my-0 justify-center flex py-5 gap-20">
 			<div className="items-center flex flex-col gap-5">

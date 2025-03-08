@@ -1,6 +1,6 @@
 import type { Metadata } from "next"
 import { Open_Sans } from "next/font/google"
-import Container from "../components/container"
+import AppProvider from "./appProvider"
 import "./globals.css"
 
 const openSans = Open_Sans({
@@ -15,13 +15,11 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
 	children,
-}: Readonly<{
-	children: React.ReactNode
-}>) {
+}: Readonly<{ children: React.ReactNode }>) {
 	return (
-		<html lang="en">
+		<html suppressHydrationWarning lang="uk">
 			<body className={`${openSans.variable} antialiased`}>
-				<Container>{children}</Container>
+				<AppProvider>{children}</AppProvider>
 			</body>
 		</html>
 	)
