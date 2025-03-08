@@ -2,27 +2,27 @@
 
 import { getTailwindColor } from "@/utils"
 import { FC, useState } from "react"
+import { IButtonProps } from "../../../types/propsInterfaces"
 
-interface DotsMenuIconBtnProps {
+interface DotsMenuIconBtnProps extends IButtonProps {
 	colorClose?: string
 	colorOpen?: string
-	size?: number
-	onClick?: (isOpen: boolean) => void
+	onClickOpen?: (isOpen: boolean) => void
 }
 
 export const DotsMenuIconBtn: FC<DotsMenuIconBtnProps> = ({
 	colorClose = getTailwindColor("customGreen") || "#2e2e2e",
 	colorOpen = getTailwindColor("customViolet") || "#8748FF",
 	size = 30,
-	onClick,
+	onClickOpen,
 }) => {
 	const [opened, setOpened] = useState(false)
 
 	const handleClick = () => {
 		setOpened(!opened)
 
-		if (onClick) {
-			onClick(!opened)
+		if (onClickOpen) {
+			onClickOpen(!opened)
 		}
 	}
 

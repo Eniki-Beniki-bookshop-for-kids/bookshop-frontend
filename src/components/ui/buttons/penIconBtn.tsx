@@ -1,10 +1,10 @@
 "use client"
 
-import { IButtonClickProps } from "@/types/propsInterfaces"
+import { IButtonProps } from "@/types/propsInterfaces"
 import { getTailwindColor } from "@/utils"
 import { FC } from "react"
 
-export const PenIconBtn: FC<IButtonClickProps> = ({
+export const PenIconBtn: FC<IButtonProps> = ({
 	color = getTailwindColor("customDarkGray") || "#2e2e2e",
 	size = 22,
 	isStatic = false,

@@ -1,11 +1,9 @@
-export interface IIconProps {
-	color?: string
+export interface IButtonProps {
 	size?: number
-}
-
-export interface IButtonClickProps {
-	color?: string
-	size?: number
+	colorFill?: string
+	colorStroke?: string
 	isStatic?: boolean
-	onClick: () => void
+	onClick?: () => void
+	disabled?: boolean
+	isHovered?: boolean
 }

@@ -1,10 +1,10 @@
 "use client"
 
-import { IButtonClickProps } from "@/types/propsInterfaces"
+import { IButtonProps } from "@/types/propsInterfaces"
 import { getTailwindColor } from "@/utils"
 import { FC } from "react"
 
-export const CloseIconBtn: FC<IButtonClickProps> = ({
+export const CloseIconBtn: FC<IButtonProps> = ({
 	color = getTailwindColor("customBlack") || "#0e0e0e",
 	size = 22,
 	onClick,

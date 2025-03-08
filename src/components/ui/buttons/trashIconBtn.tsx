@@ -2,15 +2,9 @@
 
 import { getTailwindColor } from "@/utils"
 import { FC } from "react"
+import { IButtonProps } from "../../../types/propsInterfaces"
 
-interface TrashIconBtnProps {
-	color?: string
-	size?: number
-	isStatic?: boolean
-	onClick?: () => void
-}
-
-export const TrashIconBtn: FC<TrashIconBtnProps> = ({
+export const TrashIconBtn: FC<IButtonProps> = ({
 	color = getTailwindColor("customDarkGray") || "#2e2e2e",
 	size = 16,
 	isStatic = false,

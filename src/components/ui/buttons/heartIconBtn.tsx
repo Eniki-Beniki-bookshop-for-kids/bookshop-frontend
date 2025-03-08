@@ -2,12 +2,9 @@
 
 import { getTailwindColor } from "@/utils"
 import { FC, useState } from "react"
+import { IButtonProps } from "../../../types/propsInterfaces"
 
-interface HeartIconBtnProps {
-	colorFill?: string
-	colorStroke?: string
-	size?: number
-	isStatic?: boolean
+interface HeartIconBtnProps extends IButtonProps {
 	onToggle?: (isFavoriteOn: boolean) => void
 }
 
