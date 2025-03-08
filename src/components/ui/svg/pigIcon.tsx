@@ -15,16 +15,6 @@ export const PigIcon: FC<IButtonProps> = ({
 				fill="none"
 				xmlns="http://www.w3.org/2000/svg"
 			>
-				<defs />
-				<rect
-					id="tabler:pig-money"
-					rx="9.500000"
-					width={size}
-					height={size}
-					transform="translate(0.500000 0.500000)"
-					fill="transparent"
-					fillOpacity="1.000000"
-				/>
 				<path
 					id="Vector"
 					d="M12.5 9.16L12.5 9.17M4.31 6.98C3.94 6.7 3.66 6.32 3.5 5.89C3.33 5.46 3.29 4.99 3.37 4.54C3.46 4.08 3.66 3.66 3.97 3.32C4.28 2.98 4.68 2.73 5.12 2.6C5.56 2.47 6.03 2.46 6.48 2.58C6.92 2.7 7.33 2.94 7.64 3.27C7.96 3.61 8.18 4.02 8.28 4.48C8.37 4.93 8.34 5.39 8.19 5.83"

@@ -21,16 +21,6 @@ export const BasketIconBtn: FC<IButtonProps> = ({
 				fill="none"
 				xmlns="http://www.w3.org/2000/svg"
 			>
-				<defs />
-				<rect
-					id="lets-icons:basket-alt-3-light"
-					rx="0.000000"
-					width={size}
-					height={size}
-					transform="translate(0.500000 0.500000)"
-					fill="transparent"
-					fillOpacity="0"
-				/>
 				<path
 					id="Vector"
 					d="M3.2 4.12L4.63 4.12C5.27 4.12 5.59 4.12 5.83 4.29C6.07 4.47 6.17 4.77 6.37 5.37L6.87 6.87"

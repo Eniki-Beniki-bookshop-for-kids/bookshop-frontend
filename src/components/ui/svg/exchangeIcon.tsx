@@ -15,16 +15,6 @@ export const ExchangeIcon: FC<IButtonProps> = ({
 				fill="none"
 				xmlns="http://www.w3.org/2000/svg"
 			>
-				<defs />
-				<rect
-					id="mage:reload-reverse"
-					rx="0.000000"
-					width={size}
-					height={size}
-					transform="translate(0.500000 0.500000)"
-					fill="transparent"
-					fillOpacity="0"
-				/>
 				<path
 					id="Vector"
 					d="M30.04 28.26C28.08 30.2 25.6 31.53 22.9 32.06C20.19 32.6 17.39 32.32 14.85 31.27C12.3 30.21 10.12 28.43 8.59 26.14C7.06 23.85 6.23 21.16 6.23 18.4"

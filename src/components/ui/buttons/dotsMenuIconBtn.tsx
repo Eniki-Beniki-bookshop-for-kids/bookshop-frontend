@@ -38,44 +38,20 @@ export const DotsMenuIconBtn: FC<DotsMenuIconBtnProps> = ({
 				fill="none"
 				xmlns="http://www.w3.org/2000/svg"
 			>
-				<defs>
-					<clipPath id="clip107_3064">
-						<rect
-							id="Property 1=Default"
-							rx="14.500000"
-							width={size}
-							height={size}
-							transform="translate(0.500000 0.500000)"
-							fill="#FFF"
-							fillOpacity="0"
-						/>
-					</clipPath>
-				</defs>
-				<rect
-					id="Property 1=Default"
-					rx="14.500000"
-					width={size}
-					height={size}
-					transform="translate(0.500000 0.500000)"
-					fill="#FFF"
-					fillOpacity="1.000000"
-				/>
-				<g clipPath="url(#clip107_3064)">
-					{[10, 15, 20].map((cy, index) => (
-						<circle
-							key={index}
-							cx="15"
-							cy={cy}
-							r="1.5"
-							fill={
-								opened
-									? getTailwindColor(colorOpen) ?? "#8748FF"
-									: getTailwindColor(colorClose) ?? "#2e2e2e"
-							}
-							fillOpacity="1"
-						/>
-					))}
-				</g>
+				{[10, 15, 20].map((cy, index) => (
+					<circle
+						key={index}
+						cx="15"
+						cy={cy}
+						r="1.5"
+						fill={
+							opened
+								? getTailwindColor(colorOpen) ?? "#8748FF"
+								: getTailwindColor(colorClose) ?? "#2e2e2e"
+						}
+						fillOpacity="1"
+					/>
+				))}
 			</svg>
 		</div>
 	)

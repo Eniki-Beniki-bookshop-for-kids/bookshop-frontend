@@ -21,39 +21,15 @@ export const CloseIconBtn: FC<IButtonProps> = ({
 				fill="none"
 				xmlns="http://www.w3.org/2000/svg"
 			>
-				<defs>
-					<clipPath id="clip98_6907">
-						<rect
-							id="iconamoon:closeLight"
-							rx="0.000000"
-							width={size}
-							height={size}
-							transform="translate(0.500000 0.500000)"
-							fill="transparent"
-							fillOpacity="0"
-						/>
-					</clipPath>
-				</defs>
-				<rect
-					id="iconamoon:closeLight"
-					rx="0.000000"
-					width={size}
-					height={size}
-					transform="translate(0.500000 0.500000)"
-					fill="transparent"
-					fillOpacity="0"
+				<path
+					id="Vector"
+					d="M6.41 6.41L15.58 15.58M6.41 15.58L15.58 6.41"
+					stroke={getTailwindColor(colorFill) || "#0e0e0e"}
+					strokeOpacity="1.000000"
+					strokeWidth="1.500000"
+					strokeLinejoin="round"
+					strokeLinecap="round"
 				/>
-				<g clipPath="url(#clip98_6907)">
-					<path
-						id="Vector"
-						d="M6.41 6.41L15.58 15.58M6.41 15.58L15.58 6.41"
-						stroke={getTailwindColor(colorFill) || "#0e0e0e"}
-						strokeOpacity="1.000000"
-						strokeWidth="1.500000"
-						strokeLinejoin="round"
-						strokeLinecap="round"
-					/>
-				</g>
 			</svg>
 		</div>
 	)
