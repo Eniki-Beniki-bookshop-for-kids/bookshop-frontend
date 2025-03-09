@@ -1,3 +1,4 @@
+import { CheckboxTemplate } from "./checkboxes/checkboxTemplate"
 import { BasketIconBtn } from "./buttons/basketIconBtn"
 import { ButtonTemplate } from "./buttons/buttonTemplate"
 import { CloseIconBtn } from "./buttons/closeIconBtn"
@@ -56,4 +57,5 @@ export {
 	TrashIconBtn,
 	UserIconBtn,
 	WalletIcon,
+	CheckboxTemplate,
 }

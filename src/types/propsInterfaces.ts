@@ -7,3 +7,8 @@ export interface IButtonProps {
 	disabled?: boolean
 	isHovered?: boolean
 }
+
+export interface CheckboxTemplateProps {
+	isChecked?: boolean
+	onChange?: (checked: boolean) => void
+}
