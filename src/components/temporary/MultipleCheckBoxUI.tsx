@@ -2,7 +2,7 @@
 
 import { Text, VStack } from "@chakra-ui/react"
 import { useState } from "react"
-import { CheckboxTemplate } from "../ui"
+import { MultipleCheckboxTemplate } from "../ui"
 
 export default function MultipleCheckBoxUI() {
 	const [selectedItems, setSelectedItems] = useState<string[]>([])
@@ -24,11 +24,8 @@ export default function MultipleCheckBoxUI() {
 	return (
 		<VStack align="start" spacing={4}>
 			{items.map(item => (
-				<label
-					key={item}
-					style={{ display: "flex", alignItems: "center", gap: "8px" }}
-				>
-					<CheckboxTemplate
+				<label key={item} className="flex items-center gap-5">
+					<MultipleCheckboxTemplate
 						isChecked={selectedItems.includes(item)}
 						onChange={checked => handleCheckboxChange(item, checked)}
 					/>

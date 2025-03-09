@@ -1,4 +1,6 @@
-import { CheckboxTemplate } from "./checkboxes/checkboxTemplate"
+import { MultipleCheckboxTemplate } from "./checkboxes/multipleCheckbox"
+import { RadioCheckboxTemplate } from "./checkboxes/radioCheckbox"
+
 import { BasketIconBtn } from "./buttons/basketIconBtn"
 import { ButtonTemplate } from "./buttons/buttonTemplate"
 import { CloseIconBtn } from "./buttons/closeIconBtn"
@@ -44,6 +46,7 @@ export {
 	EyeToggleIconBtn,
 	HeartIconBtn,
 	LogoutIcon,
+	MultipleCheckboxTemplate,
 	OrderIcon,
 	PaymentCardIcon,
 	PaymentCashIcon,
@@ -52,10 +55,10 @@ export {
 	PercentIcon,
 	PhoneIcon,
 	PigIcon,
+	RadioCheckboxTemplate,
 	SearchIcon,
 	SettingIcon,
 	TrashIconBtn,
 	UserIconBtn,
 	WalletIcon,
-	CheckboxTemplate,
 }

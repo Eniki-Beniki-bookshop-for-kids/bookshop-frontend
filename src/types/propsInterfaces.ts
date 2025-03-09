@@ -11,4 +11,19 @@ export interface IButtonProps {
 export interface CheckboxTemplateProps {
 	isChecked?: boolean
 	onChange?: (checked: boolean) => void
+	value?: string
+	defaultValue?: string
+	name?: string
+}
+
+interface RadioItemProps {
+	value: string
+	label: string
+}
+
+export interface RadioCheckboxTemplateProps {
+	items: RadioItemProps[]
+	name?: string
+	defaultValue?: string
+	onChange?: (value: string) => void
 }

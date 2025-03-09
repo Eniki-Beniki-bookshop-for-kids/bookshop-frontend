@@ -12,7 +12,7 @@ import {
 export const ButtonsUI = () => {
 	const [isHovered, setIsHovered] = useState(false)
 	return (
-		<div className="items-center flex flex-col gap-5 py-5">
+		<div className="items-center flex flex-col gap-5">
 			<div className="text-2xl mb-5">Кнопки</div>
 			<div className="items-center flex flex-col gap-3">
 				<ButtonTemplate

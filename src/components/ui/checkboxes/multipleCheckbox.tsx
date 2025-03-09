@@ -4,7 +4,7 @@ import { Checkbox } from "@chakra-ui/react"
 import { useState } from "react"
 import { CheckboxTemplateProps } from "../../../types/propsInterfaces"
 
-export const CheckboxTemplate = ({
+export const MultipleCheckboxTemplate = ({
 	isChecked = false,
 	onChange,
 	...props

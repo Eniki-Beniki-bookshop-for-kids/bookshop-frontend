@@ -30,7 +30,7 @@ import {
 
 export default function IconsUI() {
 	return (
-		<div className="justify-center flex py-5 gap-20">
+		<div className="justify-center flex gap-20">
 			<div className="items-center flex flex-col gap-5">
 				<div className="text-2xl mb-5">Кнопкові іконки</div>
 				<div className="items-center flex flex-col gap-3">
