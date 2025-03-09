@@ -50,7 +50,7 @@ export const ButtonTemplate = ({
 			padding={padding}
 			paddingLeft="16px"
 			paddingRight="16px"
-			transition="transform 0.2s ease-in-out"
+			transition="all 0.3s ease-in-out"
 			_hover={{
 				transform: `scale(${hoverScale})`,
 			}}

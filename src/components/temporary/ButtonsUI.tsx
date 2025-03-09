@@ -128,7 +128,7 @@ export const ButtonsUI = () => {
 					bgColor="customWhite"
 					_hover={{
 						backgroundColor: "customLavender",
-						borderColor: "transparent",
+						borderColor: "customViolet",
 					}}
 					iconBefore={<TrashIconBtn isStatic />}
 				>

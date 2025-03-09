@@ -27,3 +27,17 @@ export interface RadioCheckboxTemplateProps {
 	defaultValue?: string
 	onChange?: (value: string) => void
 }
+
+export interface RangeSliderTemplateProps {
+	min?: number
+	max?: number
+	defaultValue?: [number, number]
+	onChange?: (value: [number, number]) => void
+}
+
+export interface SelectTemplateProps {
+	placeholder?: string
+	options: { value: string; label: string }[]
+	onChange?: (value: string) => void
+	defaultValue?: string
+}

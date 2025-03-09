@@ -28,7 +28,7 @@ import {
 	WalletIcon,
 } from "../ui"
 
-export default function IconsUI() {
+export const IconsUI = () => {
 	return (
 		<div className="justify-center flex gap-20">
 			<div className="items-center flex flex-col gap-5">

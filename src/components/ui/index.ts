@@ -1,5 +1,7 @@
+import { SelectTemplate } from "./selects/selectTemplate"
 import { MultipleCheckboxTemplate } from "./checkboxes/multipleCheckbox"
 import { RadioCheckboxTemplate } from "./checkboxes/radioCheckbox"
+import { RangeSliderTemplate } from "./sliders/rangeSliderTemplate"
 
 import { BasketIconBtn } from "./buttons/basketIconBtn"
 import { ButtonTemplate } from "./buttons/buttonTemplate"
@@ -56,9 +58,11 @@ export {
 	PhoneIcon,
 	PigIcon,
 	RadioCheckboxTemplate,
+	RangeSliderTemplate,
 	SearchIcon,
 	SettingIcon,
 	TrashIconBtn,
 	UserIconBtn,
 	WalletIcon,
+	SelectTemplate,
 }

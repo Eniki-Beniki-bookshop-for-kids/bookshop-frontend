@@ -4,7 +4,7 @@ import { Text, VStack } from "@chakra-ui/react"
 import { useState } from "react"
 import { MultipleCheckboxTemplate } from "../ui"
 
-export default function MultipleCheckBoxUI() {
+export const MultipleCheckBoxUI = () => {
 	const [selectedItems, setSelectedItems] = useState<string[]>([])
 
 	const items = [
@@ -16,8 +16,10 @@ export default function MultipleCheckBoxUI() {
 	const handleCheckboxChange = (item: string, checked: boolean) => {
 		if (checked) {
 			setSelectedItems([...selectedItems, item])
+			console.log("Selected item:", item)
 		} else {
 			setSelectedItems(selectedItems.filter(i => i !== item))
+			console.log("Unselected item:", item)
 		}
 	}
 

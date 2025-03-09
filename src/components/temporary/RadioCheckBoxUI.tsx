@@ -2,7 +2,7 @@
 
 import { RadioCheckboxTemplate } from "../ui"
 
-export default function RadioCheckBoxUI() {
+export const RadioCheckBoxUI = () => {
 	const items = [
 		{ label: "Видавництво Старого Лева 1", value: "1" },
 		{ label: "Видавництво Старого Лева 2", value: "2" },
