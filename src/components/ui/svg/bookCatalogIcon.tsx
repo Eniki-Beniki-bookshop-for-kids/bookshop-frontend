@@ -7,7 +7,7 @@ export const BookCatalogIcon: FC<IButtonProps> = ({
 	size = 28,
 }) => {
 	return (
-		<div className="inline-block">
+
 			<svg
 				width={size}
 				height={size}
@@ -24,6 +24,6 @@ export const BookCatalogIcon: FC<IButtonProps> = ({
 					strokeLinejoin="round"
 				/>
 			</svg>
-		</div>
+
 	)
 }

@@ -19,7 +19,6 @@ import {
 	PaymentIBANIcon,
 	PenIconBtn,
 	PercentIcon,
-	PhoneBtn,
 	PhoneIcon,
 	PigIcon,
 	SearchIcon,
@@ -33,7 +32,7 @@ export default function IconsUI() {
 	return (
 		<div className="mx-auto my-0 justify-center flex py-5 gap-20">
 			<div className="items-center flex flex-col gap-5">
-				<div className="text-2xl mb-5">BUTTONS</div>
+				<div className="text-2xl mb-5">Кнопкові іконки</div>
 				<div className="items-center flex flex-col gap-2">
 					<BasketIconBtn onClick={() => console.log("Basket clicked")} />
 					<UserIconBtn onClick={() => console.log("UserIcon clicked")} />
@@ -46,7 +45,6 @@ export default function IconsUI() {
 						onToggle={() => console.log("HeartIcon Black clicked")}
 					/>
 					<CloseIconBtn onClick={() => console.log("CloseIcon clicked")} />
-					<PhoneBtn />
 					<PenIconBtn onClick={() => console.log("PenIcon clicked")} />
 					<EyeToggleIconBtn
 						onToggle={isVisible =>
@@ -65,7 +63,7 @@ export default function IconsUI() {
 				</div>
 			</div>
 			<div className="items-center flex flex-col gap-5">
-				<div className="text-2xl mb-5">ICONS</div>
+				<div className="text-2xl mb-5">Статичні іконки</div>
 				<div className="items-center flex flex-col gap-2">
 					<BookCatalogIcon />
 					<PhoneIcon />

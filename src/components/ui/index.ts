@@ -1,16 +1,17 @@
-import { CommentIcon } from "./svg/commentIcon"
 import { BasketIconBtn } from "./buttons/basketIconBtn"
+import { ButtonTemplate } from "./buttons/buttonTemplate"
 import { CloseIconBtn } from "./buttons/closeIconBtn"
 import { DotsMenuIconBtn } from "./buttons/dotsMenuIconBtn"
 import { EyeToggleIconBtn } from "./buttons/eyeToggleIconBtn"
 import { HeartIconBtn } from "./buttons/heartIconBtn"
 import { PenIconBtn } from "./buttons/penIconBtn"
-import { PhoneBtn } from "./buttons/phoneBtn"
 import { TrashIconBtn } from "./buttons/trashIconBtn"
 import { UserIconBtn } from "./buttons/userIconBtn"
+import { BasketIcon } from "./svg/basketIcon"
 import { BellIcon } from "./svg/bellIcon"
 import { BookCatalogIcon } from "./svg/bookCatalogIcon"
 import { ChatIcon } from "./svg/chatIcon"
+import { CommentIcon } from "./svg/commentIcon"
 import { DeliveryIcon } from "./svg/deliveryIcon"
 import { EmailIcon } from "./svg/emailIcon"
 import { ExchangeIcon } from "./svg/exchangeIcon"
@@ -25,15 +26,16 @@ import { PigIcon } from "./svg/pigIcon"
 import { SearchIcon } from "./svg/searchIcon"
 import { SettingIcon } from "./svg/settingsIcon"
 import { WalletIcon } from "./svg/walletIcon"
-import { ButtonTemplate } from "./buttons/buttonTemplate"
 
 export {
-	ButtonTemplate,
+	BasketIcon,
 	BasketIconBtn,
 	BellIcon,
 	BookCatalogIcon,
+	ButtonTemplate,
 	ChatIcon,
 	CloseIconBtn,
+	CommentIcon,
 	DeliveryIcon,
 	DotsMenuIconBtn,
 	EmailIcon,
@@ -47,7 +49,6 @@ export {
 	PaymentIBANIcon,
 	PenIconBtn,
 	PercentIcon,
-	PhoneBtn,
 	PhoneIcon,
 	PigIcon,
 	SearchIcon,
@@ -55,5 +56,4 @@ export {
 	TrashIconBtn,
 	UserIconBtn,
 	WalletIcon,
-	CommentIcon,
 }

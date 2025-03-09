@@ -29,7 +29,7 @@ export const DotsMenuIconBtn: FC<DotsMenuIconBtnProps> = ({
 	return (
 		<div
 			onClick={handleClick}
-			className="inline-block cursor-pointer transform transition-transform duration-200 hover:scale-110"
+			className="cursor-pointer transform transition-transform duration-200 hover:scale-110"
 		>
 			<svg
 				width={size}

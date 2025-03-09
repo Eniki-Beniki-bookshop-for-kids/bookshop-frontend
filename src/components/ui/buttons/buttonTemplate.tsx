@@ -4,21 +4,21 @@ import {
 	Button as ChakraButton,
 	ButtonProps as ChakraButtonProps,
 } from "@chakra-ui/react"
+import Link from "next/link"
 import { ReactNode } from "react"
 
-interface CustomButtonProps extends Omit<ChakraButtonProps, "variant"> {
+interface CustomButtonProps extends ChakraButtonProps {
 	iconBefore?: ReactNode
 	iconAfter?: ReactNode
 	bgColor?: string
 	textColor?: string
-	strokeColor?: string
-	hoverBg?: string
-	hoverBorderColor?: string
 	padding?: string
 	width?: string
 	fontSize?: string
 	borderRadius?: string
+	hoverScale?: number
 	onClick?: () => void
+	href?: string
 }
 
 export const ButtonTemplate = ({
@@ -26,32 +26,29 @@ export const ButtonTemplate = ({
 	iconAfter,
 	bgColor = "customViolet",
 	textColor = "#FFF",
-	strokeColor,
-	hoverBg = "customLavender",
-	hoverBorderColor,
 	padding = "12px",
 	width = "auto",
 	fontSize = "16px",
 	borderRadius = "30px",
+	hoverScale = 1,
 	onClick,
+	href,
 	children,
 	...props
 }: CustomButtonProps) => {
-	return (
+	const buttonContent = (
 		<ChakraButton
 			width={width}
 			fontSize={fontSize}
 			borderRadius={borderRadius}
 			backgroundColor={bgColor}
 			color={textColor}
-			border={strokeColor ? "2px solid" : "none"}
-			borderColor={strokeColor || "transparent"}
 			padding={padding}
+			transition="transform 0.2s ease-in-out"
 			_hover={{
-				backgroundColor: hoverBg,
-				borderColor: hoverBorderColor || "transparent",
-				color: textColor,
+				transform: `scale(${hoverScale})`,
 			}}
+			alignItems="center"
 			onClick={onClick}
 			{...props}
 		>
@@ -60,4 +57,6 @@ export const ButtonTemplate = ({
 			{iconAfter && <span className="ml-2">{iconAfter}</span>}
 		</ChakraButton>
 	)
+
+	return href ? <Link href={href}>{buttonContent}</Link> : buttonContent
 }

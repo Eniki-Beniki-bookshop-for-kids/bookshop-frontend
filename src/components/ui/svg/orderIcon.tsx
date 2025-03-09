@@ -7,7 +7,7 @@ export const OrderIcon: FC<IButtonProps> = ({
 	size = 20,
 }) => {
 	return (
-		<div className="inline-block">
+
 			<svg
 				width={size}
 				height={size}
@@ -34,6 +34,6 @@ export const OrderIcon: FC<IButtonProps> = ({
 					strokeLinecap="round"
 				/>
 			</svg>
-		</div>
+
 	)
 }

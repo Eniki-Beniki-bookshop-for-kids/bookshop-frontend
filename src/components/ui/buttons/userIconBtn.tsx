@@ -12,7 +12,7 @@ export const UserIconBtn: FC<IButtonProps> = ({
 	return (
 		<div
 			onClick={onClick}
-			className="inline-block cursor-pointer transform transition-transform duration-200 hover:scale-110"
+			className="cursor-pointer transform transition-transform duration-200 hover:scale-110"
 		>
 			<svg
 				width={size}

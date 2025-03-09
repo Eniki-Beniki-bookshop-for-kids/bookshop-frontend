@@ -13,7 +13,7 @@ export const PenIconBtn: FC<IButtonProps> = ({
 	return (
 		<div
 			onClick={onClick}
-			className={`inline-block ${
+			className={`${
 				!isStatic
 					? "cursor-pointer transform transition-transform duration-200 hover:scale-110"
 					: ""

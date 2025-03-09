@@ -29,7 +29,7 @@ export const EyeToggleIconBtn: FC<EyeToggleIconBtnProps> = ({
 	return (
 		<div
 			onClick={toggle}
-			className={`inline-block ${
+			className={`${
 				!disabled
 					? "cursor-pointer transform transition-transform duration-200 hover:scale-110"
 					: ""

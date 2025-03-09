@@ -7,7 +7,7 @@ export const ExchangeIcon: FC<IButtonProps> = ({
 	size = 40,
 }) => {
 	return (
-		<div className="inline-block">
+
 			<svg
 				width={size}
 				height={size}
@@ -50,6 +50,6 @@ export const ExchangeIcon: FC<IButtonProps> = ({
 					strokeLinecap="round"
 				/>
 			</svg>
-		</div>
+
 	)
 }
