@@ -11,9 +11,13 @@ export default function AppProvider({
 }) {
 	return (
 		<ChakraProvider theme={theme}>
-			<header>Header</header>
+			<header className="flex justify-center text-4xl font-medium py-4">
+				Тут буде Header
+			</header>
 			<Container>{children}</Container>
-			<footer>Footer</footer>
+			<footer className="flex justify-center text-4xl font-medium py-4">
+				Тут буде Footer
+			</footer>
 		</ChakraProvider>
 	)
 }

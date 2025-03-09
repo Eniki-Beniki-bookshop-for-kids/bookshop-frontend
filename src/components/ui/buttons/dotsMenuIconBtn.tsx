@@ -38,10 +38,11 @@ export const DotsMenuIconBtn: FC<DotsMenuIconBtnProps> = ({
 				fill="none"
 				xmlns="http://www.w3.org/2000/svg"
 			>
+				<circle cx={size / 2} cy={size / 2} r={size / 2} fill="#FFF" />
 				{[10, 15, 20].map((cy, index) => (
 					<circle
 						key={index}
-						cx="15"
+						cx={size / 2}
 						cy={cy}
 						r="1.5"
 						fill={

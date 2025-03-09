@@ -15,6 +15,7 @@ interface CustomButtonProps extends ChakraButtonProps {
 	padding?: string
 	width?: string
 	fontSize?: string
+	fontWeight?: string
 	borderRadius?: string
 	hoverScale?: number
 	onClick?: () => void
@@ -29,6 +30,7 @@ export const ButtonTemplate = ({
 	padding = "12px",
 	width = "auto",
 	fontSize = "16px",
+	fontWeight = "400",
 	borderRadius = "30px",
 	hoverScale = 1,
 	onClick,
@@ -39,11 +41,15 @@ export const ButtonTemplate = ({
 	const buttonContent = (
 		<ChakraButton
 			width={width}
+			height="auto"
 			fontSize={fontSize}
+			fontWeight={fontWeight}
 			borderRadius={borderRadius}
 			backgroundColor={bgColor}
 			color={textColor}
 			padding={padding}
+			paddingLeft="16px"
+			paddingRight="16px"
 			transition="transform 0.2s ease-in-out"
 			_hover={{
 				transform: `scale(${hoverScale})`,
