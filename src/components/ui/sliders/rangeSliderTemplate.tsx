@@ -25,7 +25,7 @@ export const RangeSliderTemplate = ({
 	}
 
 	return (
-		<Box p={4} width="100%">
+		<Box p={4} width="sm">
 			<RangeSlider
 				aria-label={["min", "max"]!}
 				min={min}

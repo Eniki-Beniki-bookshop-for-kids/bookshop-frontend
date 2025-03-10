@@ -17,7 +17,7 @@ export default function RootLayout({
 	children,
 }: Readonly<{ children: React.ReactNode }>) {
 	return (
-		<html suppressHydrationWarning lang="uk">
+		<html lang="uk">
 			<body className={`${openSans.variable} antialiased`}>
 				<AppProvider>{children}</AppProvider>
 			</body>
