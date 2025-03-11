@@ -2,9 +2,8 @@
 
 import { ChakraProvider } from "@chakra-ui/react"
 import theme from "../chakraTheme"
-import { Footer, Header } from "../components"
-import Container from "../components/container"
-import Test_UI from "../components/Test_UI"
+import { Container, Footer, Header } from "../components"
+// import Test_UI from "../components/Test_UI"
 
 export default function AppProvider({
 	children,
@@ -13,10 +12,12 @@ export default function AppProvider({
 }) {
 	return (
 		<ChakraProvider theme={theme}>
-			<Header />
-			<Container>{children}</Container>
-			<Footer />
-			<Test_UI />
+			<div>
+				<Header />
+				<Container>{children}</Container>
+				<Footer />
+				{/* <Test_UI /> */}
+			</div>
 		</ChakraProvider>
 	)
 }

@@ -1,4 +1,6 @@
 export interface IButtonProps {
+	height?: number
+	width?: number
 	size?: number
 	colorFill?: string
 	colorStroke?: string

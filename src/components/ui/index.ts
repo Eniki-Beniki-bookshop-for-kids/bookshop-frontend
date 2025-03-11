@@ -1,3 +1,4 @@
+import { HeaderBg } from "./svg/headerBg"
 import { SelectTemplate } from "./selects/selectTemplate"
 import { MultipleCheckboxTemplate } from "./checkboxes/multipleCheckbox"
 import { RadioCheckboxTemplate } from "./checkboxes/radioCheckbox"
@@ -65,4 +66,5 @@ export {
 	UserIconBtn,
 	WalletIcon,
 	SelectTemplate,
+	HeaderBg,
 }
