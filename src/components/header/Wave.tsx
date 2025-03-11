@@ -2,9 +2,9 @@ import { IButtonProps } from "@/types/propsInterfaces"
 import { getTailwindColor } from "@/utils"
 import { FC } from "react"
 
-export const HeaderBg: FC<IButtonProps> = ({
+export const Wave: FC<IButtonProps> = ({
 	colorFill = getTailwindColor("customYellow") || "#FFCC00",
-	height = 228,
+	height = 258,
 	width = 1440,
 }) => {
 	return (

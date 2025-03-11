@@ -1,9 +1,3 @@
-import { HeaderBg } from "./svg/headerBg"
-import { SelectTemplate } from "./selects/selectTemplate"
-import { MultipleCheckboxTemplate } from "./checkboxes/multipleCheckbox"
-import { RadioCheckboxTemplate } from "./checkboxes/radioCheckbox"
-import { RangeSliderTemplate } from "./sliders/rangeSliderTemplate"
-
 import { BasketIconBtn } from "./buttons/basketIconBtn"
 import { ButtonTemplate } from "./buttons/buttonTemplate"
 import { CloseIconBtn } from "./buttons/closeIconBtn"
@@ -13,6 +7,10 @@ import { HeartIconBtn } from "./buttons/heartIconBtn"
 import { PenIconBtn } from "./buttons/penIconBtn"
 import { TrashIconBtn } from "./buttons/trashIconBtn"
 import { UserIconBtn } from "./buttons/userIconBtn"
+import { MultipleCheckboxTemplate } from "./checkboxes/multipleCheckbox"
+import { RadioCheckboxTemplate } from "./checkboxes/radioCheckbox"
+import { SelectTemplate } from "./selects/selectTemplate"
+import { RangeSliderTemplate } from "./sliders/rangeSliderTemplate"
 import { BasketIcon } from "./svg/basketIcon"
 import { BellIcon } from "./svg/bellIcon"
 import { BookCatalogIcon } from "./svg/bookCatalogIcon"
@@ -61,10 +59,9 @@ export {
 	RadioCheckboxTemplate,
 	RangeSliderTemplate,
 	SearchIcon,
+	SelectTemplate,
 	SettingIcon,
 	TrashIconBtn,
 	UserIconBtn,
 	WalletIcon,
-	SelectTemplate,
-	HeaderBg,
 }

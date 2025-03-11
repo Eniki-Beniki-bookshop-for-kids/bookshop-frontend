@@ -1,4 +1,6 @@
-export const headerNav = [
+import { NavbarProps } from "./propsInterfaces"
+
+export const headerNav: NavbarProps[] = [
 	{ href: "/about", label: "Про нас" },
 	{ href: "/#discounts", label: "Знижки" },
 	{ href: "/#new-arrivals", label: "Новинки" },
