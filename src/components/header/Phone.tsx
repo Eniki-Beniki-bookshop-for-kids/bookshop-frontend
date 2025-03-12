@@ -12,6 +12,7 @@ export const Phone = () => {
 			bgColor="transparent"
 			textColor="customBlack"
 			fontSize="18"
+			paddingRight="0px"
 			hoverScale={1.05}
 			iconBefore={<PhoneIcon isHovered={isHovered} />}
 			onMouseEnter={() => setIsHovered(true)}

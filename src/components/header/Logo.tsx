@@ -15,7 +15,7 @@ export const Logo = () => {
 				<Image
 					src="/images/LOGO_v1.png"
 					alt="Логотип"
-					width="200px"
+					width="150px"
 					minW={100}
 					objectFit="contain"
 				/>

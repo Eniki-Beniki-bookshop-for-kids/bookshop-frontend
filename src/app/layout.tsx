@@ -18,7 +18,7 @@ export default function RootLayout({
 }: Readonly<{ children: React.ReactNode }>) {
 	return (
 		<html lang="uk">
-			<body className={`${openSans.variable} antialiased`}>
+			<body className={`${openSans.variable} antialiased bg-customWhite`}>
 				<AppProvider>{children}</AppProvider>
 			</body>
 		</html>

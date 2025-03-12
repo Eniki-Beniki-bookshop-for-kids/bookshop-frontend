@@ -8,6 +8,7 @@ export interface IButtonProps {
 	onClick?: () => void
 	disabled?: boolean
 	isHovered?: boolean
+	headerType?: "full" | "minimal"
 }
 
 export interface CheckboxTemplateProps {
@@ -47,4 +48,5 @@ export interface SelectTemplateProps {
 export interface NavbarProps {
 	label: string
 	href: string
+	headerType?: "full" | "minimal"
 }

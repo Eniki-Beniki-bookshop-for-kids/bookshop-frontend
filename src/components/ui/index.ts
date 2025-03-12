@@ -1,5 +1,6 @@
 import { BasketIconBtn } from "./buttons/basketIconBtn"
 import { ButtonTemplate } from "./buttons/buttonTemplate"
+import { CartIconBtn } from "./buttons/cartIconBtn"
 import { CloseIconBtn } from "./buttons/closeIconBtn"
 import { DotsMenuIconBtn } from "./buttons/dotsMenuIconBtn"
 import { EyeToggleIconBtn } from "./buttons/eyeToggleIconBtn"
@@ -11,7 +12,6 @@ import { MultipleCheckboxTemplate } from "./checkboxes/multipleCheckbox"
 import { RadioCheckboxTemplate } from "./checkboxes/radioCheckbox"
 import { SelectTemplate } from "./selects/selectTemplate"
 import { RangeSliderTemplate } from "./sliders/rangeSliderTemplate"
-import { BasketIcon } from "./svg/basketIcon"
 import { BellIcon } from "./svg/bellIcon"
 import { BookCatalogIcon } from "./svg/bookCatalogIcon"
 import { ChatIcon } from "./svg/chatIcon"
@@ -32,11 +32,11 @@ import { SettingIcon } from "./svg/settingsIcon"
 import { WalletIcon } from "./svg/walletIcon"
 
 export {
-	BasketIcon,
 	BasketIconBtn,
 	BellIcon,
 	BookCatalogIcon,
 	ButtonTemplate,
+	CartIconBtn,
 	ChatIcon,
 	CloseIconBtn,
 	CommentIcon,
