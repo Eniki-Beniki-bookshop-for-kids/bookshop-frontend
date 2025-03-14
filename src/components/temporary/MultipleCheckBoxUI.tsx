@@ -1,6 +1,6 @@
 "use client"
 
-import { Text, VStack } from "@chakra-ui/react"
+import { VStack } from "@chakra-ui/react"
 import { useState } from "react"
 import { MultipleCheckboxTemplate } from "../ui"
 
@@ -30,8 +30,8 @@ export const MultipleCheckBoxUI = () => {
 					<MultipleCheckboxTemplate
 						isChecked={selectedItems.includes(item)}
 						onChange={checked => handleCheckboxChange(item, checked)}
+						label={item}
 					/>
-					<Text>{item}</Text>
 				</label>
 			))}
 		</VStack>

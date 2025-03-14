@@ -42,6 +42,7 @@ export const ButtonTemplate = ({
 		<ChakraButton
 			width={width}
 			height="auto"
+			alignItems="center"
 			fontSize={fontSize}
 			fontWeight={fontWeight}
 			borderRadius={borderRadius}
@@ -54,7 +55,6 @@ export const ButtonTemplate = ({
 			_hover={{
 				transform: `scale(${hoverScale})`,
 			}}
-			alignItems="center"
 			onClick={onClick}
 			{...props}
 		>

@@ -10,6 +10,7 @@ import { TrashIconBtn } from "./buttons/trashIconBtn"
 import { UserIconBtn } from "./buttons/userIconBtn"
 import { MultipleCheckboxTemplate } from "./checkboxes/multipleCheckbox"
 import { RadioCheckboxTemplate } from "./checkboxes/radioCheckbox"
+import { InputTemplate } from "./inputs/inputTemplate"
 import { SelectTemplate } from "./selects/selectTemplate"
 import { RangeSliderTemplate } from "./sliders/rangeSliderTemplate"
 import { BellIcon } from "./svg/bellIcon"
@@ -19,6 +20,8 @@ import { CommentIcon } from "./svg/commentIcon"
 import { DeliveryIcon } from "./svg/deliveryIcon"
 import { EmailIcon } from "./svg/emailIcon"
 import { ExchangeIcon } from "./svg/exchangeIcon"
+import { LogoApple } from "./svg/logoApple"
+import { LogoGoogle } from "./svg/logoGoogle"
 import { LogoutIcon } from "./svg/logoutIcon"
 import { OrderIcon } from "./svg/orderIcon"
 import { PaymentCardIcon } from "./svg/paymentCardIcon"
@@ -46,6 +49,9 @@ export {
 	ExchangeIcon,
 	EyeToggleIconBtn,
 	HeartIconBtn,
+	InputTemplate,
+	LogoApple,
+	LogoGoogle,
 	LogoutIcon,
 	MultipleCheckboxTemplate,
 	OrderIcon,

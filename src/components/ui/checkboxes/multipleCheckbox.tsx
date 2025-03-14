@@ -7,6 +7,7 @@ import { CheckboxTemplateProps } from "../../../types/propsInterfaces"
 export const MultipleCheckboxTemplate = ({
 	isChecked = false,
 	onChange,
+	label,
 	...props
 }: CheckboxTemplateProps) => {
 	const [isHovered, setIsHovered] = useState(false)
@@ -20,6 +21,7 @@ export const MultipleCheckboxTemplate = ({
 			sx={{
 				// Стилі для контейнера чекбокса
 				".chakra-checkbox__control": {
+					margin: "0px",
 					width: "18px",
 					height: "18px",
 					borderRadius: "4px",
@@ -41,14 +43,22 @@ export const MultipleCheckboxTemplate = ({
 					background: "customViolet",
 					borderColor: "customViolet",
 				},
-				// Стилі для галочки (вбудованої в Chakra UI)
+				// Стилі для галочки
 				".chakra-checkbox__control[data-checked] svg": {
 					color: "#FFF",
 					stroke: "#FFF",
 					strokeWidth: "2px",
 				},
+				// Стилі для тексту поруч із чекбоксом
+				"& > span": {
+					ml: 2,
+					color: "customBlack",
+					fontSize: "16px",
+				},
 			}}
 			{...props}
-		/>
+		>
+			{label && <span>{label}</span>}
+		</Checkbox>
 	)
 }

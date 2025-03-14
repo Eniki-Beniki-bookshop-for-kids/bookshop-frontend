@@ -3,6 +3,8 @@
 import { ChakraProvider } from "@chakra-ui/react"
 import theme from "../chakraTheme"
 import { Container, Footer, Header } from "../components"
+import { ModalProvider } from "../context/ModalContext"
+import { AppModals } from "./appModals"
 // import Test_UI from "../components/Test_UI"
 
 export default function AppProvider({
@@ -12,12 +14,15 @@ export default function AppProvider({
 }) {
 	return (
 		<ChakraProvider theme={theme}>
-			<div>
-				<Header />
-				<Container>{children}</Container>
-				<Footer />
-				{/* <Test_UI /> */}
-			</div>
+			<ModalProvider>
+				<div>
+					<Header />
+					<Container>{children}</Container>
+					<Footer />
+					<AppModals />
+					{/* <Test_UI /> */}
+				</div>
+			</ModalProvider>
 		</ChakraProvider>
 	)
 }

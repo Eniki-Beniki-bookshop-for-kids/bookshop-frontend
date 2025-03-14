@@ -1,3 +1,5 @@
+import { ReactNode } from "react"
+
 export interface IButtonProps {
 	height?: number
 	width?: number
@@ -17,6 +19,7 @@ export interface CheckboxTemplateProps {
 	value?: string
 	defaultValue?: string
 	name?: string
+	label?: string
 }
 
 interface RadioItemProps {
@@ -49,4 +52,22 @@ export interface NavbarProps {
 	label: string
 	href: string
 	headerType?: "full" | "minimal"
+}
+
+export interface ModalTemplateProps {
+	isOpen: boolean
+	onClose: () => void
+	title?: string
+	children?: ReactNode
+	footer?: ReactNode
+}
+
+export interface CustomInputProps {
+	type: string
+	placeholder: string
+	value: string
+	onChange: (e: React.ChangeEvent<HTMLInputElement>) => void
+	error: string
+	mb?: number
+	mt?: number
 }
