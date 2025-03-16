@@ -2,7 +2,7 @@
 
 import { useState } from "react"
 import {
-	BasketIcon,
+	BasketIconBtn,
 	ButtonTemplate,
 	PenIconBtn,
 	PhoneIcon,
@@ -42,7 +42,7 @@ export const ButtonsUI = () => {
 						color: "customWhite",
 						borderColor: "transparent",
 					}}
-					iconBefore={<BasketIcon colorFill="customWhite" />}
+					iconBefore={<BasketIconBtn colorFill="customWhite" />}
 				>
 					У кошику
 				</ButtonTemplate>
@@ -100,7 +100,7 @@ export const ButtonsUI = () => {
 						color: "customWhite",
 						borderColor: "transparent",
 					}}
-					iconBefore={<BasketIcon colorFill="customWhite" />}
+					iconBefore={<BasketIconBtn colorFill="customWhite" />}
 				>
 					У кошику
 				</ButtonTemplate>

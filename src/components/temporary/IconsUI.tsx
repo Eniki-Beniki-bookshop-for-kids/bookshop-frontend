@@ -49,11 +49,7 @@ export const IconsUI = () => {
 					/>
 					<CloseIconBtn onClick={() => console.log("CloseIcon clicked")} />
 					<PenIconBtn onClick={() => console.log("PenIcon clicked")} />
-					<EyeToggleIconBtn
-						onToggle={isVisible =>
-							console.log(`Eye is ${isVisible ? "opened" : "closed"}`)
-						}
-					/>
+					<EyeToggleIconBtn onClick={() => console.log(`Eye is clicked"}`)} />
 					<DotsMenuIconBtn
 						onClickOpen={isOpened =>
 							console.log(`Menu is ${isOpened ? "opened" : "closed"}`)
