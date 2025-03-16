@@ -2,7 +2,8 @@
 
 import { ChakraProvider } from "@chakra-ui/react"
 import theme from "../chakraTheme"
-import { Container, Footer, Header } from "../components"
+import { Footer, Header } from "../components"
+import { Container } from "../components/Container"
 import { ModalProvider } from "../context/ModalContext"
 import { AppModals } from "./appModals"
 // import Test_UI from "../components/Test_UI"
