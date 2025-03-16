@@ -1,4 +1,3 @@
-import { GoogleOAuthProvider } from "@react-oauth/google"
 import type { Metadata } from "next"
 import { Open_Sans } from "next/font/google"
 import AppProvider from "./appProvider"
@@ -20,11 +19,7 @@ export default function RootLayout({
 	return (
 		<html lang="uk">
 			<body className={`${openSans.variable} antialiased bg-customWhite`}>
-				<GoogleOAuthProvider
-					clientId={process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID!}
-				>
-					<AppProvider>{children}</AppProvider>
-				</GoogleOAuthProvider>
+				<AppProvider>{children}</AppProvider>
 			</body>
 		</html>
 	)

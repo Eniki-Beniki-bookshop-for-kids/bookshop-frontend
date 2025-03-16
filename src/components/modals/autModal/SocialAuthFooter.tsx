@@ -2,11 +2,43 @@
 
 import { useAuthContext } from "@/context/AuthContext"
 import { Divider, Flex, ModalFooter, Text } from "@chakra-ui/react"
-import { FC } from "react"
+import { useGoogleLogin } from "@react-oauth/google"
+import { usePathname, useRouter, useSearchParams } from "next/navigation"
+import { FC, useEffect, useState } from "react"
 import { ButtonTemplate, LogoApple, LogoGoogle } from "../../ui"
 
-export const SocialAuthFooter: FC = () => {
+export const SocialAuthFooter: FC<{ onClose: () => void }> = ({ onClose }) => {
 	const { isRegister, setIsRegister } = useAuthContext()
+	const router = useRouter()
+	const pathname = usePathname()
+	const searchParams = useSearchParams()
+	const [authCode, setAuthCode] = useState<string | null>(null)
+
+	// Функція для входу через Google
+	const login = useGoogleLogin({
+		flow: "auth-code",
+		redirect_uri: `${window.location.origin}/api/auth/google/callback`,
+		onSuccess: codeResponse => {
+			setAuthCode(codeResponse.code)
+		},
+		onError: error => {
+			console.error("Помилка входу через Google:", error)
+		},
+	})
+
+	// Функція для обробки коду авторизації
+	useEffect(() => {
+		if (authCode) {
+			onClose()
+
+			const fullPath = searchParams.toString()
+				? `${pathname}?${searchParams.toString()}`
+				: pathname
+			router.push(fullPath)
+			console.log("Тут відправляємо на бекенд наш код авторизації:", authCode)
+			setAuthCode(null)
+		}
+	}, [authCode, onClose, router, pathname, searchParams])
 
 	const buttonText = isRegister
 		? "Вже маєте акаунт? Увійти"
@@ -27,6 +59,7 @@ export const SocialAuthFooter: FC = () => {
 					padding="18px"
 					hoverScale={1.02}
 					iconBefore={<LogoGoogle />}
+					onClick={() => login()}
 				>
 					Продовжити з Google
 				</ButtonTemplate>
@@ -46,9 +79,7 @@ export const SocialAuthFooter: FC = () => {
 					bgColor="transparent"
 					textColor="customLightGray"
 					padding="0"
-					onClick={() => {
-						setIsRegister(!isRegister)
-					}}
+					onClick={() => setIsRegister(!isRegister)}
 				>
 					{buttonText}
 				</ButtonTemplate>
