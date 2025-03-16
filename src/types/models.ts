@@ -68,7 +68,18 @@ export enum Categories {
 	Other = "Інша категорія",
 }
 
+export enum TargetAges {
+	"1-3" = "1-3 роки",
+	"3-5" = "3-5 років",
+	"5-8" = "5-8 років",
+	"8-12" = "8-12 років",
+	Teenager = "Підліткам",
+	AdultLiterature = "Дорослим",
+	Other = "Інший вік",
+}
+
 export enum UserRole {
+	SuperAdmin = "Супер-адмін", // Адміністратор, який управляє адмінами
 	Admin = "Адмін", // Адміністратор із повними правами
 	User = "Користувач", // Звичайний користувач із обмеженими правами
 }
@@ -109,6 +120,7 @@ export interface Book {
 	originalTitle: string // Оригінальна назва книги
 	genre: Genre // Жанр книги
 	categories: Categories[] // Масив цільових аудиторій книги
+	targetAges: TargetAges[] // Масив цільових вікових груп
 	series?: string // Назва серії, до якої належить книга (необов’язкове)
 	publisher: string // Видавництво, що випустило книгу
 	publicationYear: number // Рік видання книги
@@ -116,7 +128,7 @@ export interface Book {
 	pageCount: number // Кількість сторінок у книзі
 	paperType?: PaperType // тип паперу
 	language: Language // Мова перекладу або тексту книги
-	bindingLanguage: Language // Мова оригіналу книги
+	originalLanguage: Language // Мова оригіналу книги
 	translator?: string // Особа, яка перекладала
 	coverType: CoverType // Тип обкладинки книги
 	weight: number // Вага книги в грамах
@@ -128,8 +140,7 @@ export interface Book {
 	stockQuantity: number // Кількість книг на складі, доступних для продажу
 	description?: string // Опис книги, короткий або детальний текст (необов’язкове).
 	images: string[] // Масив URL-адрес до фотографій книги
-	criticReviews: CriticReview[] // Масив відгуків від критиків про книгу
-	customerReviews: CustomerReview[] // Масив відгуків від покупців про книгу
+	reviews: Review[] // Масив відгуків юзерів і критиків про книгу
 	isBestseller: boolean // чи є книга бестселером?
 	isPublish: boolean // чи книга вже продається?
 	isGifted: boolean // чи подарункове видання?
@@ -140,27 +151,17 @@ export interface Book {
 }
 
 // модель відгуку критика
-export interface CriticReview {
+export interface Review {
 	bookId: number
-	criticId: number // Унікальний ідентифікатор відгуку критика (автоматичне створення)
-	criticName: string // Ім’я критика, який залишив відгук
+	reviewId: number // Унікальний ідентифікатор відгуку  (автоматичне створення)
+	reviewName: string // Ім’я, хто залишив відгук
 	rating: number // Оцінка відгуку від 0 до 5 (ціле значення)
-	reviewText: string // Текст відгуку критика
-	publicationDate: string // Дата публікації відгуку у форматі ISO ("2024-01-01T12:00:00Z")
-	source: string // Джерело відгуку
-	criticAvatar?: string // URL-адреса аватара критика (аватар можна генерувати автоматично)
-}
-
-// модель відгуку покупця
-export interface CustomerReview {
-	bookId: number
-	customerId: number // Унікальний ідентифікатор відгуку покупця (автоматичне створення)
-	customerName: string // Ім’я покупця, який залишив відгук
-	rating: number // Оцінка відгуку від 0 до 5 (ціле значення)
-	reviewText: string // Текст відгуку покупця
-	reviewDate: string // Дата відгуку у форматі ISO ("2024-01-01T12:00:00Z")
-	verifiedPurchase: boolean // Прапорець, що вказує, чи був відгук залишений після підтвердженої покупки
-	customerAvatar?: string // URL-адреса аватара покупця (аватар можна генерувати автоматично)
+	reviewText: string // Текст відгуку
+	reviewDate: string // Дата публікації відгуку у форматі ISO ("2024-01-01T12:00:00Z")
+	source?: string // Джерело відгуку
+	avatar?: string // URL-адреса аватара критика (аватар можна генерувати автоматично)
+	createdAt: string // Дата створення відгуку про книгу у форматі ISO ("2024-01-01T12:00:00Z")
+	updatedAt: string // Дата останнього оновлення відгуку про книгу у форматі ISO ("2024-09-01T15:30:00Z")
 }
 
 // модель користувача
