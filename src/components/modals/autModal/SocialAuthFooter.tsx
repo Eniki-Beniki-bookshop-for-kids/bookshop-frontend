@@ -1,26 +1,12 @@
 "use client"
 
+import { useAuthContext } from "@/context/AuthContext"
 import { Divider, Flex, ModalFooter, Text } from "@chakra-ui/react"
 import { FC } from "react"
-import { IButtonProps } from "../../../types/propsInterfaces"
 import { ButtonTemplate, LogoApple, LogoGoogle } from "../../ui"
 
-interface SocialAuthFooterProps extends IButtonProps {
-	isRegister: boolean
-	setIsRegister: (value: boolean) => void
-}
-
-export const SocialAuthFooter: FC<SocialAuthFooterProps> = ({
-	onClick,
-	isRegister,
-	setIsRegister,
-}) => {
-	const handleClick = () => {
-		if (onClick) {
-			onClick()
-		}
-		setIsRegister(!isRegister)
-	}
+export const SocialAuthFooter: FC = () => {
+	const { isRegister, setIsRegister } = useAuthContext()
 
 	const buttonText = isRegister
 		? "Вже маєте акаунт? Увійти"
@@ -60,7 +46,9 @@ export const SocialAuthFooter: FC<SocialAuthFooterProps> = ({
 					bgColor="transparent"
 					textColor="customLightGray"
 					padding="0"
-					onClick={handleClick}
+					onClick={() => {
+						setIsRegister(!isRegister)
+					}}
 				>
 					{buttonText}
 				</ButtonTemplate>

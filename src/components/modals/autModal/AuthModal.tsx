@@ -1,7 +1,6 @@
 "use client"
 
-import { useAuthModal } from "@/hooks"
-import { authCredentials } from "@/types/constants"
+import { AuthProvider } from "@/context/AuthContext"
 import { ModalTemplateProps } from "@/types/propsInterfaces"
 import { Modal, ModalContent, ModalOverlay } from "@chakra-ui/react"
 import { FC } from "react"
@@ -12,28 +11,11 @@ export const AuthModal: FC<ModalTemplateProps> = ({
 	onClose,
 	isRegister: initialIsRegister = false,
 }) => {
-	const {
-		isChecked,
-		setIsChecked,
-		formData,
-		setFormData,
-		errors,
-		setErrors,
-		isRegister,
-		setIsRegister,
-	} = useAuthModal(initialIsRegister, isOpen)
-
 	const motionProps = {
 		initial: { opacity: 0, y: -50 },
 		animate: { opacity: 1, y: 0 },
 		exit: { opacity: 0, y: 50 },
 		transition: { duration: 0.3 },
-	}
-
-	const handleSwitchToRegister = () => {
-		setIsRegister(true)
-		setFormData(authCredentials)
-		setErrors(authCredentials)
 	}
 
 	return (
@@ -47,27 +29,14 @@ export const AuthModal: FC<ModalTemplateProps> = ({
 				maxWidth="624px"
 				motionProps={motionProps}
 			>
-				<AuthHeader
-					title={isRegister ? "Реєстрація" : "Вхід / Реєстрація"}
-					onClose={onClose}
-				/>
-				<AuthModalBody
-					isChecked={isChecked}
-					setIsChecked={setIsChecked}
-					formData={formData}
-					setFormData={setFormData}
-					errors={errors}
-					setErrors={setErrors}
-					isRegister={isRegister}
-					onClose={onClose}
-				/>
-				<SocialAuthFooter
-					onClick={
-						isRegister ? () => setIsRegister(false) : handleSwitchToRegister
-					}
-					setIsRegister={setIsRegister}
-					isRegister={isRegister}
-				/>
+				<AuthProvider initialIsRegister={initialIsRegister} isOpen={isOpen}>
+					<AuthHeader onClose={onClose} />
+					<AuthModalBody
+						onClose={onClose}
+						onForgotPasswordClick={() => console.log("Go to change a password")}
+					/>
+					<SocialAuthFooter />
+				</AuthProvider>
 			</ModalContent>
 		</Modal>
 	)

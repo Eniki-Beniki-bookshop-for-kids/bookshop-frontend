@@ -1,5 +1,4 @@
 import { ReactNode } from "react"
-import { authCredentials } from "./constants"
 
 export interface IButtonProps {
 	height?: number
@@ -72,14 +71,4 @@ export interface CustomInputProps {
 	error: string
 	mb?: number
 	mt?: number
-}
-export interface AuthModalBodyProps {
-	isChecked: boolean
-	setIsChecked: (value: boolean) => void
-	formData: typeof authCredentials
-	setFormData: (value: typeof authCredentials) => void
-	errors: typeof authCredentials
-	setErrors: (value: typeof authCredentials) => void
-	isRegister: boolean
-	onClose: () => void
 }

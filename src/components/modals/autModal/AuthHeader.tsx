@@ -1,15 +1,14 @@
 "use client"
 
+import { useAuthContext } from "@/context/AuthContext"
 import { Flex, ModalHeader } from "@chakra-ui/react"
 import { FC } from "react"
 import { CloseIconBtn } from "../../ui"
 
-interface AuthHeaderProps {
-	title: string
-	onClose: () => void
-}
+export const AuthHeader: FC<{ onClose: () => void }> = ({ onClose }) => {
+	const { isRegister } = useAuthContext()
+	const title = isRegister ? "Реєстрація" : "Вхід / Реєстрація"
 
-export const AuthHeader: FC<AuthHeaderProps> = ({ title, onClose }) => {
 	return (
 		<Flex justify="space-between" align="center" mb={9}>
 			<ModalHeader

@@ -1,22 +1,22 @@
 "use client"
 
-import { AuthModalBodyProps } from "@/types/propsInterfaces"
+import { useAuthContext } from "@/context/AuthContext"
 import { ModalBody } from "@chakra-ui/react"
 import { FC } from "react"
+import { AuthFormActions, AuthSubmitButton } from "."
 import { InputTemplate } from "../../ui"
-import { AuthFormActions } from "./AuthFormActions"
-import { AuthSubmitButton } from "./AuthSubmitButton"
+
+interface AuthModalBodyProps {
+	onClose: () => void
+	onForgotPasswordClick: () => void
+}
 
 export const AuthModalBody: FC<AuthModalBodyProps> = ({
-	isChecked,
-	setIsChecked,
-	formData,
-	setFormData,
-	errors,
-	setErrors,
-	isRegister,
 	onClose,
+	onForgotPasswordClick,
 }) => {
+	const { formData, setFormData, errors, isRegister } = useAuthContext()
+
 	return (
 		<ModalBody p={0} mb={6}>
 			<InputTemplate
@@ -46,21 +46,8 @@ export const AuthModalBody: FC<AuthModalBodyProps> = ({
 					mt={8}
 				/>
 			)}
-			<AuthFormActions
-				isChecked={isChecked}
-				onCheckboxChange={checked => {
-					console.log("Checked:", checked)
-					setIsChecked(checked)
-				}}
-				onForgotPasswordClick={() => console.log("Go to change a password")}
-				isRegister={isRegister}
-			/>
-			<AuthSubmitButton
-				formData={formData}
-				setErrors={setErrors}
-				onSubmit={onClose}
-				isRegister={isRegister}
-			/>
+			<AuthFormActions onForgotPasswordClick={onForgotPasswordClick} />
+			<AuthSubmitButton onSubmit={onClose} />
 		</ModalBody>
 	)
 }

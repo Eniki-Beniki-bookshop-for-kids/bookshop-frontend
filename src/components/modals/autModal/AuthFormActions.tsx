@@ -1,28 +1,23 @@
 "use client"
 
+import { useAuthContext } from "@/context/AuthContext"
 import { Flex } from "@chakra-ui/react"
 import { FC } from "react"
 import { ButtonTemplate, MultipleCheckboxTemplate } from "../../ui"
 
-interface AuthFormActionsProps {
-	isChecked: boolean
-	onCheckboxChange: (checked: boolean) => void
-	onForgotPasswordClick: () => void
-	isRegister: boolean
-}
-
-export const AuthFormActions: FC<AuthFormActionsProps> = ({
-	isChecked,
-	onCheckboxChange,
+export const AuthFormActions: FC<{ onForgotPasswordClick: () => void }> = ({
 	onForgotPasswordClick,
-	isRegister,
 }) => {
+	const { isChecked, setIsChecked, isRegister } = useAuthContext()
+
 	return (
 		<Flex justify="space-between" align="center" mb={5} mt={8}>
 			<MultipleCheckboxTemplate
 				label="Запам’ятати"
 				isChecked={isChecked}
-				onChange={onCheckboxChange}
+				onChange={checked => {
+					setIsChecked(checked)
+				}}
 			/>
 			{!isRegister && (
 				<ButtonTemplate

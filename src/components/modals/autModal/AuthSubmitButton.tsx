@@ -1,25 +1,14 @@
 "use client"
 
+import { useAuthContext } from "@/context/AuthContext"
 import { FC } from "react"
 import { ButtonTemplate } from "../../ui"
 
-interface AuthSubmitButtonProps {
-	formData: { login: string; password: string; confirmPassword: string }
-	setErrors: (errors: {
-		login: string
-		password: string
-		confirmPassword: string
-	}) => void
-	onSubmit: () => void
-	isRegister?: boolean
-}
-
-export const AuthSubmitButton: FC<AuthSubmitButtonProps> = ({
-	formData,
-	setErrors,
+export const AuthSubmitButton: FC<{ onSubmit: () => void }> = ({
 	onSubmit,
-	isRegister = false,
 }) => {
+	const { formData, setErrors, isRegister } = useAuthContext()
+
 	const handleSubmit = () => {
 		const newErrors = { login: "", password: "", confirmPassword: "" }
 		let isValid = true
