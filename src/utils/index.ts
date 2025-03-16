@@ -1,3 +1,4 @@
 import { getTailwindColor } from "./getTailwindColor"
+import { validateAuthForm } from "./validateAuthForm"
 
-export { getTailwindColor }
+export { getTailwindColor, validateAuthForm }

@@ -1,6 +1,7 @@
 "use client"
 
 import { useAuthContext } from "@/context/AuthContext"
+import { validateAuthForm } from "@/utils"
 import { FC } from "react"
 import { ButtonTemplate } from "../../ui"
 
@@ -10,25 +11,9 @@ export const AuthSubmitButton: FC<{ onSubmit: () => void }> = ({
 	const { formData, setErrors, isRegister } = useAuthContext()
 
 	const handleSubmit = () => {
-		const newErrors = { login: "", password: "", confirmPassword: "" }
-		let isValid = true
+		const { errors, isValid } = validateAuthForm(formData, isRegister)
 
-		if (formData.login.length < 7) {
-			newErrors.login = "Ой! А треба мінімум 7 символів :)"
-			isValid = false
-		}
-
-		if (formData.password.length < 7) {
-			newErrors.password = "Ой! А треба мінімум 7 символів :)"
-			isValid = false
-		}
-
-		if (isRegister && formData.password !== formData.confirmPassword) {
-			newErrors.confirmPassword = "Паролі не співпадають :)"
-			isValid = false
-		}
-
-		setErrors(newErrors)
+		setErrors(errors)
 
 		if (isValid) {
 			console.log("Дані форми:", formData)
