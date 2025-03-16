@@ -4,26 +4,19 @@ import { getTailwindColor } from "@/utils"
 import { FC, useState } from "react"
 import { IButtonProps } from "../../../types/propsInterfaces"
 
-interface EyeToggleIconBtnProps extends IButtonProps {
-	onToggle?: (isVisible: boolean) => void
-}
-
-export const EyeToggleIconBtn: FC<EyeToggleIconBtnProps> = ({
+export const EyeToggleIconBtn: FC<IButtonProps> = ({
 	colorFill = getTailwindColor("customDarkGray") || "#2e2e2e",
 	size = 24,
-	onToggle,
+	onClick,
 	disabled = false,
 }) => {
 	const [show, setShow] = useState(false)
 
 	const toggle = () => {
-		setShow(prev => {
-			const newState = !prev
-			if (onToggle) {
-				onToggle(newState)
-			}
-			return newState
-		})
+		if (onClick && !disabled) {
+			onClick()
+			setShow(prev => !prev)
+		}
 	}
 
 	return (

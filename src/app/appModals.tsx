@@ -1,6 +1,6 @@
 "use client"
 
-import { CartModal, LoginModal } from "../components/modals"
+import { AuthModal, CartModal } from "../components/modals"
 import { useModal } from "../context/ModalContext"
 
 export const AppModals = () => {
@@ -9,7 +9,7 @@ export const AppModals = () => {
 	return (
 		<>
 			{currentModal === "login" && (
-				<LoginModal isOpen={true} onClose={closeModal} />
+				<AuthModal isOpen={true} onClose={closeModal} isRegister={false} />
 			)}
 			{currentModal === "cart" && (
 				<CartModal isOpen={true} onClose={closeModal} />

@@ -1,4 +1,4 @@
 import { CartModal } from "./CartModal"
-import { LoginModal } from "./autModal/LoginModal"
+import { AuthModal } from "./autModal/AuthModal"
 
-export { CartModal, LoginModal }
+export { CartModal, AuthModal }

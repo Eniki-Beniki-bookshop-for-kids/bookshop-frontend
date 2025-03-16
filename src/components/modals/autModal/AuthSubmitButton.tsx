@@ -3,27 +3,39 @@
 import { FC } from "react"
 import { ButtonTemplate } from "../../ui"
 
-interface LoginSubmitButtonProps {
-	formData: { login: string; password: string }
-	setErrors: (errors: { login: string; password: string }) => void
+interface AuthSubmitButtonProps {
+	formData: { login: string; password: string; confirmPassword: string }
+	setErrors: (errors: {
+		login: string
+		password: string
+		confirmPassword: string
+	}) => void
 	onSubmit: () => void
+	isRegister?: boolean
 }
 
-export const LoginSubmitButton: FC<LoginSubmitButtonProps> = ({
+export const AuthSubmitButton: FC<AuthSubmitButtonProps> = ({
 	formData,
 	setErrors,
 	onSubmit,
+	isRegister = false,
 }) => {
 	const handleSubmit = () => {
-		const newErrors = { login: "", password: "" }
+		const newErrors = { login: "", password: "", confirmPassword: "" }
 		let isValid = true
 
 		if (formData.login.length < 7) {
 			newErrors.login = "Ой! А треба мінімум 7 символів :)"
 			isValid = false
 		}
+
 		if (formData.password.length < 7) {
 			newErrors.password = "Ой! А треба мінімум 7 символів :)"
+			isValid = false
+		}
+
+		if (isRegister && formData.password !== formData.confirmPassword) {
+			newErrors.confirmPassword = "Паролі не співпадають :)"
 			isValid = false
 		}
 
@@ -43,7 +55,7 @@ export const LoginSubmitButton: FC<LoginSubmitButtonProps> = ({
 			hoverScale={1.02}
 			onClick={handleSubmit}
 		>
-			Увійти
+			{isRegister ? "Зареєструватись" : "Увійти"}
 		</ButtonTemplate>
 	)
 }

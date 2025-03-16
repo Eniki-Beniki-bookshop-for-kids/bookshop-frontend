@@ -8,12 +8,14 @@ interface AuthFormActionsProps {
 	isChecked: boolean
 	onCheckboxChange: (checked: boolean) => void
 	onForgotPasswordClick: () => void
+	isRegister: boolean
 }
 
 export const AuthFormActions: FC<AuthFormActionsProps> = ({
 	isChecked,
 	onCheckboxChange,
 	onForgotPasswordClick,
+	isRegister,
 }) => {
 	return (
 		<Flex justify="space-between" align="center" mb={5} mt={8}>
@@ -22,14 +24,16 @@ export const AuthFormActions: FC<AuthFormActionsProps> = ({
 				isChecked={isChecked}
 				onChange={onCheckboxChange}
 			/>
-			<ButtonTemplate
-				bgColor="transparent"
-				textColor="customLightGray"
-				padding="0"
-				onClick={onForgotPasswordClick}
-			>
-				Забули пароль?
-			</ButtonTemplate>
+			{!isRegister && (
+				<ButtonTemplate
+					bgColor="transparent"
+					textColor="customLightGray"
+					padding="0"
+					onClick={onForgotPasswordClick}
+				>
+					Забули пароль?
+				</ButtonTemplate>
+			)}
 		</Flex>
 	)
 }

@@ -17,3 +17,9 @@ export const pageHeaderTypes: { [key: string]: "full" | "minimal" } = {
 	"/checkout": "minimal",
 	"/account": "full",
 }
+
+export const authCredentials = {
+	login: "",
+	password: "",
+	confirmPassword: "",
+}

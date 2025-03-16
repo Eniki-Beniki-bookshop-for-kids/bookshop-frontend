@@ -2,13 +2,30 @@
 
 import { Divider, Flex, ModalFooter, Text } from "@chakra-ui/react"
 import { FC } from "react"
+import { IButtonProps } from "../../../types/propsInterfaces"
 import { ButtonTemplate, LogoApple, LogoGoogle } from "../../ui"
 
-interface SocialAuthFooterProps {
-	onSwitch: () => void
+interface SocialAuthFooterProps extends IButtonProps {
+	isRegister: boolean
+	setIsRegister: (value: boolean) => void
 }
 
-export const SocialAuthFooter: FC<SocialAuthFooterProps> = ({ onSwitch }) => {
+export const SocialAuthFooter: FC<SocialAuthFooterProps> = ({
+	onClick,
+	isRegister,
+	setIsRegister,
+}) => {
+	const handleClick = () => {
+		if (onClick) {
+			onClick()
+		}
+		setIsRegister(!isRegister)
+	}
+
+	const buttonText = isRegister
+		? "Вже маєте акаунт? Увійти"
+		: "Не маєте акаунту? Зареєструватись"
+
 	return (
 		<ModalFooter flexDirection="column" alignItems="stretch" p={0}>
 			<Flex flexDirection="column" flex={1}>
@@ -43,10 +60,9 @@ export const SocialAuthFooter: FC<SocialAuthFooterProps> = ({ onSwitch }) => {
 					bgColor="transparent"
 					textColor="customLightGray"
 					padding="0"
-					onClick={onSwitch}
-					href="/register"
+					onClick={handleClick}
 				>
-					Не маєте акаунту? Зареєструватись
+					{buttonText}
 				</ButtonTemplate>
 			</Flex>
 		</ModalFooter>
