@@ -1,3 +1,5 @@
+import { TelegramLoginButton } from "./buttons/telegramLoginBtn"
+import { LogoTelegram } from "./svg/logoTelegram"
 import { BasketIconBtn } from "./buttons/basketIconBtn"
 import { ButtonTemplate } from "./buttons/buttonTemplate"
 import { CartIconBtn } from "./buttons/cartIconBtn"
@@ -72,4 +74,6 @@ export {
 	TrashIconBtn,
 	UserIconBtn,
 	WalletIcon,
+	LogoTelegram,
+	TelegramLoginButton,
 }

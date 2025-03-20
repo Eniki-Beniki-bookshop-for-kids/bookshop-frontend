@@ -26,7 +26,10 @@ export const useGoogleSignIn = ({ onClose }: { onClose: () => void }) => {
 				? `${pathname}?${searchParams.toString()}`
 				: pathname
 			router.push(fullPath)
-			console.log("Тут відправляємо на бекенд наш код авторизації:", authCode)
+			console.log(
+				"Тут відправляємо на бекенд наш код авторизації (Google):",
+				authCode,
+			)
 			setAuthCode(null)
 		}
 	}, [authCode, onClose, router, pathname, searchParams])

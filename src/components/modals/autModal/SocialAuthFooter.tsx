@@ -1,14 +1,14 @@
 "use client"
 
 import { useAuthContext } from "@/context/AuthContext"
-import { useGoogleSignIn } from "@/hooks/useGoogleSignIn"
+import { useGoogleSignIn } from "@/hooks"
 import { Divider, Flex, ModalFooter, Text } from "@chakra-ui/react"
 import { FC } from "react"
-import { ButtonTemplate, LogoFB, LogoGoogle } from "../../ui"
+import { ButtonTemplate, LogoGoogle } from "../../ui"
 
 export const SocialAuthFooter: FC<{ onClose: () => void }> = ({ onClose }) => {
 	const { isRegister, setIsRegister } = useAuthContext()
-	const { login } = useGoogleSignIn({ onClose })
+	const { login: googleLogin } = useGoogleSignIn({ onClose })
 
 	const buttonText = isRegister
 		? "Вже маєте акаунт? Увійти"
@@ -29,19 +29,9 @@ export const SocialAuthFooter: FC<{ onClose: () => void }> = ({ onClose }) => {
 					padding="18px"
 					hoverScale={1.02}
 					iconBefore={<LogoGoogle />}
-					onClick={() => login()}
+					onClick={() => googleLogin()}
 				>
 					Продовжити з Google
-				</ButtonTemplate>
-				<ButtonTemplate
-					bgColor="customWhite"
-					textColor="customBlack"
-					mb={8}
-					padding="18px"
-					hoverScale={1.02}
-					iconBefore={<LogoFB />}
-				>
-					Продовжити з Facebook
 				</ButtonTemplate>
 			</Flex>
 			<Flex flex={1} alignItems="center" justifyContent="center" height="100%">
