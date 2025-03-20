@@ -1,44 +1,14 @@
 "use client"
 
 import { useAuthContext } from "@/context/AuthContext"
+import { useGoogleSignIn } from "@/hooks/useGoogleSignIn"
 import { Divider, Flex, ModalFooter, Text } from "@chakra-ui/react"
-import { useGoogleLogin } from "@react-oauth/google"
-import { usePathname, useRouter, useSearchParams } from "next/navigation"
-import { FC, useEffect, useState } from "react"
-import { ButtonTemplate, LogoApple, LogoGoogle } from "../../ui"
+import { FC } from "react"
+import { ButtonTemplate, LogoFB, LogoGoogle } from "../../ui"
 
 export const SocialAuthFooter: FC<{ onClose: () => void }> = ({ onClose }) => {
 	const { isRegister, setIsRegister } = useAuthContext()
-	const router = useRouter()
-	const pathname = usePathname()
-	const searchParams = useSearchParams()
-	const [authCode, setAuthCode] = useState<string | null>(null)
-
-	// Функція для входу через Google
-	const login = useGoogleLogin({
-		flow: "auth-code",
-		redirect_uri: `${window.location.origin}/api/auth/google/callback`,
-		onSuccess: codeResponse => {
-			setAuthCode(codeResponse.code)
-		},
-		onError: error => {
-			console.error("Помилка входу через Google:", error)
-		},
-	})
-
-	// Функція для обробки коду авторизації
-	useEffect(() => {
-		if (authCode) {
-			onClose()
-
-			const fullPath = searchParams.toString()
-				? `${pathname}?${searchParams.toString()}`
-				: pathname
-			router.push(fullPath)
-			console.log("Тут відправляємо на бекенд наш код авторизації:", authCode)
-			setAuthCode(null)
-		}
-	}, [authCode, onClose, router, pathname, searchParams])
+	const { login } = useGoogleSignIn({ onClose })
 
 	const buttonText = isRegister
 		? "Вже маєте акаунт? Увійти"
@@ -69,9 +39,9 @@ export const SocialAuthFooter: FC<{ onClose: () => void }> = ({ onClose }) => {
 					mb={8}
 					padding="18px"
 					hoverScale={1.02}
-					iconBefore={<LogoApple />}
+					iconBefore={<LogoFB />}
 				>
-					Продовжити з Apple
+					Продовжити з Facebook
 				</ButtonTemplate>
 			</Flex>
 			<Flex flex={1} alignItems="center" justifyContent="center" height="100%">

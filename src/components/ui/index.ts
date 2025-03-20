@@ -21,6 +21,7 @@ import { DeliveryIcon } from "./svg/deliveryIcon"
 import { EmailIcon } from "./svg/emailIcon"
 import { ExchangeIcon } from "./svg/exchangeIcon"
 import { LogoApple } from "./svg/logoApple"
+import { LogoFB } from "./svg/logoFB"
 import { LogoGoogle } from "./svg/logoGoogle"
 import { LogoutIcon } from "./svg/logoutIcon"
 import { OrderIcon } from "./svg/orderIcon"
@@ -51,6 +52,7 @@ export {
 	HeartIconBtn,
 	InputTemplate,
 	LogoApple,
+	LogoFB,
 	LogoGoogle,
 	LogoutIcon,
 	MultipleCheckboxTemplate,
