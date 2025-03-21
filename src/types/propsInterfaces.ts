@@ -68,7 +68,7 @@ export interface CustomInputProps {
 	placeholder: string
 	value: string
 	onChange: (e: React.ChangeEvent<HTMLInputElement>) => void
-	error: string
+	error: string | undefined
 	mb?: number
 	mt?: number
 }

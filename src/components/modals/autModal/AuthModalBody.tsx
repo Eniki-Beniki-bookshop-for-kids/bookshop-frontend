@@ -1,7 +1,7 @@
 "use client"
 
 import { useAuthContext } from "@/context/AuthContext"
-import { ModalBody } from "@chakra-ui/react"
+import { ModalBody, Text } from "@chakra-ui/react"
 import { FC } from "react"
 import { AuthFormActions, AuthSubmitButton } from "."
 import { InputTemplate } from "../../ui"
@@ -16,6 +16,8 @@ export const AuthModalBody: FC<AuthModalBodyProps> = ({
 	onForgotPasswordClick,
 }) => {
 	const { formData, setFormData, errors, isRegister } = useAuthContext()
+	// const user = useAuthStore(state => state.user)
+	// console.log("Користувач у store:", user)
 
 	return (
 		<ModalBody p={0} mb={6}>
@@ -45,6 +47,11 @@ export const AuthModalBody: FC<AuthModalBodyProps> = ({
 					error={errors.confirmPassword}
 					mt={8}
 				/>
+			)}
+			{errors.authError && (
+				<Text color="red.500" fontSize="sm" mt={4}>
+					{errors.authError}
+				</Text>
 			)}
 			<AuthFormActions onForgotPasswordClick={onForgotPasswordClick} />
 			<AuthSubmitButton onSubmit={onClose} />

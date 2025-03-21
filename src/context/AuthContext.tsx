@@ -1,17 +1,6 @@
 import { useAuthModal } from "@/hooks"
 import { createContext, FC, ReactNode, useContext } from "react"
-import { authCredentials } from "../types/constants"
-
-interface AuthContextType {
-	isChecked: boolean
-	setIsChecked: (value: boolean) => void
-	formData: typeof authCredentials
-	setFormData: (formData: typeof authCredentials) => void
-	errors: typeof authCredentials
-	setErrors: (errors: typeof authCredentials) => void
-	isRegister: boolean
-	setIsRegister: (value: boolean) => void
-}
+import { AuthContextType } from "../types/interfaces"
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined)
 

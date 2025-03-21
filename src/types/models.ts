@@ -169,8 +169,8 @@ export interface User {
 	userId: number // Унікальний ідентифікатор користувача, автоматично генерується
 	email: string // Електронна пошта (унікальна)
 	password?: string | null
-	firstName: string // Ім’я
-	lastName: string // Прізвище
+	firstName?: string // Ім’я
+	lastName?: string // Прізвище
 	phoneNumber?: string // Номер телефону (унікальна)
 	dateOfBirth?: string // Дата народження у форматі ISO (необов’язкове, "2024-01-01T12:00:00Z")
 	address?: string // Адреса доставки (необов’язкове)
@@ -178,9 +178,9 @@ export interface User {
 	postalCode?: string // Поштовий індекс (необов’язкове)
 	country?: string // Країна (необов’язкове)
 	role: UserRole // Роль користувача
-	googleId?: string // Унікальний ID від Google
-	googleAccessToken?: string // Токен доступу від Google
-	avatar?: string // Аватар клієнта
+	googleId?: string | null // Унікальний ID від Google
+	googleAccessToken?: string | null // Токен доступу від Google
+	avatar?: string | null // Аватар клієнта
 	isActive: boolean // для активації/деактивації покупця адмінами
 	favoriteBooks: number[] // Масив ID улюблених книг
 	createdAt: string // Дата створення профілю у форматі ISO ("2024-01-01T12:00:00Z")
