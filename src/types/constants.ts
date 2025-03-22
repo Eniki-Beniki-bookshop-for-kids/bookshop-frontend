@@ -6,7 +6,7 @@ export const headerNav: NavbarProps[] = [
 	{ href: "/#new-arrivals", label: "Новинки", headerType: "full" },
 	{ href: "/blog", label: "Блог", headerType: "full" },
 	{ href: "/delivery", label: "Доставка/Оплата", headerType: "full" },
-	{ href: "/contacts", label: "Контакти", headerType: "full" },
+	{ href: "/#contacts", label: "Контакти", headerType: "full" },
 ]
 
 export const footerMenu: NavbarProps[] = [

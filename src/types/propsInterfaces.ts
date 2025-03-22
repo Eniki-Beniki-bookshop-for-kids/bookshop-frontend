@@ -52,6 +52,7 @@ export interface NavbarProps {
 	label: string
 	href: string
 	headerType?: "full" | "minimal"
+	isActive?: boolean
 }
 
 export interface ModalTemplateProps {

@@ -6,7 +6,7 @@ import { FooterColumnName } from "./FooterColumnName"
 
 export const FooterContacts: FC = () => {
 	return (
-		<VStack align="start" spacing="10px">
+		<VStack id="contacts" align="start" spacing="10px" scrollMarginTop="258px">
 			<FooterColumnName title="Контакти" />
 			<VStack align="start" spacing={1}>
 				{footerContacts.map(contact =>
