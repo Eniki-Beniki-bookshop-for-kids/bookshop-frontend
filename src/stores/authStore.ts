@@ -13,16 +13,20 @@ export const useAuthStore = create<AuthState>()(
 		persist(
 			set => ({
 				user: null,
-				setUser: user => set({ user }),
-				logout: () => set({ user: null }),
+				setUser: user => {
+					set({ user })
+				},
+				logout: () => {
+					set({ user: null })
+				},
 			}),
 			{
-				name: "auth-storage", // Назва ключа в localStorage
+				name: "auth-storage",
 				storage: createJSONStorage(() => localStorage),
 			},
 		),
 		{
-			name: "AuthStore", // Назва стора в Redux DevTools
+			name: "AuthStore",
 		},
 	),
 )

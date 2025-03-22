@@ -66,6 +66,7 @@ export const updateUser = (
 		...updates,
 		updatedAt: new Date().toISOString(),
 	}
+
 	users[userIndex] = updatedUser
 	return updatedUser
 }

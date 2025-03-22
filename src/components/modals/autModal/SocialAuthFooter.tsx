@@ -6,9 +6,9 @@ import { Divider, Flex, ModalFooter, Text } from "@chakra-ui/react"
 import { FC } from "react"
 import { ButtonTemplate, LogoGoogle } from "../../ui"
 
-export const SocialAuthFooter: FC<{ onClose: () => void }> = ({ onClose }) => {
+export const SocialAuthFooter: FC = () => {
 	const { isRegister, setIsRegister } = useAuthContext()
-	const { login: googleLogin } = useGoogleSignIn({ onClose })
+	const { login: googleLogin } = useGoogleSignIn()
 
 	const buttonText = isRegister
 		? "Вже маєте акаунт? Увійти"

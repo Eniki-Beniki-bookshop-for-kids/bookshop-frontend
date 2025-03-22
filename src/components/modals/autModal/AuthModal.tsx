@@ -35,7 +35,7 @@ export const AuthModal: FC<ModalTemplateProps> = ({
 						onClose={onClose}
 						onForgotPasswordClick={() => console.log("Go to change a password")}
 					/>
-					<SocialAuthFooter onClose={onClose} />
+					<SocialAuthFooter />
 				</AuthProvider>
 			</ModalContent>
 		</Modal>
