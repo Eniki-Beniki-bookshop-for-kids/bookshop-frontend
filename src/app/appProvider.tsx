@@ -1,6 +1,6 @@
 "use client"
 
-import { ChakraProvider } from "@chakra-ui/react"
+import { ChakraProvider, Flex } from "@chakra-ui/react"
 import { GoogleOAuthProvider } from "@react-oauth/google"
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query"
 import theme from "../chakraTheme"
@@ -28,12 +28,12 @@ export default function AppProvider({
 			<GoogleOAuthProvider clientId={process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID!}>
 				<ChakraProvider theme={theme}>
 					<ModalProvider>
-						<div>
+						<Flex direction="column" minHeight="100vh">
 							<Header />
 							<Main>{children}</Main>
 							<Footer />
 							<AppModals />
-						</div>
+						</Flex>
 					</ModalProvider>
 				</ChakraProvider>
 			</GoogleOAuthProvider>
