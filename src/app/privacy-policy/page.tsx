@@ -1,34 +1,112 @@
+import { Box, Heading, Link, Text, VStack } from "@chakra-ui/react"
+import NextLink from "next/link"
+
 export default function PrivacyPolicy() {
 	return (
-		<div style={{ padding: "20px", maxWidth: "800px", margin: "0 auto" }}>
-			<h1>Політика конфіденційності</h1>
-			<p>
-				Ласкаво просимо до книгарні &apos;Еники-Беники&apos;! Ми піклуємося про
-				вашу конфіденційність і хочемо, щоб ви почувалися безпечно,
-				використовуючи наш додаток.
-			</p>
-			<h2>Які дані ми збираємо?</h2>
-			<p>
-				Якщо ви входите через Facebook Login або Google Sign-In, ми можемо
-				отримати такі дані: - Ваше ім’я - Ваш email - Ідентифікатор профілю
-			</p>
-			<h2>Як ми використовуємо ваші дані?</h2>
-			<p>
-				Ми використовуємо ці дані для: - Авторизації у нашому додатку. -
-				Персоналізації вашого досвіду (наприклад, рекомендації книг).
-			</p>
-			<h2>Як видалити ваші дані?</h2>
-			<p>
-				Ви можете видалити свої дані, звернувшись до нас за адресою{" "}
-				<a href="mailto:support@bookshopapp.com">support@bookshopapp.com</a>.
-				Докладні інструкції доступні за{" "}
-				<a href="/data-deletion-instructions">посиланням</a>.
-			</p>
-			<h2>Зв’яжіться з нами</h2>
-			<p>
-				Якщо у вас є запитання щодо нашої політики конфіденційності, пишіть нам
-				на <a href="mailto:support@bookshopapp.com">support@bookshopapp.com</a>.
-			</p>
-		</div>
+		<Box>
+			<Heading
+				as="h1"
+				fontSize={{ base: "2xl", md: "4xl" }}
+				fontWeight="bold"
+				color="customBlack"
+				mb={6}
+				textAlign={{ base: "center", md: "left" }}
+			>
+				Політика конфіденційності
+			</Heading>
+			<VStack spacing={8} align="start">
+				<Text
+					fontSize={{ base: "md", md: "lg" }}
+					color="gray.700"
+					lineHeight="tall"
+				>
+					Ласкаво просимо до книгарні &quot;Еники-Беники&quot;! Ми піклуємося
+					про вашу конфіденційність і хочемо, щоб ви почувалися безпечно,
+					використовуючи наш додаток.
+				</Text>
+				<Box>
+					<Heading
+						as="h2"
+						fontSize={{ base: "xl", md: "2xl" }}
+						fontWeight="semibold"
+						color="customBlack"
+						mb={3}
+					>
+						Які дані ми збираємо?
+					</Heading>
+					<Text fontSize="md" color="gray.600" lineHeight="tall">
+						Якщо ви входите через Facebook Login або Google Sign-In, ми можемо
+						отримати такі дані:
+						<br />- Ваше ім’я
+						<br />- Ваш email
+						<br />- Ідентифікатор профілю
+					</Text>
+				</Box>
+				<Box>
+					<Heading
+						as="h2"
+						fontSize={{ base: "xl", md: "2xl" }}
+						fontWeight="semibold"
+						color="customBlack"
+						mb={3}
+					>
+						Як ми використовуємо ваші дані?
+					</Heading>
+					<Text fontSize="md" color="gray.600" lineHeight="tall">
+						Ми використовуємо ці дані для:
+						<br />- Авторизації у нашому додатку.
+						<br />- Персоналізації вашого досвіду (наприклад, рекомендації
+						книг).
+					</Text>
+				</Box>
+				<Box>
+					<Heading
+						as="h2"
+						fontSize={{ base: "xl", md: "2xl" }}
+						fontWeight="semibold"
+						color="customBlack"
+						mb={3}
+					>
+						Як видалити ваші дані?
+					</Heading>
+					<Text fontSize="md" color="gray.600" lineHeight="tall">
+						Ви можете видалити свої дані, звернувшись до нас за адресою{" "}
+						<Link
+							as={NextLink}
+							href="mailto:support@bookshopapp.com"
+							color="customViolet"
+							_hover={{ textDecoration: "underline" }}
+						>
+							support@bookshopapp.com
+						</Link>
+						.
+					</Text>
+				</Box>
+				<Box>
+					<Heading
+						as="h2"
+						fontSize={{ base: "xl", md: "2xl" }}
+						fontWeight="semibold"
+						color="customBlack"
+						mb={3}
+					>
+						Зв’яжіться з нами
+					</Heading>
+					<Text fontSize="md" color="gray.600" lineHeight="tall">
+						Якщо у вас є запитання щодо нашої політики конфіденційності, пишіть
+						нам на{" "}
+						<Link
+							as={NextLink}
+							href="mailto:support@bookshopapp.com"
+							color="customViolet"
+							_hover={{ textDecoration: "underline" }}
+						>
+							support@bookshopapp.com
+						</Link>
+						.
+					</Text>
+				</Box>
+			</VStack>
+		</Box>
 	)
 }

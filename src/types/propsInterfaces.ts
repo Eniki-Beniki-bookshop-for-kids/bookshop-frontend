@@ -1,5 +1,13 @@
 import { ReactNode } from "react"
 
+export interface PageProps {
+	label: string
+	href: string
+}
+export interface NavbarProps extends PageProps {
+	headerType?: "full" | "minimal"
+	isActive?: boolean
+}
 export interface IButtonProps {
 	height?: number
 	width?: number
@@ -48,13 +56,6 @@ export interface SelectTemplateProps {
 	defaultValue?: string
 }
 
-export interface NavbarProps {
-	label: string
-	href: string
-	headerType?: "full" | "minimal"
-	isActive?: boolean
-}
-
 export interface ModalTemplateProps {
 	isOpen: boolean
 	onClose: () => void
@@ -72,4 +73,10 @@ export interface CustomInputProps {
 	error: string | undefined
 	mb?: number
 	mt?: number
+}
+
+export interface ImageLinkProps {
+	src: string
+	alt: string
+	href?: string
 }
