@@ -1,7 +1,6 @@
 import { genreLink, pageLink } from "@/types/constants"
 import { PageProps } from "@/types/propsInterfaces"
 import { usePathname } from "next/navigation"
-
 interface BreadcrumbItem extends PageProps {
 	isCurrent?: boolean
 }
@@ -40,6 +39,12 @@ export const useBreadcrumbs = () => {
 				if (genre) {
 					items.push({
 						label: genre.label,
+						href: currentPath,
+						isCurrent: index === pathSegments.length - 1,
+					})
+				} else {
+					items.push({
+						label: segment, // Показуємо сам сегмент, якщо жанр не знайдено
 						href: currentPath,
 						isCurrent: index === pathSegments.length - 1,
 					})
