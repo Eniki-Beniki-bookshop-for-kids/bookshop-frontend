@@ -1,24 +1,11 @@
-"use client"
-
-import { useAuthStore } from "@/stores/authStore"
+import { useSidebarMenuContext } from "@/context/SidebarMenuContext"
 import { sidebarLinks } from "@/types/constants"
 import { HStack, Text, VStack } from "@chakra-ui/react"
-import { useRouter } from "next/navigation"
-import { Fragment, useState } from "react"
+import { Fragment } from "react"
 import { CustomDivider } from "./CustomDivider"
 
 export const SidebarMenu = () => {
-	const [activeSection, setActiveSection] = useState("settings")
-	const router = useRouter()
-
-	const handleMenuClick = (id: string) => {
-		if (id === "logout") {
-			useAuthStore.getState().logout()
-			router.push("/")
-		} else {
-			setActiveSection(id)
-		}
-	}
+	const { activeSection, handleMenuClick } = useSidebarMenuContext()
 
 	return (
 		<VStack align="start" spacing={3}>

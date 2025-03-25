@@ -1,5 +1,14 @@
 // constants.tsx
-import { ComponentType } from "react"
+import { ComponentType, ReactNode } from "react"
+import {
+	BonusesContent,
+	OrdersContent,
+	PaymentContent,
+	RecommendationsContent,
+	SettingsContent,
+	SupportContent,
+	WishlistContent,
+} from "../components/account/content"
 import {
 	BellIcon,
 	CommentIcon,
@@ -141,3 +150,19 @@ export const sidebarLinks: SidebarLink[] = [
 	{ id: "settings", label: "Налаштування профілю", icon: SettingIcon },
 	{ id: "logout", label: "Вихід", icon: LogoutIcon },
 ]
+
+export const accountContentMap: Record<
+	string,
+	{ title: string; component: ReactNode }
+> = {
+	bonuses: { title: "Бонуси", component: <BonusesContent /> },
+	wishlist: { title: "Список бажань", component: <WishlistContent /> },
+	orders: { title: "Мої замовлення", component: <OrdersContent /> },
+	recommendations: {
+		title: "Рекомендації",
+		component: <RecommendationsContent />,
+	},
+	support: { title: "Підтримка", component: <SupportContent /> },
+	payment: { title: "Оплата", component: <PaymentContent /> },
+	settings: { title: "Особиста інформація", component: <SettingsContent /> },
+}

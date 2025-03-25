@@ -6,13 +6,7 @@ import { SidebarMenu } from "./SidebarMenu"
 export const AccountSidebar = () => {
 	return (
 		<GridItem area="sidebar">
-			<Box
-				p={4}
-				bg="#FFF"
-				borderRadius="30px"
-				padding="30px"
-				color="customBlack"
-			>
+			<Box bg="#FFF" borderRadius="30px" padding="30px" color="customBlack">
 				<VStack spacing={4} align="start">
 					<SidebarHeader />
 					<CustomDivider />
