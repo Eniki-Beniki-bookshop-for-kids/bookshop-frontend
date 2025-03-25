@@ -1,18 +1,9 @@
-"use client"
-
 import { HeaderPage } from "@/components"
 import { AccountContent, AccountSidebar } from "@/components/account"
 import { SidebarMenuProvider } from "@/context/SidebarMenuContext"
-import { useAuthStore } from "@/stores/authStore"
 import { Box, Grid } from "@chakra-ui/react"
 
 export default function AccountPage() {
-	const { user } = useAuthStore()
-
-	if (!user) {
-		return null
-	}
-
 	return (
 		<SidebarMenuProvider initialSection="settings">
 			<Box pb={12}>
