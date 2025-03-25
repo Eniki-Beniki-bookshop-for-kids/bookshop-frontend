@@ -18,7 +18,7 @@ export const AccountContent = () => {
 				color="customBlack"
 				height="full"
 			>
-				<Heading as="h2" size="md" mb={6}>
+				<Heading as="h2" fontSize="24px" fontWeight="400" mb={6}>
 					{title}
 				</Heading>
 				{component}

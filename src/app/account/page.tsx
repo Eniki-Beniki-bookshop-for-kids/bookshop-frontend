@@ -1,3 +1,5 @@
+"use client"
+
 import { HeaderPage } from "@/components"
 import { AccountContent, AccountSidebar } from "@/components/account"
 import { SidebarMenuProvider } from "@/context/SidebarMenuContext"
