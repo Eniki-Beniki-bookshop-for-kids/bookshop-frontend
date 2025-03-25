@@ -1,3 +1,5 @@
+"use client"
+
 import { useTelegramSignIn } from "@/hooks"
 import { FC, useEffect } from "react"
 

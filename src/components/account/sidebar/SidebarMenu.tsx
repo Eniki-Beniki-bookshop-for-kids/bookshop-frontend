@@ -1,3 +1,5 @@
+"use client"
+
 import { useAuthStore } from "@/stores/authStore"
 import { sidebarLinks } from "@/types/constants"
 import { HStack, Text, VStack } from "@chakra-ui/react"
