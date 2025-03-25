@@ -1,7 +1,7 @@
 import { GoogleAuthHandler } from "./GoogleAuthHandler"
-import { AccountMenu } from "./AccountMenu"
+import { HeaderPage } from "./HeaderPage"
 import { Main } from "./Main"
 import { Footer } from "./footer/Footer"
 import { Header } from "./header/Header"
 
-export { AccountMenu, Main, Footer, Header, GoogleAuthHandler }
+export { Footer, GoogleAuthHandler, Header, HeaderPage, Main }

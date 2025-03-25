@@ -1,4 +1,5 @@
+import { formatPhoneNumber } from "./formatPhoneNumber"
 import { getTailwindColor } from "./getTailwindColor"
 import { validateAuthForm } from "./validateAuthForm"
 
-export { getTailwindColor, validateAuthForm }
+export { formatPhoneNumber, getTailwindColor, validateAuthForm }

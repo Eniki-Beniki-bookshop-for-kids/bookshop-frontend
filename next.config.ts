@@ -5,7 +5,20 @@ const nextConfig: NextConfig = {
 		optimizePackageImports: ["@chakra-ui/react"],
 	},
 	images: {
-		domains: ["lh3.googleusercontent.com", "www.gravatar.com"],
+		remotePatterns: [
+			{
+				protocol: "https",
+				hostname: "lh3.googleusercontent.com",
+				port: "",
+				pathname: "/**",
+			},
+			{
+				protocol: "https",
+				hostname: "www.gravatar.com",
+				port: "",
+				pathname: "/**",
+			},
+		],
 	},
 }
 

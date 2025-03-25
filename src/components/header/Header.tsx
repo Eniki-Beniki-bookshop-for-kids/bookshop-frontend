@@ -4,7 +4,7 @@ import { Box, Flex } from "@chakra-ui/react"
 import { usePathname } from "next/navigation"
 import { useMemo } from "react"
 
-import { pageHeaderTypes } from "@/types/constants"
+import { pageHeaderTypes, TypesHeader } from "@/types/constants"
 import { HeaderBg } from "./HeaderBg"
 import { HeaderMenu } from "./HeaderMenu"
 import { Logo } from "./Logo"
@@ -15,10 +15,10 @@ export const Header = () => {
 	const pathname = usePathname()
 
 	const headerType = useMemo(() => {
-		return pageHeaderTypes[pathname] || "full"
+		return pageHeaderTypes[pathname] || TypesHeader.Full
 	}, [pathname])
 
-	const waveHeight = headerType === "minimal" ? 153 : 258
+	const waveHeight = headerType === TypesHeader.Minimal ? 153 : 258
 
 	return (
 		<Box
@@ -40,12 +40,14 @@ export const Header = () => {
 			>
 				<Flex justify="space-between" width="100%" align="center">
 					<Logo />
-					{headerType === "full" && <NavBar />}
+					{headerType === TypesHeader.Full && <NavBar />}
 					<Phone />
 				</Flex>
-				<Box width="100%">
-					<HeaderMenu />
-				</Box>
+				{headerType === TypesHeader.Full && (
+					<Box width="100%">
+						<HeaderMenu />
+					</Box>
+				)}
 			</Flex>
 		</Box>
 	)

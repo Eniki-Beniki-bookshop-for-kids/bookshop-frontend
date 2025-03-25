@@ -3,7 +3,7 @@ import { getTailwindColor } from "@/utils"
 import { FC } from "react"
 
 export const CommentIcon: FC<IButtonProps> = ({
-	colorFill = getTailwindColor("customDarkGray") || "#2e2e2e",
+	colorFill = getTailwindColor("customBlack") || "#2e2e2e",
 	size = 18,
 }) => {
 	return (
