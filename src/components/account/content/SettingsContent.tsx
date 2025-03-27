@@ -1,52 +1,62 @@
-"use client"
-
-import { useAuthStore } from "@/stores/authStore"
-import {
-	Button,
-	FormControl,
-	FormLabel,
-	Input,
-	Select,
-	VStack,
-} from "@chakra-ui/react"
+import { useSettingsForm } from "@/hooks"
+import { Gender } from "@/types/models"
+import { VStack } from "@chakra-ui/react"
+import { CustomSelectTemplate, InputTemplate } from "../../ui"
 
 export const SettingsContent = () => {
-	const { user } = useAuthStore()
-
-	if (!user) {
-		return null
-	}
+	const { formData, errors, handleChange } = useSettingsForm()
 
 	return (
-		<VStack spacing={4} align="start">
-			<FormControl>
-				<FormLabel>Ім’я</FormLabel>
-				<Input defaultValue={user.firstName} />
-			</FormControl>
-			<FormControl>
-				<FormLabel>Прізвище</FormLabel>
-				<Input defaultValue={user.lastName} />
-			</FormControl>
-			<FormControl>
-				<FormLabel>Номер телефону</FormLabel>
-				<Input defaultValue={user.phoneNumber} />
-			</FormControl>
-			<FormControl>
-				<FormLabel>Електронна пошта</FormLabel>
-				<Input defaultValue={user.email} />
-			</FormControl>
-			<FormControl>
-				<FormLabel>Дата народження</FormLabel>
-				<Input type="date" defaultValue={user.dateOfBirth} />
-			</FormControl>
-			<FormControl>
-				<FormLabel>Стать</FormLabel>
-				<Select defaultValue={user.gender}>
-					<option value="male">Чоловік</option>
-					<option value="female">Жінка</option>
-				</Select>
-			</FormControl>
-			<Button colorScheme="blue">Зберегти зміни</Button>
+		<VStack
+			spacing={4}
+			align="start"
+			width="100%"
+			sx={{ "& input": { border: "none", boxShadow: "none" } }}
+		>
+			<InputTemplate
+				type="text"
+				placeholder="Введіть ім’я"
+				value={formData.firstName}
+				onChange={e => handleChange("firstName", e.target.value)}
+				error={errors.firstName}
+			/>
+			<InputTemplate
+				type="text"
+				placeholder="Введіть прізвище"
+				value={formData.lastName}
+				onChange={e => handleChange("lastName", e.target.value)}
+				error={errors.lastName}
+			/>
+			<InputTemplate
+				type="tel"
+				placeholder="+380XX XXX XX XX"
+				value={formData.phoneNumber}
+				onChange={e => handleChange("phoneNumber", e.target.value)}
+				error={errors.phoneNumber}
+			/>
+			<InputTemplate
+				type="email"
+				placeholder="Введіть email"
+				value={formData.email}
+				onChange={e => handleChange("email", e.target.value)}
+				error={errors.email}
+			/>
+			<InputTemplate
+				type="date"
+				placeholder="Виберіть дату"
+				value={formData.dateOfBirth}
+				onChange={e => handleChange("dateOfBirth", e.target.value)}
+				error={errors.dateOfBirth}
+			/>
+			<CustomSelectTemplate
+				value={formData.gender}
+				onChange={e => handleChange("gender", e.target.value)}
+				error={errors.gender}
+			>
+				<option value={Gender.male}>Чоловік</option>
+				<option value={Gender.female}>Жінка</option>
+				<option value={Gender.other}>Інше</option>
+			</CustomSelectTemplate>
 		</VStack>
 	)
 }

@@ -18,4 +18,5 @@ export interface AuthContextType {
 	setErrors: (errors: AuthErrors) => void
 	isRegister: boolean
 	setIsRegister: (value: boolean) => void
+	validate: () => { errors: AuthErrors; isValid: boolean }
 }

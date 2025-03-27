@@ -11,11 +11,11 @@ import {
 } from "../components/account/content"
 import {
 	BellIcon,
-	CommentIcon,
+	ChatIcon,
 	HeartIconBtn,
 	LogoutIcon,
 	OrderIcon,
-	PaymentCardIcon,
+	PaymentCashIcon,
 	PigIcon,
 	SettingIcon,
 } from "../components/ui"
@@ -145,8 +145,8 @@ export const sidebarLinks: SidebarLink[] = [
 	},
 	{ id: "orders", label: "Замовлення", icon: OrderIcon },
 	{ id: "recommendations", label: "Персональні рекомендації", icon: BellIcon },
-	{ id: "support", label: "Служба підтримки", icon: CommentIcon },
-	{ id: "payment", label: "Оплата", icon: PaymentCardIcon },
+	{ id: "support", label: "Служба підтримки", icon: ChatIcon },
+	{ id: "payment", label: "Оплата", icon: PaymentCashIcon },
 	{ id: "settings", label: "Налаштування профілю", icon: SettingIcon },
 	{ id: "logout", label: "Вихід", icon: LogoutIcon },
 ]

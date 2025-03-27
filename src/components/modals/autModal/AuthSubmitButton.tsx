@@ -2,18 +2,17 @@
 
 import { useAuthContext } from "@/context/AuthContext"
 import { useEmailLoginMutation } from "@/hooks"
-import { validateAuthForm } from "@/utils"
 import { FC } from "react"
 import { ButtonTemplate } from "../../ui"
 
 export const AuthSubmitButton: FC<{ onSubmit: () => void }> = ({
 	onSubmit,
 }) => {
-	const { formData, setErrors, isRegister } = useAuthContext()
+	const { formData, setErrors, isRegister, validate } = useAuthContext()
 	const { mutate: loginWithEmail, isPending } = useEmailLoginMutation()
 
 	const handleSubmit = () => {
-		const { errors, isValid } = validateAuthForm(formData, isRegister)
+		const { errors, isValid } = validate()
 
 		setErrors(errors)
 
@@ -25,9 +24,7 @@ export const AuthSubmitButton: FC<{ onSubmit: () => void }> = ({
 					isRegister,
 				},
 				{
-					onSuccess: () => {
-						onSubmit()
-					},
+					onSuccess: () => onSubmit(),
 					onError: (error: Error) => {
 						setErrors({ ...errors, authError: error.message })
 					},

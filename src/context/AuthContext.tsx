@@ -24,6 +24,7 @@ export const AuthProvider: FC<AuthProviderProps> = ({
 		setErrors,
 		isRegister,
 		setIsRegister,
+		validate,
 	} = useAuthModal(initialIsRegister, isOpen)
 
 	return (
@@ -37,6 +38,7 @@ export const AuthProvider: FC<AuthProviderProps> = ({
 				setErrors,
 				isRegister,
 				setIsRegister,
+				validate,
 			}}
 		>
 			{children}

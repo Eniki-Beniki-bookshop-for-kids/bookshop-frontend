@@ -16,8 +16,6 @@ export const AuthModalBody: FC<AuthModalBodyProps> = ({
 	onForgotPasswordClick,
 }) => {
 	const { formData, setFormData, errors, isRegister } = useAuthContext()
-	// const user = useAuthStore(state => state.user)
-	// console.log("Користувач у store:", user)
 
 	return (
 		<ModalBody p={0} mb={6}>
@@ -35,6 +33,7 @@ export const AuthModalBody: FC<AuthModalBodyProps> = ({
 				onChange={e => setFormData({ ...formData, password: e.target.value })}
 				error={errors.password}
 				mt={8}
+				pr="60px"
 			/>
 			{isRegister && (
 				<InputTemplate

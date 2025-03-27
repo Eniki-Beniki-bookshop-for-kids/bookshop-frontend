@@ -6,22 +6,12 @@ import {
 	FormErrorMessage,
 	Input,
 	InputGroup,
-	InputRightElement,
 } from "@chakra-ui/react"
-import { FC, useState } from "react"
-import { EyeToggleIconBtn } from ".."
-
-export const commonInputStyles = {
-	_placeholder: { color: "customLightGray" },
-	height: "auto",
-	padding: "18px",
-	pr: "60px",
-	color: "customBlack",
-	borderRadius: "30px",
-	borderColor: "customWhite",
-	_focus: { borderColor: "customViolet" },
-	bg: "customWhite",
-}
+import { FC } from "react"
+import { useInputLogic } from "../../../hooks"
+import { commonInputStyles } from "./commonInputStyles"
+import { DateInputIcon } from "./DateInputIcon"
+import { PasswordInputIcon } from "./passwordInputIcon"
 
 export const InputTemplate: FC<CustomInputProps> = ({
 	type,
@@ -31,35 +21,42 @@ export const InputTemplate: FC<CustomInputProps> = ({
 	error,
 	mb = 0,
 	mt = 0,
+	pr = "18px",
 }) => {
-	const [isPasswordVisible, setIsPasswordVisible] = useState(false)
-
-	const togglePasswordVisibility = () => {
-		setIsPasswordVisible(prev => !prev)
-	}
-	const isPasswordField = type === "password"
-	const inputType = isPasswordField && isPasswordVisible ? "text" : type
+	const {
+		inputRef,
+		inputType,
+		isPasswordField,
+		togglePasswordVisibility,
+		handleIconClick,
+	} = useInputLogic(type)
 
 	return (
 		<FormControl isInvalid={!!error} position="relative" mb={mb} mt={mt}>
 			<InputGroup>
 				<Input
+					ref={inputRef}
 					type={inputType}
 					placeholder={placeholder}
-					value={value}
+					value={value || ""}
 					onChange={onChange}
 					{...commonInputStyles}
+					focusBorderColor="customViolet"
+					pr={pr}
+					sx={{
+						...(type === "date" && {
+							"::-webkit-calendar-picker-indicator": {
+								display: "none",
+							},
+						}),
+					}}
 				/>
 				{isPasswordField && (
-					<InputRightElement
-						height="100%"
-						display="flex"
-						alignItems="center"
-						right="18px"
-					>
-						<EyeToggleIconBtn onClick={togglePasswordVisibility} />
-					</InputRightElement>
+					<PasswordInputIcon
+						togglePasswordVisibility={togglePasswordVisibility}
+					/>
 				)}
+				{type === "date" && <DateInputIcon onClick={handleIconClick} />}
 			</InputGroup>
 			<FormErrorMessage
 				fontSize="12px"

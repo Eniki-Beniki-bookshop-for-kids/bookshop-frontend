@@ -5,6 +5,8 @@ import { useFacebookSignIn } from "./useFacebookSignIn"
 import { useGoogleSignIn } from "./useGoogleSignIn"
 import { useHandleGoogleAuth } from "./useHandleGoogleAuth"
 import { useHashScroll } from "./useHashScroll"
+import { useInputLogic } from "./useInputLogic"
+import { useSettingsForm } from "./useSettingsForm"
 import { useSidebarMenu } from "./useSidebarMenu"
 import { useTelegramSignIn } from "./useTelegramSignIn"
 import { useUserAvatar } from "./useUserAvatar"
@@ -17,6 +19,8 @@ export {
 	useGoogleSignIn,
 	useHandleGoogleAuth,
 	useHashScroll,
+	useInputLogic,
+	useSettingsForm,
 	useSidebarMenu,
 	useTelegramSignIn,
 	useUserAvatar,

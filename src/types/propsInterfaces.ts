@@ -1,4 +1,4 @@
-import { ReactNode } from "react"
+import { ChangeEvent, ReactNode } from "react"
 
 export interface PageProps {
 	label: string
@@ -69,10 +69,11 @@ export interface CustomInputProps {
 	type: string
 	placeholder: string
 	value: string
-	onChange: (e: React.ChangeEvent<HTMLInputElement>) => void
+	onChange: (e: ChangeEvent<HTMLInputElement>) => void
 	error: string | undefined
 	mb?: number
 	mt?: number
+	pr?: string
 }
 
 export interface ImageLinkProps {

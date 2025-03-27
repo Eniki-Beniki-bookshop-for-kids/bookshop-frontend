@@ -1,5 +1,3 @@
-import { TelegramLoginButton } from "./buttons/telegramLoginBtn"
-import { LogoTelegram } from "./svg/logoTelegram"
 import { BasketIconBtn } from "./buttons/basketIconBtn"
 import { ButtonTemplate } from "./buttons/buttonTemplate"
 import { CartIconBtn } from "./buttons/cartIconBtn"
@@ -8,15 +6,17 @@ import { DotsMenuIconBtn } from "./buttons/dotsMenuIconBtn"
 import { EyeToggleIconBtn } from "./buttons/eyeToggleIconBtn"
 import { HeartIconBtn } from "./buttons/heartIconBtn"
 import { PenIconBtn } from "./buttons/penIconBtn"
+import { TelegramLoginButton } from "./buttons/telegramLoginBtn"
 import { TrashIconBtn } from "./buttons/trashIconBtn"
 import { UserIconBtn } from "./buttons/userIconBtn"
 import { MultipleCheckboxTemplate } from "./checkboxes/multipleCheckbox"
 import { RadioCheckboxTemplate } from "./checkboxes/radioCheckbox"
-import { InputTemplate } from "./inputs/inputTemplate"
-import { SelectTemplate } from "./selects/selectTemplate"
+import { CustomSelectTemplate } from "./inputs/customSelectTemplate"
+import { commonInputStyles, InputTemplate } from "./inputs/inputTemplate"
 import { RangeSliderTemplate } from "./sliders/rangeSliderTemplate"
 import { BellIcon } from "./svg/bellIcon"
 import { BookCatalogIcon } from "./svg/bookCatalogIcon"
+import { CalendarIcon } from "./buttons/calendarIcon"
 import { ChatIcon } from "./svg/chatIcon"
 import { CommentIcon } from "./svg/commentIcon"
 import { DeliveryIcon } from "./svg/deliveryIcon"
@@ -25,6 +25,7 @@ import { ExchangeIcon } from "./svg/exchangeIcon"
 import { LogoApple } from "./svg/logoApple"
 import { LogoFB } from "./svg/logoFB"
 import { LogoGoogle } from "./svg/logoGoogle"
+import { LogoTelegram } from "./svg/logoTelegram"
 import { LogoutIcon } from "./svg/logoutIcon"
 import { OrderIcon } from "./svg/orderIcon"
 import { PaymentCardIcon } from "./svg/paymentCardIcon"
@@ -42,10 +43,13 @@ export {
 	BellIcon,
 	BookCatalogIcon,
 	ButtonTemplate,
+	CalendarIcon,
 	CartIconBtn,
 	ChatIcon,
 	CloseIconBtn,
 	CommentIcon,
+	commonInputStyles,
+	CustomSelectTemplate,
 	DeliveryIcon,
 	DotsMenuIconBtn,
 	EmailIcon,
@@ -56,6 +60,7 @@ export {
 	LogoApple,
 	LogoFB,
 	LogoGoogle,
+	LogoTelegram,
 	LogoutIcon,
 	MultipleCheckboxTemplate,
 	OrderIcon,
@@ -69,11 +74,9 @@ export {
 	RadioCheckboxTemplate,
 	RangeSliderTemplate,
 	SearchIcon,
-	SelectTemplate,
 	SettingIcon,
+	TelegramLoginButton,
 	TrashIconBtn,
 	UserIconBtn,
 	WalletIcon,
-	LogoTelegram,
-	TelegramLoginButton,
 }
