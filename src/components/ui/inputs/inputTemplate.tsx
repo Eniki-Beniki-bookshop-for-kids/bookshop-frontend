@@ -1,5 +1,6 @@
 "use client"
 
+import { useInputLogic } from "@/hooks"
 import { CustomInputProps } from "@/types/propsInterfaces"
 import {
 	FormControl,
@@ -8,9 +9,8 @@ import {
 	InputGroup,
 } from "@chakra-ui/react"
 import { FC } from "react"
-import { useInputLogic } from "../../../hooks"
 import { commonInputStyles } from "./commonInputStyles"
-import { DateInputIcon } from "./DateInputIcon"
+import { DateInputIcon } from "./dateInputIcon"
 import { PasswordInputIcon } from "./passwordInputIcon"
 
 export const InputTemplate: FC<CustomInputProps> = ({
