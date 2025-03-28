@@ -1,3 +1,4 @@
+import { SelectProps } from "@chakra-ui/react"
 import { ChangeEvent, ReactNode } from "react"
 
 export interface PageProps {
@@ -49,11 +50,22 @@ export interface RangeSliderTemplateProps {
 	onChange?: (value: [number, number]) => void
 }
 
-export interface SelectTemplateProps {
+export interface AccountSelectTemplateProps extends SelectProps {
+	error?: string
+	mb?: number | string
+	mt?: number | string
+	children?: ReactNode
+}
+
+// Для FilterSelectTemplate
+export interface FilterSelectTemplateProps {
 	placeholder?: string
 	options: { value: string; label: string }[]
 	onChange?: (value: string) => void
 	defaultValue?: string
+	error?: string
+	mb?: number | string
+	mt?: number | string
 }
 
 export interface ModalTemplateProps {

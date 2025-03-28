@@ -9,9 +9,18 @@ import {
 	InputGroup,
 } from "@chakra-ui/react"
 import { FC } from "react"
-import { commonInputStyles } from "./commonInputStyles"
-import { DateInputIcon } from "./dateInputIcon"
-import { PasswordInputIcon } from "./passwordInputIcon"
+import { DateInputIcon } from "./DateInputIcon"
+import { PasswordInputIcon } from "./PasswordInputIcon"
+
+const commonInputStyles = {
+	_placeholder: { color: "customLightGray" },
+	height: "auto",
+	padding: "18px",
+	color: "customBlack",
+	borderRadius: "30px",
+	borderColor: "customWhite",
+	bg: "customWhite",
+}
 
 export const InputTemplate: FC<CustomInputProps> = ({
 	type,

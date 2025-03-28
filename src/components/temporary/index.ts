@@ -3,7 +3,6 @@ import { IconsUI } from "./IconsUI"
 import { MultipleCheckBoxUI } from "./MultipleCheckBoxUI"
 import { RadioCheckBoxUI } from "./RadioCheckBoxUI"
 import { RangeSliderUI } from "./RangeSliderUI"
-import { SelectUI } from "./SelectUI"
 
 export {
 	ButtonsUI,
@@ -11,5 +10,4 @@ export {
 	MultipleCheckBoxUI,
 	RadioCheckBoxUI,
 	RangeSliderUI,
-	SelectUI,
 }

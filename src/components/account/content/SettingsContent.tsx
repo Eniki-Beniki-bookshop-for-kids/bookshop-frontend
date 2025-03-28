@@ -1,7 +1,7 @@
 import { useSettingsForm } from "@/hooks"
 import { Gender } from "@/types/models"
 import { VStack } from "@chakra-ui/react"
-import { CustomSelectTemplate, InputTemplate } from "../../ui"
+import { AccountSelectTemplate, InputTemplate } from "../../ui"
 
 export const SettingsContent = () => {
 	const { formData, errors, handleChange } = useSettingsForm()
@@ -48,7 +48,7 @@ export const SettingsContent = () => {
 				onChange={e => handleChange("dateOfBirth", e.target.value)}
 				error={errors.dateOfBirth}
 			/>
-			<CustomSelectTemplate
+			<AccountSelectTemplate
 				value={formData.gender}
 				onChange={e => handleChange("gender", e.target.value)}
 				error={errors.gender}
@@ -56,7 +56,7 @@ export const SettingsContent = () => {
 				<option value={Gender.male}>Чоловік</option>
 				<option value={Gender.female}>Жінка</option>
 				<option value={Gender.other}>Інше</option>
-			</CustomSelectTemplate>
+			</AccountSelectTemplate>
 		</VStack>
 	)
 }

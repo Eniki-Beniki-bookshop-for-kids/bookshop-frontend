@@ -6,6 +6,11 @@ html {
 	scroll-behavior: smooth;
 }
 
+.chakra-select {
+	border: none !important;
+	height: auto !important;
+}
+
 @keyframes wiggle {
 	0% {
 		transform: rotate(-15deg);

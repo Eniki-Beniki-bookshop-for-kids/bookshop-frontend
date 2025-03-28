@@ -1,16 +1,16 @@
 "use client"
 
+import { FilterSelectTemplateProps } from "@/types/propsInterfaces"
 import { Box, Select } from "@chakra-ui/react"
 import { useState } from "react"
-import { MdArrowDropDown, MdArrowDropUp } from "react-icons/md" // Іконки для стрілок
-import { SelectTemplateProps } from "../../../types/propsInterfaces"
+import { MdArrowDropDown, MdArrowDropUp } from "react-icons/md"
 
-export const SelectTemplate = ({
+export const FilterSelectTemplate = ({
 	placeholder = "Сортування",
 	options,
 	onChange,
 	defaultValue,
-}: SelectTemplateProps) => {
+}: FilterSelectTemplateProps) => {
 	const [isOpen, setIsOpen] = useState(false)
 	const [selectedValue, setSelectedValue] = useState(defaultValue || "")
 
