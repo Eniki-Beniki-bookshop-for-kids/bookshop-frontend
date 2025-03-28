@@ -1,3 +1,5 @@
+"use client"
+
 import { genreLink, pageLink } from "@/types/constants"
 import { PageProps } from "@/types/propsInterfaces"
 import { usePathname } from "next/navigation"
