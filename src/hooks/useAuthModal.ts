@@ -1,3 +1,5 @@
+"use client"
+
 import { useEffect, useState } from "react"
 import { authCredentials } from "../types/constants"
 import { AuthCredentials, AuthErrors } from "../types/interfaces"
