@@ -12,7 +12,7 @@ import { TrashIconBtn } from "./buttons/trashIconBtn"
 import { UserIconBtn } from "./buttons/userIconBtn"
 import { MultipleCheckboxTemplate } from "./checkboxes/multipleCheckbox"
 import { RadioCheckboxTemplate } from "./checkboxes/radioCheckbox"
-import { InputTemplate } from "./inputs/InputTemplate"
+import { CustomInputTemplate } from "./inputs/CustomInputTemplate"
 import { AccountSelectTemplate } from "./selects/AccountSelectTemplate"
 import { FilterSelectTemplate } from "./selects/FilterSelectTemplate"
 import { RangeSliderTemplate } from "./sliders/rangeSliderTemplate"
@@ -50,6 +50,7 @@ export {
 	ChatIcon,
 	CloseIconBtn,
 	CommentIcon,
+	CustomInputTemplate,
 	DeliveryIcon,
 	DotsMenuIconBtn,
 	EmailIcon,
@@ -57,7 +58,6 @@ export {
 	EyeToggleIconBtn,
 	FilterSelectTemplate,
 	HeartIconBtn,
-	InputTemplate,
 	LogoApple,
 	LogoFB,
 	LogoGoogle,

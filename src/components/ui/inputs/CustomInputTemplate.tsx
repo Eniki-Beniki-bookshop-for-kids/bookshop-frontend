@@ -22,7 +22,7 @@ const commonInputStyles = {
 	bg: "customWhite",
 }
 
-export const InputTemplate: FC<CustomInputProps> = ({
+export const CustomInputTemplate: FC<CustomInputProps> = ({
 	type,
 	placeholder,
 	value,
