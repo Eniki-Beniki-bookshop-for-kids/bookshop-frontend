@@ -4,7 +4,7 @@ import { useAuthContext } from "@/context/AuthContext"
 import { ModalBody, Text } from "@chakra-ui/react"
 import { FC } from "react"
 import { AuthFormActions, AuthSubmitButton } from "."
-import { InputTemplate } from "../../ui"
+import { CustomInputTemplate } from "../../ui"
 
 interface AuthModalBodyProps {
 	onClose: () => void
@@ -19,14 +19,14 @@ export const AuthModalBody: FC<AuthModalBodyProps> = ({
 
 	return (
 		<ModalBody p={0} mb={6}>
-			<InputTemplate
+			<CustomInputTemplate
 				type="text"
 				placeholder="Номер телефону або e-mail"
 				value={formData.login}
 				onChange={e => setFormData({ ...formData, login: e.target.value })}
 				error={errors.login}
 			/>
-			<InputTemplate
+			<CustomInputTemplate
 				type="password"
 				placeholder="Пароль"
 				value={formData.password}
@@ -36,7 +36,7 @@ export const AuthModalBody: FC<AuthModalBodyProps> = ({
 				pr="60px"
 			/>
 			{isRegister && (
-				<InputTemplate
+				<CustomInputTemplate
 					type="password"
 					placeholder="Підтвердити пароль"
 					value={formData.confirmPassword}

@@ -1,7 +1,7 @@
 import { useSettingsForm } from "@/hooks"
 import { Gender } from "@/types/models"
 import { VStack } from "@chakra-ui/react"
-import { AccountSelectTemplate, InputTemplate } from "../../ui"
+import { AccountSelectTemplate, CustomInputTemplate } from "../../ui"
 
 export const SettingsContent = () => {
 	const { formData, errors, handleChange } = useSettingsForm()
@@ -13,35 +13,35 @@ export const SettingsContent = () => {
 			width="100%"
 			sx={{ "& input": { border: "none", boxShadow: "none" } }}
 		>
-			<InputTemplate
+			<CustomInputTemplate
 				type="text"
 				placeholder="Введіть ім’я"
 				value={formData.firstName}
 				onChange={e => handleChange("firstName", e.target.value)}
 				error={errors.firstName}
 			/>
-			<InputTemplate
+			<CustomInputTemplate
 				type="text"
 				placeholder="Введіть прізвище"
 				value={formData.lastName}
 				onChange={e => handleChange("lastName", e.target.value)}
 				error={errors.lastName}
 			/>
-			<InputTemplate
+			<CustomInputTemplate
 				type="tel"
 				placeholder="+380XX XXX XX XX"
 				value={formData.phoneNumber}
 				onChange={e => handleChange("phoneNumber", e.target.value)}
 				error={errors.phoneNumber}
 			/>
-			<InputTemplate
+			<CustomInputTemplate
 				type="email"
 				placeholder="Введіть email"
 				value={formData.email}
 				onChange={e => handleChange("email", e.target.value)}
 				error={errors.email}
 			/>
-			<InputTemplate
+			<CustomInputTemplate
 				type="date"
 				placeholder="Виберіть дату"
 				value={formData.dateOfBirth}
