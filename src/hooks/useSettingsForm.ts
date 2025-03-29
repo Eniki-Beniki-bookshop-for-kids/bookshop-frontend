@@ -1,12 +1,14 @@
+// src/hooks/useSettingsForm.ts
 "use client"
 
 import { useAuthStore } from "@/stores/authStore"
 import { useState } from "react"
+import { updateUser } from "../app/api/db"
 import { Gender } from "../types/models"
 import { validateForm } from "../utils"
 import { settingsSchema } from "../utils/validationSchemas"
 
-type FormData = {
+export type FormData = {
 	firstName: string
 	lastName: string
 	phoneNumber: string
@@ -19,6 +21,7 @@ type FormData = {
 export const useSettingsForm = () => {
 	const { user, setUser } = useAuthStore()
 
+	// Ініціалізація даних
 	const [formData, setFormData] = useState<FormData>({
 		firstName: user?.firstName || "",
 		lastName: user?.lastName || "",
@@ -34,10 +37,17 @@ export const useSettingsForm = () => {
 	)
 
 	const handleChange = (field: keyof FormData, value: string) => {
+		setFormData(prev => ({ ...prev, [field]: value }))
+	}
+
+	const handleAvatarChange = (newAvatar: string | "") => {
 		setFormData(prev => ({
 			...prev,
-			[field]: value,
+			avatar: newAvatar,
 		}))
+		if (user) {
+			setUser({ ...user, avatar: newAvatar })
+		}
 	}
 
 	const validate = () => {
@@ -46,16 +56,21 @@ export const useSettingsForm = () => {
 			formData,
 		)
 		setErrors(validationErrors)
-		return isValid
+		return { isValid, validationErrors }
 	}
 
 	const handleSubmit = () => {
 		if (!user) return
 
-		if (validate()) {
-			setUser({ ...user, ...formData })
+		const { isValid, validationErrors } = validate()
+		if (isValid) {
+			const updatedUser = { ...user, ...formData }
+			setUser(updatedUser)
+			if (user.userId) {
+				updateUser(user.userId, formData)
+			}
 		} else {
-			console.log("Помилки валідації:", errors)
+			console.log("Помилки валідації:", validationErrors)
 		}
 	}
 
@@ -64,5 +79,6 @@ export const useSettingsForm = () => {
 		errors,
 		handleChange,
 		handleSubmit,
+		handleAvatarChange,
 	}
 }

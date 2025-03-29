@@ -72,6 +72,7 @@ export const CustomInputTemplate: FC<CustomInputProps> = ({
 				top="100%"
 				left={5}
 				mt={0}
+				zIndex={1}
 			>
 				{error}
 			</FormErrorMessage>

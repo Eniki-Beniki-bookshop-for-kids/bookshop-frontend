@@ -30,12 +30,14 @@ export const settingsSchema = z.object({
 		.string()
 		.regex(/^\+380\d{9}$/, "Номер телефону має бути у форматі +380XXXXXXXXX"),
 	email: z.string().email("Невірний формат email"),
-	dateOfBirth: z
-		.string()
-		.refine(
-			date => new Date(date) < new Date(),
-			"Дата народження має бути в минулому",
-		),
+	dateOfBirth: z.string().refine(
+		date => {
+			const [year, month, day] = date.split("-").map(Number)
+			const parsedDate = new Date(year, month - 1, day)
+			return !isNaN(parsedDate.getTime()) && parsedDate < new Date()
+		},
+		{ message: "Дата народження має бути в минулому" },
+	),
 	gender: z.nativeEnum(Gender),
 	avatar: z.string().optional(),
 })
