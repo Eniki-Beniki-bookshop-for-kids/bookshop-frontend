@@ -2,11 +2,11 @@ import { InputRightElement } from "@chakra-ui/react"
 import { FC } from "react"
 import { EyeToggleIconBtn } from ".."
 
-interface PasswordInputIconProps {
+interface InputPasswordProps {
 	togglePasswordVisibility: () => void
 }
 
-export const PasswordInputIcon: FC<PasswordInputIconProps> = ({
+export const InputPassword: FC<InputPasswordProps> = ({
 	togglePasswordVisibility,
 }) => (
 	<InputRightElement

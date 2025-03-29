@@ -2,11 +2,11 @@ import { InputRightElement } from "@chakra-ui/react"
 import { FC } from "react"
 import { CalendarIcon } from ".."
 
-interface DateInputIconProps {
+interface InputDateProps {
 	onClick: () => void
 }
 
-export const DateInputIcon: FC<DateInputIconProps> = ({ onClick }) => (
+export const InputDate: FC<InputDateProps> = ({ onClick }) => (
 	<InputRightElement
 		height="100%"
 		display="flex"

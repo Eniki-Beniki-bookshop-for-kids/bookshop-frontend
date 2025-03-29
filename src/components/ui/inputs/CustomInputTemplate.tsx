@@ -9,8 +9,8 @@ import {
 	InputGroup,
 } from "@chakra-ui/react"
 import { FC } from "react"
-import { DateInputIcon } from "./DateInputIcon"
-import { PasswordInputIcon } from "./PasswordInputIcon"
+import { InputDate } from "./InputDate"
+import { InputPassword } from "./InputPassword"
 
 const commonInputStyles = {
 	_placeholder: { color: "customLightGray" },
@@ -61,11 +61,9 @@ export const CustomInputTemplate: FC<CustomInputProps> = ({
 					}}
 				/>
 				{isPasswordField && (
-					<PasswordInputIcon
-						togglePasswordVisibility={togglePasswordVisibility}
-					/>
+					<InputPassword togglePasswordVisibility={togglePasswordVisibility} />
 				)}
-				{type === "date" && <DateInputIcon onClick={handleIconClick} />}
+				{type === "date" && <InputDate onClick={handleIconClick} />}
 			</InputGroup>
 			<FormErrorMessage
 				fontSize="12px"
