@@ -1,4 +1,6 @@
-export const formatPhoneNumber = (phoneNumber: string): string => {
+import { AccountFormData } from "../types/interfaces"
+
+export const displayPhoneNumber = (phoneNumber: string): string => {
 	if (
 		!phoneNumber ||
 		phoneNumber.length !== 13 ||
@@ -14,4 +16,13 @@ export const formatPhoneNumber = (phoneNumber: string): string => {
 	const thirdPart = phoneNumber.slice(11, 13) // 89
 
 	return `${countryCode} (${areaCode}) ${firstPart} ${secondPart} ${thirdPart}`
+}
+
+export const cutPhoneNumber = (
+	field: keyof AccountFormData,
+	formData: AccountFormData,
+) => {
+	return field === "phoneNumber" && formData[field]?.startsWith("+380")
+		? formData[field].slice(4)
+		: formData[field] || ""
 }

@@ -5,14 +5,14 @@ import { useAuthStore } from "@/stores/authStore"
 import { Box, Text } from "@chakra-ui/react"
 import Image from "next/image"
 import { FC } from "react"
-import { UserIconBtn } from "../ui"
+import { UserIconBtn } from "./ui"
 
-interface HeaderUserIconProps {
+interface UserAvatarProps {
 	size?: number
 	isStatic?: boolean
 }
 
-export const HeaderUserIcon: FC<HeaderUserIconProps> = ({
+export const UserAvatar: FC<UserAvatarProps> = ({
 	size = 40,
 	isStatic = false,
 }) => {

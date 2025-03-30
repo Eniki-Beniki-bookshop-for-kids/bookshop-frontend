@@ -1,17 +1,22 @@
 "use client"
 
 import { HStack } from "@chakra-ui/react"
-import { HeaderUserIcon } from "../../../header"
+import { FC } from "react"
+import { UserAvatar } from "../../.."
 import { ButtonTemplate, PenIconBtn, TrashIconBtn } from "../../../ui"
 
 interface ChangeAvatarProps {
 	handleAvatarChange: (newAvatar: string | "") => void
+	isUpdating: boolean
 }
 
-export const ChangeAvatar = ({ handleAvatarChange }: ChangeAvatarProps) => {
+export const ChangeAvatar: FC<ChangeAvatarProps> = ({
+	handleAvatarChange,
+	isUpdating,
+}) => {
 	return (
 		<HStack spacing={4}>
-			<HeaderUserIcon size={100} isStatic />
+			<UserAvatar size={100} isStatic />
 			<ButtonTemplate
 				iconBefore={<PenIconBtn isStatic size={16} colorFill="customWhite" />}
 				padding="14px"
@@ -19,8 +24,8 @@ export const ChangeAvatar = ({ handleAvatarChange }: ChangeAvatarProps) => {
 				onClick={() => {
 					handleAvatarChange("/images/book_smile.png") // імітуємо новий аватар
 				}}
-				isLoading={false}
-				isDisabled={false}
+				isLoading={isUpdating}
+				isDisabled={isUpdating}
 			>
 				Змінити фото
 			</ButtonTemplate>
@@ -39,8 +44,8 @@ export const ChangeAvatar = ({ handleAvatarChange }: ChangeAvatarProps) => {
 				onClick={() => {
 					handleAvatarChange("")
 				}}
-				isLoading={false}
-				isDisabled={false}
+				isLoading={isUpdating}
+				isDisabled={isUpdating}
 			>
 				Видалити фото
 			</ButtonTemplate>

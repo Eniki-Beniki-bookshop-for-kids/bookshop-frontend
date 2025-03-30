@@ -1,3 +1,3 @@
-import { HeaderUserIcon } from "./HeaderUserIcon"
+import { HeaderUserIcon } from "../UserAvatar"
 
 export { HeaderUserIcon }

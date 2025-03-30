@@ -5,9 +5,13 @@ import { ButtonTemplate } from "../../../ui"
 
 interface SettingSubmitBtnProps {
 	onSubmit: () => void
+	isUpdating: boolean
 }
 
-export const SettingSubmitBtn: FC<SettingSubmitBtnProps> = ({ onSubmit }) => {
+export const SettingSubmitBtn: FC<SettingSubmitBtnProps> = ({
+	onSubmit,
+	isUpdating,
+}) => {
 	return (
 		<ButtonTemplate
 			width="264px"
@@ -15,8 +19,8 @@ export const SettingSubmitBtn: FC<SettingSubmitBtnProps> = ({ onSubmit }) => {
 			fontSize="18px"
 			hoverScale={1.02}
 			onClick={onSubmit}
-			isLoading={false}
-			isDisabled={false}
+			isLoading={isUpdating}
+			isDisabled={isUpdating}
 		>
 			Зберегти зміни
 		</ButtonTemplate>

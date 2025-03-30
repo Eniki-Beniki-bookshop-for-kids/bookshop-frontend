@@ -2,11 +2,11 @@
 
 import { useModal } from "@/context/ModalContext"
 import { useAuthStore } from "@/stores/authStore"
-import { formatPhoneNumber } from "@/utils"
+import { displayPhoneNumber } from "@/utils"
 import { Box, HStack, Text } from "@chakra-ui/react"
 import { useRouter } from "next/navigation"
 import { useEffect } from "react"
-import { HeaderUserIcon } from "../../header"
+import { UserAvatar } from "../.."
 
 export const SidebarHeader = () => {
 	const { user } = useAuthStore()
@@ -26,7 +26,7 @@ export const SidebarHeader = () => {
 
 	return (
 		<HStack spacing="10px">
-			<HeaderUserIcon size={54} isStatic />
+			<UserAvatar size={54} isStatic />
 			<Box
 				display="flex"
 				flexDirection="column"
@@ -38,7 +38,9 @@ export const SidebarHeader = () => {
 						{user.firstName} {user.lastName}
 					</Text>
 				)}
-				{user.phoneNumber && <Text>{formatPhoneNumber(user.phoneNumber)}</Text>}
+				{user.phoneNumber && (
+					<Text>{displayPhoneNumber(user.phoneNumber)}</Text>
+				)}
 			</Box>
 		</HStack>
 	)

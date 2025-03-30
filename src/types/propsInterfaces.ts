@@ -86,6 +86,7 @@ export interface CustomInputProps {
 	mb?: number
 	mt?: number
 	pr?: string
+	pl?: string
 }
 
 export interface ImageLinkProps {

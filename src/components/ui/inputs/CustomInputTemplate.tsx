@@ -11,6 +11,7 @@ import {
 import { FC } from "react"
 import { InputDate } from "./InputDate"
 import { InputPassword } from "./InputPassword"
+import { InputPhone } from "./InputPhone"
 
 const commonInputStyles = {
 	_placeholder: { color: "customLightGray" },
@@ -52,6 +53,7 @@ export const CustomInputTemplate: FC<CustomInputProps> = ({
 					{...commonInputStyles}
 					focusBorderColor="customViolet"
 					pr={pr}
+					pl={type === "tel" ? "100px" : "18px"}
 					sx={{
 						...(type === "date" && {
 							"::-webkit-calendar-picker-indicator": {
@@ -64,6 +66,7 @@ export const CustomInputTemplate: FC<CustomInputProps> = ({
 					<InputPassword togglePasswordVisibility={togglePasswordVisibility} />
 				)}
 				{type === "date" && <InputDate onClick={handleIconClick} />}
+				{type === "tel" && <InputPhone />}
 			</InputGroup>
 			<FormErrorMessage
 				fontSize="12px"

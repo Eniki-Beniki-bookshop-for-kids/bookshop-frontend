@@ -2,15 +2,15 @@
 
 import { useModal } from "@/context/ModalContext"
 import { Flex } from "@chakra-ui/react"
+import { UserAvatar } from "../"
 import { CartIconBtn, HeartIconBtn } from "../ui"
-import { HeaderUserIcon } from "./HeaderUserIcon"
 
 export const HeaderMenu = () => {
 	const { openModal } = useModal()
 
 	return (
 		<Flex gap={6} align="center" justify="flex-end">
-			<HeaderUserIcon />
+			<UserAvatar />
 			<HeartIconBtn
 				size={32}
 				colorStroke="customBlack"

@@ -1,28 +1,17 @@
-// src/hooks/useSettingsForm.ts
 "use client"
 
 import { useAuthStore } from "@/stores/authStore"
 import { useState } from "react"
 import { updateUser } from "../app/api/db"
+import { AccountFormData } from "../types/interfaces"
 import { Gender } from "../types/models"
 import { validateForm } from "../utils"
 import { settingsSchema } from "../utils/validationSchemas"
 
-export type FormData = {
-	firstName: string
-	lastName: string
-	phoneNumber: string
-	email: string
-	dateOfBirth: string
-	gender: Gender
-	avatar?: string
-}
-
 export const useSettingsForm = () => {
 	const { user, setUser } = useAuthStore()
 
-	// Ініціалізація даних
-	const [formData, setFormData] = useState<FormData>({
+	const [formData, setFormData] = useState<AccountFormData>({
 		firstName: user?.firstName || "",
 		lastName: user?.lastName || "",
 		phoneNumber: user?.phoneNumber || "",
@@ -32,24 +21,15 @@ export const useSettingsForm = () => {
 		avatar: user?.avatar || "",
 	})
 
-	const [errors, setErrors] = useState<Partial<Record<keyof FormData, string>>>(
-		{},
-	)
+	const [errors, setErrors] = useState<
+		Partial<Record<keyof AccountFormData, string>>
+	>({})
 
-	const handleChange = (field: keyof FormData, value: string) => {
-		setFormData(prev => ({ ...prev, [field]: value }))
-	}
+	// Додаємо стани лоадінгу
+	const [isAvatarUpdating, setIsAvatarUpdating] = useState(false)
+	const [isUserUpdating, setIsUserUpdating] = useState(false)
 
-	const handleAvatarChange = (newAvatar: string | "") => {
-		setFormData(prev => ({
-			...prev,
-			avatar: newAvatar,
-		}))
-		if (user) {
-			setUser({ ...user, avatar: newAvatar })
-		}
-	}
-
+	// Валідація даних юзера
 	const validate = () => {
 		const { errors: validationErrors, isValid } = validateForm(
 			settingsSchema,
@@ -59,18 +39,59 @@ export const useSettingsForm = () => {
 		return { isValid, validationErrors }
 	}
 
-	const handleSubmit = () => {
+	const handleChange = (field: keyof AccountFormData, value: string) => {
+		setFormData(prev => {
+			if (field === "phoneNumber") {
+				return {
+					...prev,
+					phoneNumber: value ? `+380${value}` : "", // Додаємо префікс
+				}
+			}
+			return { ...prev, [field]: value }
+		})
+	}
+
+	const handleAvatarChange = async (newAvatar: string | "") => {
+		setIsAvatarUpdating(true)
+		try {
+			setFormData(prev => ({
+				...prev,
+				avatar: newAvatar,
+			}))
+			if (user) {
+				// Імітуємо асинхронний запит
+				await new Promise(resolve => setTimeout(resolve, 1000))
+				setUser({ ...user, avatar: newAvatar })
+			}
+		} catch (error) {
+			console.error("Помилка при оновленні аватара:", error)
+		} finally {
+			setIsAvatarUpdating(false)
+		}
+	}
+
+	const handleSubmit = async () => {
 		if (!user) return
 
-		const { isValid, validationErrors } = validate()
-		if (isValid) {
-			const updatedUser = { ...user, ...formData }
-			setUser(updatedUser)
-			if (user.userId) {
-				updateUser(user.userId, formData)
+		setIsUserUpdating(true)
+		try {
+			const { isValid, validationErrors } = validate()
+			if (isValid) {
+				const updatedUser = { ...user, ...formData }
+
+				// Імітуємо асинхронний запит
+				await new Promise(resolve => setTimeout(resolve, 1000))
+				setUser(updatedUser)
+				if (user.userId) {
+					await updateUser(user.userId, formData)
+				}
+			} else {
+				console.log("Помилки валідації:", validationErrors)
 			}
-		} else {
-			console.log("Помилки валідації:", validationErrors)
+		} catch (error) {
+			console.error("Помилка при оновленні користувача:", error)
+		} finally {
+			setIsUserUpdating(false)
 		}
 	}
 
@@ -80,5 +101,7 @@ export const useSettingsForm = () => {
 		handleChange,
 		handleSubmit,
 		handleAvatarChange,
+		isAvatarUpdating,
+		isUserUpdating,
 	}
 }

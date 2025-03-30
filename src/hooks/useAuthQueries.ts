@@ -9,7 +9,7 @@ import { useEffect } from "react"
 // Хук для авторизації через email/пароль
 export const useEmailLoginMutation = () => {
 	const queryClient = useQueryClient()
-	const setUser = useAuthStore(state => state.setUser)
+	const { setUser } = useAuthStore()
 
 	return useMutation({
 		mutationFn: ({

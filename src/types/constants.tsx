@@ -19,6 +19,7 @@ import {
 	PigIcon,
 	SettingIcon,
 } from "../components/ui"
+import { AccountSettingField } from "./interfaces"
 import { Genre } from "./models"
 import {
 	IButtonProps,
@@ -166,3 +167,11 @@ export const accountContentMap: Record<
 	payment: { title: "Оплата", component: <PaymentContent /> },
 	settings: { title: "Особиста інформація", component: <SettingsContent /> },
 }
+
+export const accountSettingFields: AccountSettingField[] = [
+	{ type: "text", placeholder: "Введіть ім’я", field: "firstName" },
+	{ type: "text", placeholder: "Введіть прізвище", field: "lastName" },
+	{ type: "tel", placeholder: "Номер телефону", field: "phoneNumber" },
+	{ type: "email", placeholder: "Введіть email", field: "email" },
+	{ type: "date", placeholder: "Виберіть дату", field: "dateOfBirth" },
+]
