@@ -52,6 +52,7 @@ export const pageLink: PageProps[] = [
 	{ href: "/site-map", label: "Карта сайту" }, //13
 	{ href: "/account", label: "Особистий кабінет" }, //14
 	{ href: "/checkout", label: "Оформлення замовлення" }, //15
+	{ href: "/error", label: "Оформлення замовлення" }, //16
 ]
 
 // УВАГА! Нові хеш-посилання додаються в кінець масиву
@@ -113,6 +114,7 @@ export enum TypesHeader {
 }
 const minimalPaths: { [key: string]: TypesHeader.Minimal } = {
 	[pageLink[15].href]: TypesHeader.Minimal, // checkout
+	[pageLink[16].href]: TypesHeader.Minimal, // error
 }
 
 export const pageHeaderTypes = new Proxy(minimalPaths, {

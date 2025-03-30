@@ -20,8 +20,8 @@ export const AuthModalBody: FC<AuthModalBodyProps> = ({
 	return (
 		<ModalBody p={0} mb={6}>
 			<CustomInputTemplate
-				type="text"
-				placeholder="Номер телефону або e-mail"
+				type="email"
+				placeholder="E-mail"
 				value={formData.login}
 				onChange={e => setFormData({ ...formData, login: e.target.value })}
 				error={errors.login}

@@ -5,6 +5,7 @@ import { GoogleOAuthProvider } from "@react-oauth/google"
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query"
 import theme from "../chakraTheme"
 import { Footer, Header, Main } from "../components"
+import { ErrorBoundary } from "../components/errorBoundary"
 import { ModalProvider } from "../context/ModalContext"
 import { AppModals } from "./appModals"
 
@@ -28,12 +29,14 @@ export default function AppProvider({
 			<GoogleOAuthProvider clientId={process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID!}>
 				<ChakraProvider theme={theme}>
 					<ModalProvider>
-						<Flex direction="column" minHeight="100vh">
-							<Header />
-							<Main>{children}</Main>
-							<Footer />
-							<AppModals />
-						</Flex>
+						<ErrorBoundary>
+							<Flex direction="column" minHeight="100vh">
+								<Header />
+								<Main>{children}</Main>
+								<Footer />
+								<AppModals />
+							</Flex>
+						</ErrorBoundary>
 					</ModalProvider>
 				</ChakraProvider>
 			</GoogleOAuthProvider>

@@ -11,7 +11,8 @@ export const SettingsContent = () => {
 		handleChange,
 		handleSubmit,
 		handleAvatarChange,
-		isAvatarUpdating, isUserUpdating
+		isAvatarUpdating,
+		isUserUpdating,
 	} = useSettingsForm()
 
 	return (
