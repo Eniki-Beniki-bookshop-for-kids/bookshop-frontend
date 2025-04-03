@@ -1,3 +1,4 @@
+// src/hooks/useAuthModal.ts
 "use client"
 
 import { useEffect, useState } from "react"

@@ -1,3 +1,4 @@
+// src/components/ui/inputs/CustomInputTemplate.tsx
 "use client"
 
 import { useInputLogic } from "@/hooks"

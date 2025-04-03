@@ -2,6 +2,7 @@
 
 import { useAuthContext } from "@/context/AuthContext"
 import { useEmailLoginMutation } from "@/hooks"
+import { useAuthStore } from "@/stores/authStore"
 import { FC } from "react"
 import { ButtonTemplate } from "../../ui"
 
@@ -14,7 +15,9 @@ export const AuthSubmitButton: FC<{ onSubmit: () => void }> = ({
 	const handleSubmit = () => {
 		const { errors, isValid } = validate()
 
-		setErrors(errors)
+		const updatedErrors = { ...errors, authError: undefined }
+		setErrors(updatedErrors)
+		setErrors(updatedErrors)
 
 		if (isValid) {
 			loginWithEmail(
@@ -24,9 +27,23 @@ export const AuthSubmitButton: FC<{ onSubmit: () => void }> = ({
 					isRegister,
 				},
 				{
-					onSuccess: () => onSubmit(),
-					onError: (error: Error) => {
-						setErrors({ ...errors, authError: error.message })
+					onSuccess: () => {
+						const { user, accessToken, refreshToken, tokenType } =
+							useAuthStore.getState()
+						console.log("Current authStore state after login:", {
+							user,
+							accessToken,
+							refreshToken,
+							tokenType,
+						})
+
+						onSubmit()
+					},
+					onError: (error: unknown) => {
+						const errorMessage =
+							error instanceof Error ? error.message : String(error)
+						console.error("Auth submit error:", errorMessage)
+						setErrors({ ...updatedErrors, authError: errorMessage })
 					},
 				},
 			)

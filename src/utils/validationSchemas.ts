@@ -5,13 +5,23 @@ import { Gender } from "../types/models"
 // Схеми для модалки авторизації/реєстрації
 // Базова схема
 const baseAuthSchema = z.object({
-	login: z.string().email("Невірний формат email"),
-	password: z.string().min(7, "Необхідно мінімум 7 символів"),
+	login: z.string().min(1, "Поле обов’язкове").email("Невірний формат email"),
+	password: z
+		.string()
+		.min(1, "Поле обов’язкове")
+		.min(7, "Необхідно мінімум 7 символів"),
 	confirmPassword: z.string().optional(),
 })
 // Схема для реєстрації
 export const authSchema = baseAuthSchema.superRefine((data, ctx) => {
-	if (data.confirmPassword && data.password !== data.confirmPassword) {
+	// Під час реєстрації confirmPassword обов’язковий
+	if (!data.confirmPassword) {
+		ctx.addIssue({
+			code: z.ZodIssueCode.custom,
+			message: "Поле обов’язкове",
+			path: ["confirmPassword"],
+		})
+	} else if (data.password !== data.confirmPassword) {
 		ctx.addIssue({
 			code: z.ZodIssueCode.custom,
 			message: "Паролі не співпадають",
@@ -19,6 +29,7 @@ export const authSchema = baseAuthSchema.superRefine((data, ctx) => {
 		})
 	}
 })
+
 // Схема для логінізації
 export const loginSchema = baseAuthSchema.omit({ confirmPassword: true })
 

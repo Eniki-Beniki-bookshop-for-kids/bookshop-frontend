@@ -1,5 +1,5 @@
 import { authCredentials } from "./constants"
-import { Gender } from "./models"
+import { Gender, User } from "./models"
 
 export type AuthCredentials = typeof authCredentials
 
@@ -20,6 +20,17 @@ export interface AuthContextType {
 	isRegister: boolean
 	setIsRegister: (value: boolean) => void
 	validate: () => { errors: AuthErrors; isValid: boolean }
+}
+
+export interface AuthResponse {
+	accessToken: string
+	refreshToken: string
+	tokenType: string
+	user: User
+}
+
+export interface ApiErrorResponse {
+	message: string
 }
 
 export interface AccountFormData {

@@ -1,37 +1,95 @@
 // src/app/api/client.ts
-
+import { ApiErrorResponse, AuthResponse } from "@/types/interfaces"
 import { User } from "@/types/models"
+import { AxiosError } from "axios"
+import apiClient from "./apiClient"
 
-// Авторизація через email/пароль
-export const loginWithEmail = async (
+// Загальна функція для аутентифікації (реєстрація або логін)
+export const authWithEmail = async (
 	email: string,
 	password: string,
-	isRegister: boolean,
-): Promise<User> => {
-	const response = await fetch("/api/auth/email", {
-		method: "POST",
-		headers: {
-			"Content-Type": "application/json",
-		},
-		body: JSON.stringify({ email, password, isRegister }),
-	})
+	endpoint: "signup" | "login",
+): Promise<AuthResponse> => {
+	try {
+		const response = await apiClient.post<AuthResponse>(
+			`/api/auth/${endpoint}`,
+			{
+				email,
+				password,
+			},
+		)
+		return response.data
+	} catch (error: unknown) {
+		const axiosError = error as AxiosError<ApiErrorResponse>
+		// Логуємо деталі помилки, включаючи статус
+		console.error(
+			`Error in ${endpoint} (Status: ${axiosError.response?.status || "N/A"}):`,
+			axiosError.toJSON?.() || axiosError,
+		)
 
-	if (!response.ok) {
-		const error = await response.json()
-		throw new Error(error.error || "Failed to authenticate with email")
+		if (axiosError.response) {
+			// Сервер відповів із статусом поза 2xx (але < 500 через validateStatus)
+			const message =
+				axiosError.response.data?.message ||
+				`Failed to ${endpoint} with email (Status: ${axiosError.response.status})`
+			throw new Error(message)
+		} else if (axiosError.request) {
+			// Запит був зроблений, але відповіді не отримано
+			throw new Error(
+				`No response received during ${endpoint}. Please check your network.`,
+			)
+		} else {
+			// Помилка налаштування запиту
+			throw new Error(
+				`Error setting up ${endpoint} request: ${
+					axiosError.message || "Unknown error"
+				}`,
+			)
+		}
 	}
-
-	return response.json()
 }
 
 // Отримання даних користувача
-export const fetchUser = async (email: string): Promise<User> => {
-	const response = await fetch(`/api/user?email=${email}`)
+export const fetchUser = async (
+	accessToken: string,
+	tokenType: string,
+): Promise<User> => {
+	const normalizedTokenType =
+		tokenType.toLowerCase() === "bearer" ? "Bearer" : tokenType
 
-	if (!response.ok) {
-		const error = await response.json()
-		throw new Error(error.error || "Failed to fetch user")
+	try {
+		const response = await apiClient.get<User>("/api/user/me", {
+			headers: {
+				Authorization: `${normalizedTokenType} ${accessToken}`,
+			},
+		})
+		return response.data
+	} catch (error: unknown) {
+		const axiosError = error as AxiosError<ApiErrorResponse>
+		// Логуємо деталі помилки, включаючи статус
+		console.error(
+			`Error fetching user (Status: ${axiosError.response?.status || "N/A"}):`,
+			axiosError.toJSON?.() || axiosError,
+		)
+
+		if (axiosError.response) {
+			// Сервер відповів із статусом поза 2xx (але < 500 через validateStatus)
+			const message =
+				axiosError.response.data?.message ||
+				`Failed to fetch user (Status: ${axiosError.response.status})`
+			throw new Error(message)
+		} else if (axiosError.request) {
+			// Запит був зроблений, але відповіді не отримано
+			throw new Error(
+				"No response received while fetching user. Please check your network.",
+			)
+		} else {
+			// Помилка налаштування запиту
+			throw new Error(
+				`Error setting up fetch user request: ${
+					axiosError.message || "Unknown error"
+				}`,
+			)
+		}
 	}
-
-	return response.json()
 }

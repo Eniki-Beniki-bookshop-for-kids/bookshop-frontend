@@ -2,8 +2,17 @@
 
 import { Suspense } from "react"
 import { GoogleAuthHandler } from "../components"
+import { useAuthStore } from "../stores/authStore"
 
 export default function Home() {
+	const { user, accessToken, refreshToken, tokenType } = useAuthStore()
+	console.log("Current authStore state:", {
+		user,
+		accessToken,
+		refreshToken,
+		tokenType,
+	})
+
 	return (
 		<div className="flex justify-center text-xl font-medium py-4">
 			<Suspense fallback={null}>
