@@ -1,0 +1,238 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum Genre {
+  Classics
+  Fantasy
+  ScienceFiction
+  Mystery
+  Romance
+  NonFiction
+  Coloring
+  fairyTales
+  Biography
+  History
+  Poetry
+  SelfHelp
+  Business
+  Travel
+  Cooking
+  Other
+}
+
+enum BookTypes {
+  Paperback
+  Ebook
+  Audiobook
+}
+
+enum Language {
+  Ukrainian
+  English
+  Russian
+  German
+  French
+  Spanish
+  Italian
+  Polish
+  Chinese
+  Japanese
+  Arabic
+  Turkish
+  Portuguese
+  Dutch
+  Swedish
+  Latin
+  Greek
+  Hebrew
+  Other
+}
+
+enum CoverType {
+  Hardcover
+  Softcover
+  Spiral
+}
+
+enum PaperType {
+  Offset
+  Newsprint
+  Writing
+  Coated
+  Vellum
+  Cardboard
+}
+
+enum Categories {
+  ChildrensLiterature
+  AdultLiterature
+  YoungAdult
+  Parents
+  Other
+}
+
+enum TargetAges {
+  Age1_3
+  Age3_5
+  Age5_8
+  Age8_12
+  Teenager
+  AdultLiterature
+  Other
+}
+
+enum OrderStatus {
+  Pending
+  Paid
+  Shipped
+  Delivered
+  Cancelled
+}
+
+enum ShippingMethod {
+  Courier
+  Post
+  Pickup
+  Express
+}
+
+enum PaymentMethod {
+  CreditCard
+  CashOnDelivery
+  OnlineBanking
+  GooglePay
+  ApplePay
+}
+
+enum Carrier {
+  novaPost
+  ukrPost
+}
+
+enum UserRole {
+  SuperAdmin
+  Admin
+  User
+}
+
+enum Gender {
+  male
+  female
+  other
+}
+
+model User {
+  userId        Int       @id @default(autoincrement())
+  email         String    @unique
+  password      String?
+  firstName     String?
+  lastName      String?
+  phoneNumber   String[]  @default([])
+  dateOfBirth   DateTime?
+  gender        Gender?
+  address       String?
+  city          String?
+  postalCode    String?
+  country       String?
+  role          UserRole  @default(User)
+  googleId      String?
+  avatar        String?
+  isActive      Boolean   @default(true)
+  favoriteBooks Book[]    @relation("UserFavoriteBooks")
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+  orders        Order[]
+}
+
+model Book {
+  bookId           Int          @id @default(autoincrement())
+  title            String
+  author           String
+  originalTitle    String
+  genre            Genre        @default(Other)
+  categories       Categories[]
+  targetAges       TargetAges[]
+  series           String?
+  publisher        String
+  publicationYear  Int
+  bookType         BookTypes[]
+  pageCount        Int
+  paperType        PaperType?
+  language         Language
+  originalLanguage Language
+  translator       String?
+  coverType        CoverType
+  weight           Int?
+  dimensions       String?
+  isbn             String
+  articleNumber    String
+  price            Float
+  discount         Float        @default(0)
+  stockQuantity    Int
+  description      String?
+  images           String[]
+  isBestseller     Boolean      @default(false)
+  isPublish        Boolean      @default(true)
+  isGifted         Boolean      @default(false)
+  totalSales       Int?
+  createdAt        DateTime     @default(now())
+  updatedAt        DateTime     @updatedAt
+  reviews          Review[]
+  orderBooks       OrderBook[]
+  favoritedBy      User[]       @relation("UserFavoriteBooks")
+}
+
+model Review {
+  reviewId   Int      @id @default(autoincrement())
+  bookId     Int
+  book       Book     @relation(fields: [bookId], references: [bookId])
+  reviewName String
+  rating     Int      @default(0)
+  reviewText String
+  reviewDate DateTime
+  source     String?
+  avatar     String?
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+}
+
+model Order {
+  orderId         Int            @id @default(autoincrement())
+  userId          Int
+  user            User           @relation(fields: [userId], references: [userId])
+  totalAmount     Float
+  orderDate       DateTime       @default(now())
+  shippingAddress String
+  shippingMethod  ShippingMethod @default(Pickup)
+  paymentMethod   PaymentMethod  @default(CashOnDelivery)
+  status          OrderStatus    @default(Pending)
+  shipping        Shipping?
+  orderBooks      OrderBook[]
+}
+
+model OrderBook {
+  orderId  Int
+  bookId   Int
+  quantity Int
+  order    Order @relation(fields: [orderId], references: [orderId])
+  book     Book  @relation(fields: [bookId], references: [bookId])
+
+  @@id([orderId, bookId])
+}
+
+model Shipping {
+  shippingId            Int       @id @default(autoincrement())
+  orderId               Int       @unique
+  order                 Order     @relation(fields: [orderId], references: [orderId])
+  trackingNumber        String?
+  estimatedDeliveryDate DateTime
+  actualDeliveryDate    DateTime?
+  carrier               Carrier   @default(novaPost)
+  shippingCost          Float
+}

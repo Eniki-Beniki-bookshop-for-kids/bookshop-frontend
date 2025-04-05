@@ -1,3 +1,4 @@
+// src/types/interfaces.ts
 import { authCredentials } from "./constants"
 import { Gender, User } from "./models"
 

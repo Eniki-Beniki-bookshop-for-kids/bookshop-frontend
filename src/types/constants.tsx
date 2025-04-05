@@ -1,4 +1,4 @@
-// constants.tsx
+// src/types/constants.tsx
 import { ComponentType, ReactNode } from "react"
 import {
 	BonusesContent,

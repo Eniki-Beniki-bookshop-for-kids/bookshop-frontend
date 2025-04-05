@@ -1,3 +1,4 @@
+// src/context/AuthContext.tsx
 import { useAuthModal } from "@/hooks"
 import { createContext, FC, ReactNode, useContext } from "react"
 import { AuthContextType } from "../types/interfaces"

@@ -1,3 +1,5 @@
+// ВАЖЛИВО!!! При додаванні нових полів у моделі, не забувайте оновлювати типи в prisma/schema.prisma та оновлювати базу даних через prisma migrate dev
+
 export enum Genre {
 	Classics = "Класика",
 	Fantasy = "Фентезі",
@@ -106,6 +108,18 @@ export enum Carrier {
 	ukrPost = "Укрпошта",
 }
 
+export enum UserRole {
+	SuperAdmin = "Супер-адмін", // Адміністратор, який управляє адмінами
+	Admin = "Адмін", // Адміністратор із повними правами
+	User = "Користувач", // Звичайний користувач із обмеженими правами
+}
+
+export enum Gender {
+	male = "чоловіча",
+	female = "жіноча",
+	other = "інша",
+}
+
 // модель книги
 export interface Book {
 	bookId: number // Унікальний ідентифікатор книги в базі даних або системі. Автоматичне створення
@@ -125,8 +139,8 @@ export interface Book {
 	originalLanguage: Language // Мова оригіналу книги
 	translator?: string // Особа, яка перекладала
 	coverType: CoverType // Тип обкладинки книги
-	weight: number // Вага книги в грамах
-	dimensions: string // Розміри книги у форматі "ширина x висота" в міліметрах
+	weight?: number // Вага книги в грамах
+	dimensions?: string // Розміри книги у форматі "ширина x висота" в міліметрах
 	isbn: string // Міжнародний стандартний номер книги
 	articleNumber: string // Артикул або внутрішній ідентифікатор книги
 	price: number // Ціна книги в гривні
@@ -156,18 +170,6 @@ export interface Review {
 	avatar?: string // URL-адреса аватара критика (аватар можна генерувати автоматично)
 	createdAt: string // Дата створення відгуку про книгу у форматі ISO ("2024-01-01T12:00:00Z")
 	updatedAt: string // Дата останнього оновлення відгуку про книгу у форматі ISO ("2024-09-01T15:30:00Z")
-}
-
-export enum UserRole {
-	SuperAdmin = "Супер-адмін", // Адміністратор, який управляє адмінами
-	Admin = "Адмін", // Адміністратор із повними правами
-	User = "Користувач", // Звичайний користувач із обмеженими правами
-}
-
-export enum Gender {
-	male = "чоловіча",
-	female = "жіноча",
-	other = "інша",
 }
 
 // модель користувача
