@@ -1,0 +1,4 @@
+-- AlterTable
+ALTER TABLE "User" ALTER COLUMN "phoneNumber" DROP NOT NULL,
+ALTER COLUMN "phoneNumber" DROP DEFAULT,
+ALTER COLUMN "phoneNumber" SET DATA TYPE TEXT;

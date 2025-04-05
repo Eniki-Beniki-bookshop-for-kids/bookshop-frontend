@@ -133,7 +133,7 @@ model User {
   password      String?
   firstName     String?
   lastName      String?
-  phoneNumber   String[]  @default([])
+  phoneNumber   String?
   dateOfBirth   DateTime?
   gender        Gender?
   address       String?

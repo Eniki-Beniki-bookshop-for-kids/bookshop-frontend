@@ -1,8 +1,10 @@
 // src/app/api/client.ts
+import apiClient from "@/lib/apiClient"
 import { ApiErrorResponse, AuthResponse } from "@/types/interfaces"
 import { User } from "@/types/models"
 import { AxiosError } from "axios"
-import apiClient from "./apiClient"
+
+const base_url = "/api/auth"
 
 // Загальна функція для аутентифікації (реєстрація або логін)
 export const authWithEmail = async (
@@ -11,13 +13,11 @@ export const authWithEmail = async (
 	endpoint: "signup" | "login",
 ): Promise<AuthResponse> => {
 	try {
-		const response = await apiClient.post<AuthResponse>(
-			`/api/auth/${endpoint}`,
-			{
-				email,
-				password,
-			},
-		)
+		const response = await apiClient.post<AuthResponse>(`${base_url}/email`, {
+			email,
+			password,
+			endpoint,
+		})
 		return response.data
 	} catch (error: unknown) {
 		const axiosError = error as AxiosError<ApiErrorResponse>
@@ -54,37 +54,30 @@ export const fetchUser = async (
 	accessToken: string,
 	tokenType: string,
 ): Promise<User> => {
-	const normalizedTokenType =
-		tokenType.toLowerCase() === "bearer" ? "Bearer" : tokenType
-
 	try {
-		const response = await apiClient.get<User>("/api/user/me", {
+		const response = await apiClient.get<User>(`${base_url}/user/me`, {
 			headers: {
-				Authorization: `${normalizedTokenType} ${accessToken}`,
+				Authorization: `${tokenType} ${accessToken}`,
 			},
 		})
 		return response.data
 	} catch (error: unknown) {
 		const axiosError = error as AxiosError<ApiErrorResponse>
-		// Логуємо деталі помилки, включаючи статус
 		console.error(
 			`Error fetching user (Status: ${axiosError.response?.status || "N/A"}):`,
 			axiosError.toJSON?.() || axiosError,
 		)
 
 		if (axiosError.response) {
-			// Сервер відповів із статусом поза 2xx (але < 500 через validateStatus)
 			const message =
 				axiosError.response.data?.message ||
 				`Failed to fetch user (Status: ${axiosError.response.status})`
 			throw new Error(message)
 		} else if (axiosError.request) {
-			// Запит був зроблений, але відповіді не отримано
 			throw new Error(
 				"No response received while fetching user. Please check your network.",
 			)
 		} else {
-			// Помилка налаштування запиту
 			throw new Error(
 				`Error setting up fetch user request: ${
 					axiosError.message || "Unknown error"
