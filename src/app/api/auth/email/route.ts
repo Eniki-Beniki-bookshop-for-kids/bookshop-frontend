@@ -1,3 +1,4 @@
+// src/app/api/email/route.ts
 import prisma from "@/lib/prismaClient"
 import { generateTokens } from "@/utils"
 import bcrypt from "bcrypt"

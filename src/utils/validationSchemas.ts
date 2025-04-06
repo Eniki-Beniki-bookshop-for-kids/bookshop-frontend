@@ -33,22 +33,50 @@ export const authSchema = baseAuthSchema.superRefine((data, ctx) => {
 // Схема для логінізації
 export const loginSchema = baseAuthSchema.omit({ confirmPassword: true })
 
-// Схема для особистої інформації в профілі
+// Схема для перевірки заповнення особистої інформації в профілі
 export const settingsSchema = z.object({
-	firstName: z.string().min(2, "Ім’я повинно містити принаймні 2 символи"),
-	lastName: z.string().min(2, "Прізвище повинно містити принаймні 2 символи"),
+	firstName: z
+		.string()
+		.optional()
+		.refine(val => !val || val.length >= 2, {
+			message: "Ім’я повинно містити принаймні 2 символи",
+		}),
+	lastName: z
+		.string()
+		.optional()
+		.refine(val => !val || val.length >= 2, {
+			message: "Прізвище повинно містити принаймні 2 символи",
+		}),
 	phoneNumber: z
 		.string()
-		.regex(/^\+380\d{9}$/, "Номер телефону має бути у форматі +380XXXXXXXXX"),
+		.optional()
+		.refine(val => !val || /^\+380\d{9}$/.test(val), {
+			message: "Номер телефону має бути у форматі +380XXXXXXXXX",
+		}),
 	email: z.string().email("Невірний формат email"),
-	dateOfBirth: z.string().refine(
-		date => {
-			const [year, month, day] = date.split("-").map(Number)
-			const parsedDate = new Date(year, month - 1, day)
-			return !isNaN(parsedDate.getTime()) && parsedDate < new Date()
-		},
-		{ message: "Дата народження має бути в минулому" },
-	),
-	gender: z.nativeEnum(Gender),
+	dateOfBirth: z
+		.string()
+		.optional()
+		.refine(
+			val => {
+				if (!val) return true
+				const [year, month, day] = val.split("-").map(Number)
+				const parsedDate = new Date(year, month - 1, day)
+				return !isNaN(parsedDate.getTime()) && parsedDate < new Date()
+			},
+			{ message: "Дата народження має бути в минулому" },
+		),
+	gender: z
+		.string()
+		.refine(
+			val =>
+				!val ||
+				[Gender.male, Gender.female, Gender.other].includes(val as Gender),
+			{
+				message: "Невірне значення для статі",
+			},
+		)
+		.nullable()
+		.optional() as z.ZodType<string | null | undefined>,
 	avatar: z.string().optional(),
 })

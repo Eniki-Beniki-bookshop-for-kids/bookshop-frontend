@@ -3,7 +3,7 @@ import { AccountFormData } from "@/types/interfaces"
 import { Gender } from "@/types/models"
 import { SimpleGrid } from "@chakra-ui/react"
 import { FC } from "react"
-import { cutPhoneNumber } from "../../../../utils"
+import { cutPhoneNumber } from "@/utils"
 import { AccountSelectTemplate, CustomInputTemplate } from "../../../ui"
 
 interface SettingsFieldsProps {
@@ -32,7 +32,7 @@ export const SettingsFields: FC<SettingsFieldsProps> = ({
 				)
 			})}
 			<AccountSelectTemplate
-				value={formData.gender}
+				value={formData.gender || ""}
 				onChange={e => handleChange("gender", e.target.value)}
 				error={errors.gender}
 			>

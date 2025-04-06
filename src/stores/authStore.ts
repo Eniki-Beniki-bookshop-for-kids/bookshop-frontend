@@ -8,6 +8,7 @@ interface AuthState {
 	accessToken: string | null
 	refreshToken: string | null
 	tokenType: string | null
+	isLoading: boolean
 	setUser: (user: User | null) => void
 	setTokens: (
 		accessToken: string,
@@ -25,6 +26,7 @@ export const useAuthStore = create<AuthState>()(
 				accessToken: null,
 				refreshToken: null,
 				tokenType: null,
+				isLoading: true,
 				setUser: user =>
 					set(state => {
 						return { ...state, user }
@@ -46,6 +48,12 @@ export const useAuthStore = create<AuthState>()(
 			{
 				name: "auth-storage",
 				storage: createJSONStorage(() => localStorage),
+				onRehydrateStorage: () => state => {
+					// Після завантаження даних із localStorage встановлюємо isLoading у false
+					if (state) {
+						state.isLoading = false
+					}
+				},
 			},
 		),
 		{

@@ -1,6 +1,6 @@
 // src/types/interfaces.ts
 import { authCredentials } from "./constants"
-import { Gender, User } from "./models"
+import { User } from "./models"
 
 export type AuthCredentials = typeof authCredentials
 
@@ -40,9 +40,10 @@ export interface AccountFormData {
 	phoneNumber: string
 	email: string
 	dateOfBirth: string
-	gender: Gender
+	gender?: string | null
 	avatar?: string
 }
+
 export interface AccountSettingField {
 	type: string
 	placeholder: string

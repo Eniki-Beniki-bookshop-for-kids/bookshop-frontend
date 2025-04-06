@@ -1,3 +1,4 @@
+import { Gender as PrismaGender } from "@prisma/client"
 // ВАЖЛИВО!!! При додаванні нових полів у моделі, не забувайте оновлювати типи в prisma/schema.prisma та оновлювати базу даних через prisma migrate dev
 
 export enum Genre {
@@ -181,7 +182,7 @@ export interface User {
 	lastName?: string // Прізвище
 	phoneNumber?: string // Номер телефону (унікальна)
 	dateOfBirth?: string // Дата народження у форматі ISO (необов’язкове, "2024-01-01T12:00:00Z")
-	gender?: Gender // Стать користувача
+	gender?: PrismaGender | null // Стать користувача
 	address?: string // Адреса доставки (необов’язкове)
 	city?: string // Місто (необов’язкове)
 	postalCode?: string // Поштовий індекс (необов’язкове)
