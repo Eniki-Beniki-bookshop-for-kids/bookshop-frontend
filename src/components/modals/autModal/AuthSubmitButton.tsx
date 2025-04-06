@@ -2,7 +2,6 @@
 
 import { useAuthContext } from "@/context/AuthContext"
 import { useEmailLoginMutation } from "@/hooks"
-import { useAuthStore } from "@/stores/authStore"
 import { FC } from "react"
 import { ButtonTemplate } from "../../ui"
 
@@ -27,18 +26,7 @@ export const AuthSubmitButton: FC<{ onSubmit: () => void }> = ({
 					isRegister,
 				},
 				{
-					onSuccess: () => {
-						const { user, accessToken, refreshToken, tokenType } =
-							useAuthStore.getState()
-						console.log("Current authStore state after login:", {
-							user,
-							accessToken,
-							refreshToken,
-							tokenType,
-						})
-
-						onSubmit()
-					},
+					onSuccess: () => onSubmit(),
 					onError: (error: unknown) => {
 						const errorMessage =
 							error instanceof Error ? error.message : String(error)

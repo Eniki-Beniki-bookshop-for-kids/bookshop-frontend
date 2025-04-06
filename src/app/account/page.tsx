@@ -1,11 +1,20 @@
 "use client"
 
-import { HeaderPage } from "@/components"
+import { AccountTitle } from "@/components"
 import { AccountContent, AccountSidebar } from "@/components/account"
 import { SidebarMenuProvider } from "@/context/SidebarMenuContext"
+import { useAuthStore } from "@/stores/authStore"
 import { Box, Grid } from "@chakra-ui/react"
 
 export default function AccountPage() {
+	const { user } = useAuthStore()
+
+	if (!user) {
+		return (
+			<AccountTitle title="Для доступу до особистого кабінету необхідно авторизуватися" />
+		)
+	}
+
 	return (
 		<SidebarMenuProvider initialSection="settings">
 			<Box pb={12}>
@@ -17,7 +26,7 @@ export default function AccountPage() {
 					gridTemplateRows={{ base: "auto auto auto", md: "auto 1fr" }}
 					gridTemplateColumns={{ base: "1fr", md: "auto 1fr" }}
 				>
-					<HeaderPage title="Особистий кабінет" />
+					<AccountTitle title="Особистий кабінет" />
 					<AccountSidebar />
 					<AccountContent />
 				</Grid>
