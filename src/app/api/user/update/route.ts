@@ -1,3 +1,6 @@
+//src/app/api/user/update/route.ts
+import "server-only"
+
 import prisma from "@/lib/prismaClient"
 import { AccountFormData } from "@/types/interfaces"
 import { toPrismaGender } from "@/utils/genderMapping"

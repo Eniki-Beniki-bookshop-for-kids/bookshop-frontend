@@ -1,12 +1,12 @@
 "use client"
 
 import { HStack } from "@chakra-ui/react"
-import { FC } from "react"
+import { FC, useRef } from "react"
 import { UserAvatar } from "../../.."
 import { ButtonTemplate, PenIconBtn, TrashIconBtn } from "../../../ui"
 
 interface ChangeAvatarProps {
-	handleAvatarChange: (newAvatar: string | "") => void
+	handleAvatarChange: (file: File | null) => Promise<void>
 	isUpdating: boolean
 }
 
@@ -14,16 +14,34 @@ export const ChangeAvatar: FC<ChangeAvatarProps> = ({
 	handleAvatarChange,
 	isUpdating,
 }) => {
+	const fileInputRef = useRef<HTMLInputElement>(null)
+
+	const onChangeAvatar = (e: React.ChangeEvent<HTMLInputElement>) => {
+		const file = e.target.files?.[0]
+		if (!file) return
+
+		handleAvatarChange(file) // Передаємо файл
+
+		if (fileInputRef.current) {
+			fileInputRef.current.value = ""
+		}
+	}
+
 	return (
 		<HStack spacing={4}>
 			<UserAvatar size={100} isStatic />
+			<input
+				type="file"
+				accept="image/*"
+				ref={fileInputRef}
+				onChange={onChangeAvatar}
+				style={{ display: "none" }}
+			/>
 			<ButtonTemplate
 				iconBefore={<PenIconBtn isStatic size={16} colorFill="customWhite" />}
 				padding="14px"
 				hoverScale={1.02}
-				onClick={() => {
-					handleAvatarChange("/images/book_smile.png") // імітуємо новий аватар
-				}}
+				onClick={() => fileInputRef.current?.click()}
 				isLoading={isUpdating}
 				isDisabled={isUpdating}
 			>
@@ -41,9 +59,7 @@ export const ChangeAvatar: FC<ChangeAvatarProps> = ({
 					borderColor: "customViolet",
 				}}
 				hoverScale={1.02}
-				onClick={() => {
-					handleAvatarChange("")
-				}}
+				onClick={() => handleAvatarChange(null)}
 				isLoading={isUpdating}
 				isDisabled={isUpdating}
 			>

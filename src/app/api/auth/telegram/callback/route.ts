@@ -1,3 +1,6 @@
+// src/app/api/auth/telegram/callback/route.ts
+import "server-only"
+
 import crypto from "crypto"
 import { NextResponse } from "next/server"
 
