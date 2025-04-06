@@ -189,6 +189,7 @@ export interface User {
 	country?: string // Країна (необов’язкове)
 	role: UserRole // Роль користувача
 	googleId?: string | null // Унікальний ID від Google
+	googleAccessToken?: string | null // Токен доступу Google (необов’язкове)
 	avatar?: string | null // Аватар клієнта
 	isActive: boolean // для активації/деактивації покупця адмінами
 	favoriteBooks: number[] // Масив ID улюблених книг
