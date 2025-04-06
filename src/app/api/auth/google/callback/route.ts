@@ -1,5 +1,4 @@
-import { createUser, findUserByGoogleId, updateUser } from "@/app/api/db"
-import { User, UserRole } from "@/types/models"
+// import { User, UserRole } from "@/types/models"
 import { NextRequest, NextResponse } from "next/server"
 
 export async function GET(request: NextRequest) {
@@ -74,48 +73,48 @@ export async function GET(request: NextRequest) {
 	const photoUrl = userInfo.picture
 
 	// Шукаємо або створюємо/оновлюємо користувача
-	let user = findUserByGoogleId(googleId)
+	// let user = findUserByGoogleId(googleId)
 
-	if (user) {
-		// Оновлюємо існуючого користувача
-		user = updateUser(user.userId, {
-			email,
-			firstName,
-			lastName,
-			googleAccessToken: accessToken,
-			avatar: photoUrl || undefined,
-			updatedAt: new Date().toISOString(),
-		})
+	// if (user) {
+	// 	// Оновлюємо існуючого користувача
+	// 	user = updateUser(user.userId, {
+	// 		email,
+	// 		firstName,
+	// 		lastName,
+	// 		googleAccessToken: accessToken,
+	// 		avatar: photoUrl || undefined,
+	// 		updatedAt: new Date().toISOString(),
+	// 	})
 
-		if (!user) {
-			return NextResponse.json(
-				{ error: "Failed to update user" },
-				{ status: 500 },
-			)
-		}
-	} else {
-		// Створюємо нового користувача
-		const newUser: Omit<User, "userId" | "createdAt" | "updatedAt"> = {
-			email,
-			password: null,
-			firstName,
-			lastName,
-			phoneNumber: undefined,
-			dateOfBirth: undefined,
-			address: undefined,
-			city: undefined,
-			postalCode: undefined,
-			country: undefined,
-			role: UserRole.User,
-			googleId,
-			googleAccessToken: accessToken,
-			avatar: photoUrl || undefined,
-			isActive: true,
-			favoriteBooks: [],
-		}
+	// 	if (!user) {
+	// 		return NextResponse.json(
+	// 			{ error: "Failed to update user" },
+	// 			{ status: 500 },
+	// 		)
+	// 	}
+	// } else {
+	// 	// Створюємо нового користувача
+	// 	const newUser: Omit<User, "userId" | "createdAt" | "updatedAt"> = {
+	// 		email,
+	// 		password: null,
+	// 		firstName,
+	// 		lastName,
+	// 		phoneNumber: undefined,
+	// 		dateOfBirth: undefined,
+	// 		address: undefined,
+	// 		city: undefined,
+	// 		postalCode: undefined,
+	// 		country: undefined,
+	// 		role: UserRole.User,
+	// 		googleId,
+	// 		googleAccessToken: accessToken,
+	// 		avatar: photoUrl || undefined,
+	// 		isActive: true,
+	// 		favoriteBooks: [],
+	// 	}
 
-		user = createUser(newUser)
-	}
+	// 	user = createUser(newUser)
+	// }
 
 	// Перенаправляємо на головну сторінку з параметрами
 	const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:3000"
