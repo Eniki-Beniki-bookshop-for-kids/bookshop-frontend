@@ -5,6 +5,7 @@ import { generateTokens } from "./generateTokens"
 import { getTailwindColor } from "./getTailwindColor"
 import { validateAuthForm } from "./validateAuthForm"
 import { validateForm } from "./validationUtils"
+import { verifyToken } from "./verifyToken"
 
 export {
 	cutPhoneNumber,
@@ -16,4 +17,5 @@ export {
 	toPrismaGender,
 	validateAuthForm,
 	validateForm,
+	verifyToken,
 }

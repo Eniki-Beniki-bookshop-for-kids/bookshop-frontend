@@ -23,6 +23,8 @@ export const UserAvatar: FC<UserAvatarProps> = ({
 		? user.email.trim().charAt(0).toUpperCase()
 		: ""
 
+	const avatarSrc = avatarUrl || "/images/book_with_heart.png"
+
 	return (
 		<>
 			{user && avatarUrl && (
@@ -31,10 +33,20 @@ export const UserAvatar: FC<UserAvatarProps> = ({
 					height={`${size}px`}
 					borderRadius="50%"
 					overflow="hidden"
+					display="flex"
+					alignItems="center"
+					justifyContent="center"
 					className={isStatic ? "" : "cursor-pointer"}
 					onClick={handleUserClick}
 				>
-					<Image src={avatarUrl} alt="User Avatar" width={size} height={size} />
+					<Image
+						priority
+						src={avatarSrc}
+						alt="User Avatar"
+						width={size}
+						height={size}
+						style={{ objectFit: "cover", width: "100%", height: "100%" }}
+					/>
 				</Box>
 			)}
 			{user && !avatarUrl && (

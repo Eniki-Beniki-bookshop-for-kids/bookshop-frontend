@@ -1,4 +1,4 @@
-import { Gender as PrismaGender } from "@prisma/client"
+import { Gender as PrismaGender, User as PrismaUser } from "@prisma/client"
 // ВАЖЛИВО!!! При додаванні нових полів у моделі, не забувайте оновлювати типи в prisma/schema.prisma та оновлювати базу даних через prisma migrate dev
 
 export enum Genre {
@@ -173,20 +173,26 @@ export interface Review {
 	updatedAt: string // Дата останнього оновлення відгуку про книгу у форматі ISO ("2024-09-01T15:30:00Z")
 }
 
-// модель користувача
+// моделі користувача
+
+// Тип для серверної сторони (Prisma)
+export type ServerUser = PrismaUser
+
+// Тип для фронтенду
 export interface User {
 	userId: number // Унікальний ідентифікатор користувача, автоматично генерується
+	supabaseId?: string | null // Унікальний ідентифікатор користувача в Supabase
 	email: string // Електронна пошта (унікальна)
 	password?: string | null
-	firstName?: string // Ім’я
-	lastName?: string // Прізвище
-	phoneNumber?: string // Номер телефону (унікальна)
-	dateOfBirth?: string // Дата народження у форматі ISO (необов’язкове, "2024-01-01T12:00:00Z")
+	firstName?: string | null // Ім’я
+	lastName?: string | null // Прізвище
+	phoneNumber?: string | null // Номер телефону (унікальна)
+	dateOfBirth?: string | null // Дата народження у форматі ISO (необов’язкове, "2024-01-01T12:00:00Z")
 	gender?: PrismaGender | null // Стать користувача
-	address?: string // Адреса доставки (необов’язкове)
-	city?: string // Місто (необов’язкове)
-	postalCode?: string // Поштовий індекс (необов’язкове)
-	country?: string // Країна (необов’язкове)
+	address?: string | null // Адреса доставки (необов’язкове)
+	city?: string | null // Місто (необов’язкове)
+	postalCode?: string | null // Поштовий індекс (необов’язкове)
+	country?: string | null // Країна (необов’язкове)
 	role: UserRole // Роль користувача
 	googleId?: string | null // Унікальний ID від Google
 	googleAccessToken?: string | null // Токен доступу Google (необов’язкове)

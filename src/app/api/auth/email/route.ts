@@ -3,9 +3,15 @@ import "server-only"
 
 import prisma from "@/lib/prismaClient"
 import { generateTokens } from "@/utils"
+import { createClient } from "@supabase/supabase-js"
 import bcrypt from "bcrypt"
 import _ from "lodash"
 import { NextRequest, NextResponse } from "next/server"
+
+const supabase = createClient(
+	process.env.NEXT_PUBLIC_SUPABASE_URL!,
+	process.env.SUPABASE_SERVICE_ROLE_KEY!,
+)
 
 interface EmailAuthRequest {
 	email: string
@@ -46,12 +52,38 @@ export async function POST(req: NextRequest) {
 				)
 			}
 
+			// Створюємо користувача у Supabase Auth
+			const { data, error } = await supabase.auth.admin.createUser({
+				email,
+				password,
+				email_confirm: true, // TODO: Поки автоматично підтверджуємо email. Треба створити логіку підтвердження email
+			})
+
+			if (error) {
+				return NextResponse.json(
+					{
+						message: `Failed to create user in Supabase Auth: ${error.message}`,
+					},
+					{ status: 400 },
+				)
+			}
+
+			const supabaseUserId = data.user?.id // Отримуємо Supabase Auth ID (UUID)
+
+			if (!supabaseUserId) {
+				return NextResponse.json(
+					{ message: "Failed to get Supabase user ID" },
+					{ status: 500 },
+				)
+			}
+
 			const hashedPassword = await bcrypt.hash(password, 10)
 
 			const user = await prisma.user.create({
 				data: {
 					email,
 					password: hashedPassword,
+					supabaseId: supabaseUserId,
 					isActive: true,
 					createdAt: new Date(),
 					updatedAt: new Date(),

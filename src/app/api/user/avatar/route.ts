@@ -1,21 +1,47 @@
+//src/app/api/user/avatar/route.ts
 import "server-only"
 
-import {
-	deleteAvatar,
-	getUserById,
-	updateUserAvatar,
-	uploadAvatar,
-} from "@/lib/supabase"
+import prisma from "@/lib/prismaClient"
+import { deleteAvatar, updateUserAvatar, uploadAvatar } from "@/lib/supabase"
+import { verifyToken } from "@/utils"
+import { mapServerUserToUser } from "@/utils/serverUtils"
 import { NextRequest, NextResponse } from "next/server"
 
 export async function POST(request: NextRequest) {
-	const userId = request.headers.get("x-user-id")
+	// Перевірка автентифікації
+	const authHeader = request.headers.get("Authorization")
+	if (!authHeader || !authHeader.startsWith("Bearer ")) {
+		return NextResponse.json(
+			{ message: "Authorization header missing or invalid" },
+			{ status: 401 },
+		)
+	}
+
+	const token = authHeader.split(" ")[1]
+	const decodedToken = verifyToken(token)
+	if (!decodedToken) {
+		return NextResponse.json(
+			{ message: "Invalid or expired token" },
+			{ status: 401 },
+		)
+	}
+
+	const userIdFromToken = decodedToken.userId.toString()
+	const userIdFromHeader = request.headers.get("x-user-id")
 	const currentAvatar = request.headers.get("x-current-avatar")
 
-	if (!userId) {
+	if (!userIdFromHeader) {
 		return NextResponse.json(
 			{ message: "User ID is required" },
 			{ status: 400 },
+		)
+	}
+
+	// Перевіряємо, чи userId із заголовка збігається з userId із токена
+	if (userIdFromHeader !== userIdFromToken) {
+		return NextResponse.json(
+			{ message: "User ID does not match authenticated user" },
+			{ status: 403 },
 		)
 	}
 
@@ -23,33 +49,43 @@ export async function POST(request: NextRequest) {
 		const formData = await request.formData()
 		const file = formData.get("avatar") as File | null
 
+		let avatarUrl: string | "" = ""
+
 		if (!file) {
 			// Якщо файл не передано, це запит на видалення аватара
 			if (currentAvatar) {
 				await deleteAvatar(currentAvatar)
 			}
-			await updateUserAvatar(userId, "")
-			const updatedUser = await getUserById(userId)
-			return NextResponse.json(updatedUser)
+			avatarUrl = ""
+		} else {
+			// Завантажуємо новий аватар
+			avatarUrl = await uploadAvatar(file, userIdFromHeader)
+
+			// Видаляємо старий аватар, якщо він є
+			if (currentAvatar) {
+				await deleteAvatar(currentAvatar)
+			}
 		}
 
-		// Завантажуємо новий аватар
-		const avatarUrl = await uploadAvatar(file, userId)
+		// Оновлюємо аватар у Supabase Auth
+		await updateUserAvatar(userIdFromHeader, avatarUrl)
 
-		// Видаляємо старий аватар, якщо він є
-		if (currentAvatar) {
-			await deleteAvatar(currentAvatar)
-		}
+		// Оновлюємо аватар у базі даних
+		const updatedServerUser = await prisma.user.update({
+			where: { userId: parseInt(userIdFromHeader) },
+			data: { avatar: avatarUrl },
+		})
 
-		// Оновлюємо профіль користувача
-		await updateUserAvatar(userId, avatarUrl)
-
-		// Отримуємо оновлені дані користувача
-		const updatedUser = await getUserById(userId)
-		return NextResponse.json(updatedUser)
+		// Повертаємо оновленого користувача у форматі User
+		const updatedUser = mapServerUserToUser(updatedServerUser)
+		return NextResponse.json(updatedUser, { status: 200 })
 	} catch (error) {
+		console.error("Error in /api/user/avatar:", error)
 		return NextResponse.json(
-			{ message: (error as Error).message },
+			{
+				message: "Failed to update avatar",
+				error: (error as Error).message,
+			},
 			{ status: 500 },
 		)
 	}

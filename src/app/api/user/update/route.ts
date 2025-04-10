@@ -3,8 +3,8 @@ import "server-only"
 
 import prisma from "@/lib/prismaClient"
 import { AccountFormData } from "@/types/interfaces"
+import { verifyToken } from "@/utils/"
 import { toPrismaGender } from "@/utils/genderMapping"
-import jwt from "jsonwebtoken"
 import _ from "lodash"
 import { NextRequest, NextResponse } from "next/server"
 
@@ -23,7 +23,6 @@ export async function PATCH(req: NextRequest) {
 			)
 		}
 
-		const token = authHeader.split(" ")[1]
 		const JWT_SECRET = process.env.JWT_SECRET
 		if (!JWT_SECRET) {
 			return NextResponse.json(
@@ -32,11 +31,10 @@ export async function PATCH(req: NextRequest) {
 			)
 		}
 
+		const token = authHeader.split(" ")[1]
 		// Перевіряємо токен
-		let decoded
-		try {
-			decoded = jwt.verify(token, JWT_SECRET) as { userId: number }
-		} catch {
+		const decodedToken = verifyToken(token)
+		if (!decodedToken) {
 			return NextResponse.json(
 				{ message: "Invalid or expired token" },
 				{ status: 401 },
@@ -54,10 +52,10 @@ export async function PATCH(req: NextRequest) {
 			gender,
 		}: UpdateUserRequest = await req.json()
 
-		// Перевіряємо, чи збігається userId із токена з userId із запиту
-		if (decoded.userId !== userId) {
+		// Перевіряємо, чи userId із заголовка збігається з userId із токена
+		if (userId !== decodedToken.userId) {
 			return NextResponse.json(
-				{ message: "Unauthorized: User ID does not match" },
+				{ message: "User ID does not match authenticated user" },
 				{ status: 403 },
 			)
 		}

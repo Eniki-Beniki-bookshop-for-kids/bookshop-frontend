@@ -1,71 +1,76 @@
+//src/lib/supabase.ts
 import "server-only"
 
-import { User } from "@/types/models"
 import { createClient } from "@supabase/supabase-js"
+import { getSupabaseIdByUserId } from "../utils/serverUtils"
 
-const supabase = createClient(
+export const supabase = createClient(
 	process.env.NEXT_PUBLIC_SUPABASE_URL!,
 	process.env.SUPABASE_SERVICE_ROLE_KEY!,
 )
 
-export const uploadAvatar = async (
+// Функція для завантаження аватара
+export async function uploadAvatar(
 	file: File,
 	userId: string,
-): Promise<string> => {
+): Promise<string> {
 	const fileExt = file.name.split(".").pop()
 	const fileName = `${userId}-${Date.now()}.${fileExt}`
-	const filePath = `avatars/${fileName}`
 
 	const { error } = await supabase.storage
 		.from("avatars")
-		.upload(filePath, file, {
+		.upload(fileName, file, {
 			cacheControl: "3600",
-			upsert: false,
+			upsert: true,
+			contentType: file.type,
 		})
 
 	if (error) {
+		console.error("Error uploading file:", error)
 		throw new Error(`Failed to upload avatar: ${error.message}`)
 	}
 
-	// Отримуємо публічний URL аватара
-	const { data } = supabase.storage.from("avatars").getPublicUrl(filePath)
+	// Генеруємо підписаний URL
+	const { data: signedUrlData, error: signedError } = await supabase.storage
+		.from("avatars")
+		.createSignedUrl(fileName, 30000000) // приблизно 1 рік діє токен
 
-	if (!data?.publicUrl) {
-		throw new Error("Failed to get public URL for avatar")
+	if (signedError) {
+		console.error("Error generating signed URL:", signedError)
+		throw new Error(`Failed to generate signed URL: ${signedError.message}`)
 	}
 
-	return data.publicUrl
+	return signedUrlData.signedUrl
 }
 
-export const deleteAvatar = async (avatarUrl: string) => {
-	if (!avatarUrl) return
+// Функція для видалення аватара
+export async function deleteAvatar(avatarUrl: string) {
+	try {
+		// Видаляємо старий аватар, витягуючи ім'я файлу з URL
+		const fileName = avatarUrl.split("/").pop()?.split("?")[0]
+		if (fileName) {
+			const { error } = await supabase.storage
+				.from("avatars")
+				.remove([fileName])
 
-	// Витягуємо шлях до файлу з URL
-	const filePath = avatarUrl.split("/").slice(-2).join("/")
-	const { error } = await supabase.storage.from("avatars").remove([filePath])
-
-	if (error) {
-		throw new Error(`Failed to delete avatar: ${error.message}`)
+			if (error) {
+				throw new Error(`Error deleting file: ${error.message}`)
+			}
+		}
+	} catch (error) {
+		console.error("Error deleting avatar:", error)
+		throw new Error(`Failed to delete avatar: ${(error as Error).message}`)
 	}
 }
 
-export const updateUserAvatar = async (
-	userId: string,
-	avatarUrl: string | "",
-) => {
-	const { error } = await supabase.auth.admin.updateUserById(userId, {
+// Функція для оновлення аватара у Supabase Auth
+export async function updateUserAvatar(userId: string, avatarUrl: string | "") {
+	const supabaseUserId = await getSupabaseIdByUserId(userId)
+	const { error } = await supabase.auth.admin.updateUserById(supabaseUserId, {
 		user_metadata: { avatar: avatarUrl },
 	})
 
 	if (error) {
 		throw new Error(`Failed to update user avatar: ${error.message}`)
 	}
-}
-
-export const getUserById = async (userId: string): Promise<User> => {
-	const { data, error } = await supabase.auth.admin.getUserById(userId)
-	if (error) {
-		throw new Error(`Failed to fetch user: ${error.message}`)
-	}
-	return data.user as User
 }
