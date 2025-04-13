@@ -1,17 +1,32 @@
+// src/app/hooks/useGoogleSignIn.ts
 "use client"
 
+import { useToast } from "@chakra-ui/react"
+import { supabaseClient as supabase } from "../lib/supabase/supabaseClient"
+
 export const useGoogleSignIn = () => {
-	const login = () => {
-		const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:3000"
-		const redirectUri = `${baseUrl}/api/auth/google/callback`
-		const clientId = process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID
+	const toast = useToast()
 
-		if (!clientId) {
-			throw new Error("Google Client ID is not defined")
+	// Функція для входу через Google
+	const login = async () => {
+		const { error } = await supabase.auth.signInWithOAuth({
+			provider: "google",
+			options: {
+				scopes: "email profile",
+				redirectTo: window.location.origin,
+			},
+		})
+
+		if (error) {
+			console.error("Помилка авторизації:", error.message)
+			toast({
+				title: "Помилка",
+				description: "Не вдалося увійти через Google. Спробуй ще раз.",
+				status: "error",
+				duration: 5000,
+				isClosable: true,
+			})
 		}
-
-		const googleAuthUrl = `https://accounts.google.com/o/oauth2/v2/auth?client_id=${clientId}&redirect_uri=${redirectUri}&response_type=code&scope=profile email&prompt=select_account`
-		window.location.href = googleAuthUrl
 	}
 
 	return { login }

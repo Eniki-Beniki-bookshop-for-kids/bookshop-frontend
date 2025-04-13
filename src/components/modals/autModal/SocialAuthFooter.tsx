@@ -1,3 +1,4 @@
+// src/components/modals/autModal/SocialAuthFooter.tsx
 "use client"
 
 import { useAuthContext } from "@/context/AuthContext"

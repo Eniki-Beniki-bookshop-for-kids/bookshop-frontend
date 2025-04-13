@@ -4,20 +4,23 @@ import { ApiErrorResponse, AuthResponse } from "@/types/interfaces"
 import { User } from "@/types/models"
 import { AxiosError } from "axios"
 
-const base_url = "/api/auth"
+const BASE_ENDPOINT = "/api/auth"
 
-// Загальна функція для аутентифікації (реєстрація або логін)
+// Загальна функція для аутентифікації по email і паролю (реєстрація або логін)
 export const authWithEmail = async (
 	email: string,
 	password: string,
 	endpoint: "signup" | "login",
 ): Promise<AuthResponse> => {
 	try {
-		const response = await apiClient.post<AuthResponse>(`${base_url}/email`, {
-			email,
-			password,
-			endpoint,
-		})
+		const response = await apiClient.post<AuthResponse>(
+			`${BASE_ENDPOINT}/email`,
+			{
+				email,
+				password,
+				endpoint,
+			},
+		)
 		return response.data
 	} catch (error: unknown) {
 		const axiosError = error as AxiosError<ApiErrorResponse>
@@ -39,9 +42,49 @@ export const authWithEmail = async (
 				`No response received during ${endpoint}. Please check your network.`,
 			)
 		} else {
-			// Помилка налаштування запиту
 			throw new Error(
 				`Error setting up ${endpoint} request: ${
+					axiosError.message || "Unknown error"
+				}`,
+			)
+		}
+	}
+}
+
+// Вихід з системи
+export const logout = async (
+	accessToken: string,
+	tokenType: string,
+): Promise<void> => {
+	try {
+		await apiClient.post(
+			`${BASE_ENDPOINT}/logout`,
+			{},
+			{
+				headers: {
+					Authorization: `${tokenType} ${accessToken}`,
+				},
+			},
+		)
+	} catch (error: unknown) {
+		const axiosError = error as AxiosError<ApiErrorResponse>
+		console.error(
+			`Error in logout (Status: ${axiosError.response?.status || "N/A"}):`,
+			axiosError.toJSON?.() || axiosError,
+		)
+
+		if (axiosError.response) {
+			const message =
+				axiosError.response.data?.message ||
+				`Failed to logout (Status: ${axiosError.response.status})`
+			throw new Error(message)
+		} else if (axiosError.request) {
+			throw new Error(
+				"No response received during logout. Please check your network.",
+			)
+		} else {
+			throw new Error(
+				`Error setting up logout request: ${
 					axiosError.message || "Unknown error"
 				}`,
 			)
@@ -55,7 +98,7 @@ export const fetchUser = async (
 	tokenType: string,
 ): Promise<User> => {
 	try {
-		const response = await apiClient.get<User>(`${base_url}/user/me`, {
+		const response = await apiClient.get<User>(`${BASE_ENDPOINT}/user/me`, {
 			headers: {
 				Authorization: `${tokenType} ${accessToken}`,
 			},

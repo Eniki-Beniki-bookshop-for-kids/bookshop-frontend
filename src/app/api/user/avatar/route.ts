@@ -2,7 +2,11 @@
 import "server-only"
 
 import prisma from "@/lib/prismaClient"
-import { deleteAvatar, updateUserAvatar, uploadAvatar } from "@/lib/supabase"
+import {
+	deleteAvatar,
+	updateUserAvatar,
+	uploadAvatar,
+} from "@/lib/supabase/supabaseAvatar"
 import { verifyToken } from "@/utils"
 import { mapServerUserToUser } from "@/utils/serverUtils"
 import { NextRequest, NextResponse } from "next/server"

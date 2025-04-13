@@ -3,6 +3,7 @@
 
 import { authWithEmail, fetchUser } from "@/app/api/client"
 import { useAuthStore } from "@/stores/authStore"
+import { useToast } from "@chakra-ui/react"
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query"
 import { useEffect } from "react"
 import { ApiErrorResponse, AuthResponse } from "../types/interfaces"
@@ -11,6 +12,7 @@ import { ApiErrorResponse, AuthResponse } from "../types/interfaces"
 export const useEmailLoginMutation = () => {
 	const queryClient = useQueryClient()
 	const { setUser, setTokens } = useAuthStore()
+	const toast = useToast()
 
 	return useMutation({
 		mutationFn: ({
@@ -33,11 +35,25 @@ export const useEmailLoginMutation = () => {
 			} else {
 				// Статус 400/401 (наприклад, "Invalid credentials")
 				console.error("Authentication failed:", data.message)
+				toast({
+					title: "Помилка",
+					description: "Не вдалося авторизуватись. Спробуйте ще раз.",
+					status: "error",
+					duration: 5000,
+					isClosable: true,
+				})
 				throw new Error(data.message || "Authentication failed")
 			}
 		},
 		onError: (error: Error) => {
 			console.error("Email auth error:", error.message)
+			toast({
+				title: "Помилка",
+				description: "Не вдалося авторизуватись. Спробуйте ще раз.",
+				status: "error",
+				duration: 5000,
+				isClosable: true,
+			})
 		},
 	})
 }

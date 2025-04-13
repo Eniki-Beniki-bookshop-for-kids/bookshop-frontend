@@ -1,13 +1,7 @@
-//src/lib/supabase.ts
-import "server-only"
+//src/lib/supabase/supabaseAvatar.ts
 
-import { createClient } from "@supabase/supabase-js"
-import { getSupabaseIdByUserId } from "../utils/serverUtils"
-
-export const supabase = createClient(
-	process.env.NEXT_PUBLIC_SUPABASE_URL!,
-	process.env.SUPABASE_SERVICE_ROLE_KEY!,
-)
+import { getSupabaseIdByUserId } from "@/utils/serverUtils"
+import { supabaseServer as supabase } from "./supabaseServer"
 
 // Функція для завантаження аватара
 export async function uploadAvatar(
