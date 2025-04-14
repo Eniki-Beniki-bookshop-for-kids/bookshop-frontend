@@ -1,3 +1,4 @@
+// src/components/account/content/settings/ChangeAvatar.tsx
 "use client"
 
 import { HStack } from "@chakra-ui/react"

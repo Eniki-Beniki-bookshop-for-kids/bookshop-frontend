@@ -1,6 +1,6 @@
 // src/utils/generateTokens.ts
+import { UserRole } from "@/types/models"
 import jwt from "jsonwebtoken"
-import { UserRole } from "../types/models"
 
 export const generateTokens = (
 	userId: number,
@@ -8,6 +8,7 @@ export const generateTokens = (
 	role: string | UserRole,
 ) => {
 	const JWT_SECRET = process.env.JWT_SECRET
+
 	if (!JWT_SECRET) {
 		throw new Error("JWT_SECRET is not defined in environment variables")
 	}

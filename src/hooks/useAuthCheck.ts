@@ -18,10 +18,7 @@ export const useAuthCheck = () => {
 				if (sessionError) throw sessionError
 
 				if (sessionData.session) {
-					const { user, access_token, refresh_token, token_type } =
-						sessionData.session
-
-					setTokens(access_token, refresh_token, token_type)
+					const { user } = sessionData.session
 
 					// Відправляємо користувача в API-роут для збереження
 					const response = await fetch("/api/user/save", {
@@ -36,9 +33,15 @@ export const useAuthCheck = () => {
 						throw new Error("Не вдалося зберегти користувача")
 					}
 
-					const { user: savedUser } = await response.json()
+					const {
+						user: savedUser,
+						accessToken,
+						refreshToken,
+						tokenType,
+					} = await response.json()
 
 					setUser(savedUser)
+					setTokens(accessToken, refreshToken, tokenType)
 
 					toast({
 						title: "Успіх",

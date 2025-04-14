@@ -1,5 +1,6 @@
 // src/app/api/user/save/route.ts
 import prisma from "@/lib/prismaClient"
+import { generateTokens } from "@/utils"
 import { NextRequest, NextResponse } from "next/server"
 
 export async function POST(request: NextRequest) {
@@ -47,7 +48,19 @@ export async function POST(request: NextRequest) {
 			})
 		}
 
-		return NextResponse.json({ user: dbUser })
+		// Генеруємо токени на сервері
+		const { accessToken, refreshToken } = generateTokens(
+			dbUser.userId,
+			dbUser.email,
+			dbUser.role,
+		)
+
+		return NextResponse.json({
+			user: dbUser,
+			accessToken,
+			refreshToken,
+			tokenType: "Bearer",
+		})
 	} catch (error) {
 		console.error(
 			"Помилка при збереженні користувача через Prisma:",

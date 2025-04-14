@@ -1,3 +1,4 @@
+// src/components/account/content/settings/SettingsContent.tsx
 import { useSettingsForm } from "@/hooks"
 import { Box, VStack } from "@chakra-ui/react"
 import { ChangeAvatar } from "./ChangeAvatar"

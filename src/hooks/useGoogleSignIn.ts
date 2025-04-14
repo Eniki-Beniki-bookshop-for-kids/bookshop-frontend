@@ -14,6 +14,9 @@ export const useGoogleSignIn = () => {
 			options: {
 				scopes: "email profile",
 				redirectTo: window.location.origin,
+				queryParams: {
+					prompt: "select_account", // Завжди показувати вікно вибору акаунта
+				},
 			},
 		})
 
