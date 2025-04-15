@@ -55,5 +55,5 @@ export interface AccountSettingField {
 	type: string
 	placeholder: string
 	field: keyof AccountFormData
-	isDisabled: boolean
+	isDisabled?: boolean
 }

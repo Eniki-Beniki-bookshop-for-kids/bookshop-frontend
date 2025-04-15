@@ -175,19 +175,16 @@ export const accountSettingFields: AccountSettingField[] = [
 		type: "text",
 		placeholder: "Введіть ім’я",
 		field: "firstName",
-		isDisabled: false,
 	},
 	{
 		type: "text",
 		placeholder: "Введіть прізвище",
 		field: "lastName",
-		isDisabled: false,
 	},
 	{
 		type: "tel",
 		placeholder: "Номер телефону",
 		field: "phoneNumber",
-		isDisabled: false,
 	},
 	{
 		type: "email",
@@ -199,6 +196,5 @@ export const accountSettingFields: AccountSettingField[] = [
 		type: "date",
 		placeholder: "Виберіть дату",
 		field: "dateOfBirth",
-		isDisabled: false,
 	},
 ]

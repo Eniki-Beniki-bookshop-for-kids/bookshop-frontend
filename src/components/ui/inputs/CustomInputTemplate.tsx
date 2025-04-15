@@ -28,7 +28,7 @@ export const CustomInputTemplate: FC<CustomInputProps> = ({
 	type,
 	placeholder,
 	value,
-	isDisabled,
+	isDisabled = false,
 	onChange,
 	error,
 	mb = 0,
