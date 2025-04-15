@@ -1,6 +1,6 @@
 // src/utils/validationSchemas.ts
+import { Gender } from "@/types/models"
 import { z } from "zod"
-import { Gender } from "../types/models"
 
 // Схеми для модалки авторизації/реєстрації
 // Базова схема

@@ -1,6 +1,13 @@
 // src/types/interfaces.ts
+import {
+	Gender as GenderFromPrisma,
+	User as UserFromPrisma,
+} from "../../prisma/generated/client"
 import { authCredentials } from "./constants"
 import { User } from "./models"
+
+export type PrismaGender = GenderFromPrisma
+export type PrismaUser = UserFromPrisma
 
 export type AuthCredentials = typeof authCredentials
 

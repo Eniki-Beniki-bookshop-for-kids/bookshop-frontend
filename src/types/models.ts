@@ -1,8 +1,6 @@
 //src/types/models.ts
-import {
-	Gender as PrismaGender,
-	User as PrismaUser,
-} from "../../prisma/generated/client"
+
+import { PrismaGender, PrismaUser } from "./interfaces"
 
 // ВАЖЛИВО!!! При додаванні нових полів у моделі, не забувайте оновлювати типи в prisma/schema.prisma та оновлювати базу даних через prisma migrate dev --name [назва міграції]
 export enum Genre {

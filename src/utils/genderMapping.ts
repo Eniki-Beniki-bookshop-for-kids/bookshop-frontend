@@ -1,13 +1,13 @@
 import { Gender as PrismaGender } from "../../prisma/generated/client"
 
-// Мапінг із локалізованих значень на значення Prisma
+// Мапінг із локальних значень на значення Prisma
 const genderToPrismaMap: Record<string, PrismaGender> = {
 	чоловіча: PrismaGender.male,
 	жіноча: PrismaGender.female,
 	інша: PrismaGender.other,
 }
 
-// Мапінг із значень Prisma на локалізовані (для відображення)
+// Мапінг із значень Prisma на локальні (для відображення)
 const prismaToGenderMap: Record<PrismaGender, string> = {
 	[PrismaGender.male]: "чоловіча",
 	[PrismaGender.female]: "жіноча",

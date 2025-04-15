@@ -15,6 +15,6 @@
 - Вказати `Client ID` і `Client Secret` із Google Cloud Console
   Налаштуй redirect URL:
 - вказати у `Supabase Dashboard → Authentication → URL Configuration → Redirect URLs`:
-  - production: `https://bookshop-frontend-qtkz.onrender.com/api/auth/google/callback`
-  - local: `http://localhost:3000/api/auth/google/callback`
+  - production: `https://bookshop-frontend-qtkz.onrender.com`
+  - local: `http://localhost:3000`
 - перевірити змінні середовища: NEXT_PUBLIC_SUPABASE_URL, SUPABASE_SERVICE_ROLE_KEY, NEXT_PUBLIC_BASE_URL
