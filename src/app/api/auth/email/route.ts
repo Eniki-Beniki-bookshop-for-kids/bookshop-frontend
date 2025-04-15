@@ -2,7 +2,7 @@
 import "server-only"
 
 import prisma from "@/lib/prismaClient"
-import { generateTokens } from "@/utils"
+import { generateTokens } from "@/utils/serverUtils"
 import { createClient } from "@supabase/supabase-js"
 import bcrypt from "bcrypt"
 import _ from "lodash"

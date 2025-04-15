@@ -1,5 +1,6 @@
 generator client {
   provider = "prisma-client-js"
+  output   = "./generated/client"
 }
 
 datasource db {
@@ -128,28 +129,27 @@ enum Gender {
 }
 
 model User {
-  userId            Int       @id @default(autoincrement())
-  supabaseId        String?   @unique
-  email             String    @unique
-  password          String?
-  firstName         String?
-  lastName          String?
-  phoneNumber       String?
-  dateOfBirth       DateTime?
-  gender            Gender?
-  address           String?
-  city              String?
-  postalCode        String?
-  country           String?
-  role              UserRole  @default(User)
-  googleId          String?
-  googleAccessToken String?
-  avatar            String?
-  isActive          Boolean   @default(true)
-  favoriteBooks     Int[]
-  createdAt         DateTime  @default(now())
-  updatedAt         DateTime  @updatedAt
-  orders            Order[]
+  userId        Int       @id @default(autoincrement())
+  supabaseId    String?   @unique
+  email         String    @unique
+  password      String?
+  firstName     String?
+  lastName      String?
+  phoneNumber   String?
+  dateOfBirth   DateTime?
+  gender        Gender?
+  address       String?
+  city          String?
+  postalCode    String?
+  country       String?
+  role          UserRole  @default(User)
+  googleId      String?
+  avatar        String?
+  isActive      Boolean   @default(true)
+  favoriteBooks Int[]
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+  orders        Order[]
 }
 
 model Book {

@@ -1,6 +1,7 @@
 // src/app/api/user/save/route.ts
 import prisma from "@/lib/prismaClient"
-import { generateTokens } from "@/utils"
+import { generateTokens } from "@/utils/serverUtils"
+import _ from "lodash"
 import { NextRequest, NextResponse } from "next/server"
 
 export async function POST(request: NextRequest) {
@@ -55,8 +56,10 @@ export async function POST(request: NextRequest) {
 			dbUser.role,
 		)
 
+		const userWithoutPassword = _.omit(dbUser, ["password"]) // Видаляємо поле password із відповіді
+
 		return NextResponse.json({
-			user: dbUser,
+			user: userWithoutPassword,
 			accessToken,
 			refreshToken,
 			tokenType: "Bearer",
