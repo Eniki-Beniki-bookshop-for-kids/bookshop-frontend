@@ -28,6 +28,7 @@ export const CustomInputTemplate: FC<CustomInputProps> = ({
 	type,
 	placeholder,
 	value,
+	isDisabled,
 	onChange,
 	error,
 	mb = 0,
@@ -50,6 +51,7 @@ export const CustomInputTemplate: FC<CustomInputProps> = ({
 					type={inputType}
 					placeholder={placeholder}
 					value={value || ""}
+					disabled={isDisabled}
 					onChange={onChange}
 					{...commonInputStyles}
 					focusBorderColor="customViolet"

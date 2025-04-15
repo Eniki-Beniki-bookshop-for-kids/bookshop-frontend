@@ -82,6 +82,7 @@ export interface CustomInputProps {
 	type: string
 	placeholder: string
 	value: string
+	isDisabled: boolean
 	onChange: (e: ChangeEvent<HTMLInputElement>) => void
 	error: string | undefined
 	mb?: number

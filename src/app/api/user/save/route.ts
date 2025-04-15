@@ -4,6 +4,15 @@ import { generateTokens } from "@/utils/serverUtils"
 import _ from "lodash"
 import { NextRequest, NextResponse } from "next/server"
 
+interface UpdateUserData {
+	supabaseId: string
+	firstName: string
+	lastName: string
+	googleId: string | null
+	updatedAt: Date
+	avatar?: string
+}
+
 export async function POST(request: NextRequest) {
 	const { user } = await request.json()
 
@@ -17,34 +26,37 @@ export async function POST(request: NextRequest) {
 	const { id, email, user_metadata } = user
 	const [firstName, lastName] = (user_metadata.full_name || "").split(" ")
 
-	const mappedUser = {
-		supabaseId: id,
-		firstName,
-		lastName,
-		avatar: user_metadata.picture || "",
-		googleId: user_metadata.sub || null,
-		updatedAt: new Date(),
-	}
-
 	try {
 		// Шукаємо користувача за email
 		let dbUser = await prisma.user.findUnique({
 			where: { email },
 		})
 
+		const updateData: UpdateUserData = {
+			supabaseId: id,
+			firstName,
+			lastName,
+			googleId: user_metadata.sub || null,
+			updatedAt: new Date(),
+		}
+
 		if (dbUser) {
-			// Якщо користувач із таким email уже існує, оновлюємо його supabaseId та інші поля
+			// Якщо користувач існує, оновлюємо дані, але не чіпаємо аватар, якщо він уже є
+			if (!dbUser.avatar) {
+				updateData.avatar = user_metadata.picture || ""
+			}
 			dbUser = await prisma.user.update({
 				where: { email },
-				data: mappedUser,
+				data: updateData,
 			})
 		} else {
-			// Якщо користувача немає, створюємо нового
+			// Якщо користувача немає, створюємо нового з аватаром із Google
 			dbUser = await prisma.user.create({
 				data: {
 					createdAt: new Date(),
 					email,
-					...mappedUser,
+					avatar: user_metadata.picture || "",
+					...updateData,
 				},
 			})
 		}

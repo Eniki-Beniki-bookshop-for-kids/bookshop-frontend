@@ -1,8 +1,17 @@
 //src/components/header/Logo.tsx
 import { Box, Image, Link } from "@chakra-ui/react"
 import NextLink from "next/link"
+import { FC } from "react"
 
-export const Logo = () => {
+interface LogoProps {
+	bg?: string
+	borderRadius?: string
+}
+
+export const Logo: FC<LogoProps> = ({
+	bg = "customWhite",
+	borderRadius = "50%",
+}) => {
 	return (
 		<Link
 			as={NextLink}
@@ -12,7 +21,7 @@ export const Logo = () => {
 				transition: "transform 0.2s ease-in-out",
 			}}
 		>
-			<Box bg="customWhite" borderRadius="50%" p={2} display="inline-block">
+			<Box bg={bg} borderRadius={borderRadius} display="inline-block">
 				<Image
 					src="/images/LOGO_v1.png"
 					alt="Логотип"

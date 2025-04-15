@@ -20,7 +20,7 @@ export const SettingsFields: FC<SettingsFieldsProps> = ({
 }) => {
 	return (
 		<SimpleGrid columns={2} spacing={5} width="100%">
-			{accountSettingFields.map(({ type, placeholder, field }) => {
+			{accountSettingFields.map(({ type, placeholder, field, isDisabled }) => {
 				return (
 					<CustomInputTemplate
 						key={field}
@@ -29,6 +29,7 @@ export const SettingsFields: FC<SettingsFieldsProps> = ({
 						value={cutPhoneNumber(field, formData)}
 						onChange={e => handleChange(field, e.target.value)}
 						error={errors[field]}
+						isDisabled={isDisabled}
 					/>
 				)
 			})}

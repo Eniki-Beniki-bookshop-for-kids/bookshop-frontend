@@ -1,7 +1,7 @@
 // src/hooks/useSidebarMenu.ts
 "use client"
 
-import { logout } from "@/app/api/client"
+import { supabaseClient as supabase } from "@/lib/supabase/supabaseClient"
 import { useAuthStore } from "@/stores/authStore"
 import { useToast } from "@chakra-ui/react"
 import { useRouter } from "next/navigation"
@@ -11,21 +11,19 @@ export const useSidebarMenu = (initialSection: string = "settings") => {
 	const [activeSection, setActiveSection] = useState(initialSection)
 	const router = useRouter()
 	const toast = useToast()
-	const { accessToken, tokenType, logout: logoutFromStore } = useAuthStore()
+	const { logout: logoutFromStore } = useAuthStore()
 
 	const handleMenuClick = async (id: string) => {
 		if (id === "logout") {
 			try {
-				// Перевіряємо наявність токенів
-				if (!accessToken || !tokenType) {
-					throw new Error("No access token or token type available")
-				}
+				// Завершуємо сесію Supabase на клієнті
+				const { error } = await supabase.auth.signOut()
+				if (error) throw error
 
-				// Викликаємо logout на бекенді
-				await logout(accessToken, tokenType)
-
-				// Якщо logout успішний, очищаємо authStore і перенаправляємо
+				// Очищаємо кастомні токени
 				logoutFromStore()
+				localStorage.removeItem("sb-brskvxpqvofojrxoxxjb-auth-token")
+
 				router.push("/")
 				toast({
 					title: "Успішний вихід",

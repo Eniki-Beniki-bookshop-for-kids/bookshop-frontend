@@ -8,7 +8,7 @@ import { useMemo } from "react"
 import { pageHeaderTypes, TypesHeader } from "@/types/constants"
 import { HeaderBg } from "./HeaderBg"
 import { HeaderMenu } from "./HeaderMenu"
-import { Logo } from "./Logo"
+import { Logo } from "../Logo"
 import { NavBar } from "./NavBar"
 import { Phone } from "./Phone"
 
