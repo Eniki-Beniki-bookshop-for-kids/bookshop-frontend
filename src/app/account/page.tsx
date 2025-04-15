@@ -1,6 +1,7 @@
+//src/app/account/page.tsx
 "use client"
 
-import { AccountTitle } from "@/components"
+import { PageTitle } from "@/components"
 import { AccountContent, AccountSidebar } from "@/components/account"
 import { SidebarMenuProvider } from "@/context/SidebarMenuContext"
 import { useAuthStore } from "@/stores/authStore"
@@ -11,7 +12,7 @@ export default function AccountPage() {
 
 	if (!user) {
 		return (
-			<AccountTitle title="Для доступу до особистого кабінету необхідно авторизуватися" />
+			<PageTitle title="Для доступу до особистого кабінету необхідно авторизуватися" />
 		)
 	}
 
@@ -26,7 +27,7 @@ export default function AccountPage() {
 					gridTemplateRows={{ base: "auto auto auto", md: "auto 1fr" }}
 					gridTemplateColumns={{ base: "1fr", md: "auto 1fr" }}
 				>
-					<AccountTitle title="Особистий кабінет" />
+					<PageTitle title="Особистий кабінет" />
 					<AccountSidebar />
 					<AccountContent />
 				</Grid>

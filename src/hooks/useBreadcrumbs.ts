@@ -1,3 +1,4 @@
+//src/hooks/useBreadcrumbs.ts
 "use client"
 
 import { genreLink, pageLink } from "@/types/constants"

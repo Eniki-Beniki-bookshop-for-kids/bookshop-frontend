@@ -1,3 +1,4 @@
+//src/utils/validateAuthForm.ts
 import { authCredentials } from "../types/constants"
 
 export const validateAuthForm = (

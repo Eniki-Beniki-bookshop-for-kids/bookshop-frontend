@@ -1,3 +1,4 @@
+//src/components/header/HeaderBg.tsx
 import { Box } from "@chakra-ui/react"
 import { Wave } from "./Wave"
 

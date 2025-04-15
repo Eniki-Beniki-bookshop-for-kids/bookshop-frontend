@@ -12,6 +12,7 @@ const baseAuthSchema = z.object({
 		.min(7, "Необхідно мінімум 7 символів"),
 	confirmPassword: z.string().optional(),
 })
+
 // Схема для реєстрації
 export const authSchema = baseAuthSchema.superRefine((data, ctx) => {
 	// Під час реєстрації confirmPassword обов’язковий

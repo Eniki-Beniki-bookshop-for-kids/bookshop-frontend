@@ -4,7 +4,7 @@
 import { useAuthStore } from "@/stores/authStore"
 import { useState } from "react"
 import { AccountFormData } from "../types/interfaces"
-import { formatDateForInput, fromPrismaGender, validateForm } from "../utils"
+import { formatDate, fromPrismaGender, validateForm } from "../utils"
 import { settingsSchema } from "../utils/validationSchemas"
 
 export const useFormManagement = () => {
@@ -15,7 +15,7 @@ export const useFormManagement = () => {
 		lastName: user?.lastName || "",
 		phoneNumber: user?.phoneNumber || "",
 		email: user?.email || "",
-		dateOfBirth: formatDateForInput(user?.dateOfBirth),
+		dateOfBirth: formatDate(user?.dateOfBirth),
 		gender: fromPrismaGender(user?.gender),
 		avatar: user?.avatar || "",
 	})

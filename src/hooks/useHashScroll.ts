@@ -1,3 +1,4 @@
+//src/hooks/useHashScroll.ts
 "use client"
 
 import { usePathname } from "next/navigation"

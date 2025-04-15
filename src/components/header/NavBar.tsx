@@ -1,3 +1,4 @@
+//src/components/header/NavBar.tsx
 "use client"
 
 import { useHashScroll } from "@/hooks"

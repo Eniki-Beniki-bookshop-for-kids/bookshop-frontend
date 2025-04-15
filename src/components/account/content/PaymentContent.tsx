@@ -1,3 +1,4 @@
+//src/components/account/content/PaymentContent.tsx
 import { Box, Text } from "@chakra-ui/react"
 
 export const PaymentContent = () => {

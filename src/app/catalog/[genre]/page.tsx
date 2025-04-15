@@ -1,3 +1,4 @@
+//src/app/catalog/[genre]/page.tsx
 import { genreLink } from "@/types/constants"
 import { Box, Heading } from "@chakra-ui/react"
 import { Metadata } from "next"
@@ -34,7 +35,7 @@ export async function generateMetadata({
 }
 
 export default async function GenrePage({ params }: GenrePageProps) {
-  const { genre: genreParam } = await params
+	const { genre: genreParam } = await params
 	const genre =
 		genreLink.find(g => g.href === `/${genreParam}`)?.label || genreParam
 

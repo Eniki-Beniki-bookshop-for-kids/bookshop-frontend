@@ -1,3 +1,5 @@
+//src/app/catalog/[genre]/page.tsx
+
 import { Box, Text } from "@chakra-ui/react"
 
 export const OrdersContent = () => {

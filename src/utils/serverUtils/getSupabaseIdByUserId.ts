@@ -1,4 +1,5 @@
-import prisma from "../../lib/prismaClient"
+//src/utils/serverUtils/getSupabaseIdByUserId.ts
+import prisma from "@/lib/prismaClient"
 
 export const getSupabaseIdByUserId = async (
 	userId: string,

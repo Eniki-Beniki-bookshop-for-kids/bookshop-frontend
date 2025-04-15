@@ -1,3 +1,4 @@
+//src/components/account/sidebar/SidebarMenu.tsx
 import { useSidebarMenuContext } from "@/context/SidebarMenuContext"
 import { sidebarLinks } from "@/types/constants"
 import { HStack, Text, VStack } from "@chakra-ui/react"

@@ -1,6 +1,10 @@
-import { Gender as PrismaGender, User as PrismaUser } from "@prisma/client"
-// ВАЖЛИВО!!! При додаванні нових полів у моделі, не забувайте оновлювати типи в prisma/schema.prisma та оновлювати базу даних через prisma migrate dev
+//src/types/models.ts
+import {
+	Gender as PrismaGender,
+	User as PrismaUser,
+} from "../../prisma/generated/client"
 
+// ВАЖЛИВО!!! При додаванні нових полів у моделі, не забувайте оновлювати типи в prisma/schema.prisma та оновлювати базу даних через prisma migrate dev --name [назва міграції]
 export enum Genre {
 	Classics = "Класика",
 	Fantasy = "Фентезі",

@@ -1,3 +1,4 @@
+//src/components/header/Wave.tsx
 import { IButtonProps } from "@/types/propsInterfaces"
 import { getTailwindColor } from "@/utils"
 import { FC } from "react"

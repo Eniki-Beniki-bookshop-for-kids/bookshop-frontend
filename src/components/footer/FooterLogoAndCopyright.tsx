@@ -1,3 +1,4 @@
+//src/components/footer/FooterLogoAndCopyright.tsx
 import { Box, Flex, Image, Text } from "@chakra-ui/react"
 import { FC } from "react"
 
@@ -6,7 +7,7 @@ export const FooterLogoAndCopyright: FC = () => {
 		<Flex align="end" justify="space-between" mt="50px">
 			<Box flex="1" display="flex" justifyContent="center">
 				<Image
-					src="/images/LOGO_v3.png"
+					src="/images/LOGO_v1.png"
 					alt="Еники-Беники"
 					height="52px"
 					objectFit="contain"

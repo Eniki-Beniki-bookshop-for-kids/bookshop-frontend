@@ -1,4 +1,5 @@
-export const formatDateForInput = (date: string | null | undefined): string => {
+//src/utils/formatDate.ts
+export const formatDate = (date: string | null | undefined): string => {
 	if (!date) return ""
 	const parsedDate = new Date(date)
 	if (isNaN(parsedDate.getTime())) return ""

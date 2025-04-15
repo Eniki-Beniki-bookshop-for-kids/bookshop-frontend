@@ -1,3 +1,4 @@
+//src/chakraTheme.ts
 import { extendTheme } from "@chakra-ui/react"
 
 import tailwindConfig from "../tailwind.config"

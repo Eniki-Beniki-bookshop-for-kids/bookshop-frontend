@@ -1,3 +1,4 @@
+//src/components/footer/FooterPaymentMethods.tsx
 import { footerPaymentMethods } from "@/types/constants"
 import { HStack, Image, VStack } from "@chakra-ui/react"
 import { FooterColumnName } from "./FooterColumnName"

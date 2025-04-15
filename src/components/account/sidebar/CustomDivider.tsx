@@ -1,3 +1,4 @@
+//src/components/account/sidebar/CustomDivider.tsx
 import { Divider } from "@chakra-ui/react"
 
 export const CustomDivider = () => (

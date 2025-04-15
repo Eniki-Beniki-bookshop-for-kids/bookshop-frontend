@@ -1,3 +1,4 @@
+//src/components/footer/FooterMenu.tsx
 import { Link, VStack } from "@chakra-ui/react"
 import { FC } from "react"
 import { FooterColumnName } from "./FooterColumnName"

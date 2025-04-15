@@ -1,3 +1,4 @@
+// src/components/account/content/settings/SettingsFields.tsx
 import { accountSettingFields } from "@/types/constants"
 import { AccountFormData } from "@/types/interfaces"
 import { Gender } from "@/types/models"

@@ -1,3 +1,4 @@
+//src/components/footer/FooterColumnName.tsx
 import { Text } from "@chakra-ui/react"
 
 export const FooterColumnName = ({ title }: { title: string }) => {

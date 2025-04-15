@@ -1,3 +1,5 @@
+//src/components/errorBoundary/ErrorContent.tsx
+
 import { Heading, Text } from "@chakra-ui/react"
 import { FC } from "react"
 

@@ -1,3 +1,4 @@
+//src/components/account/sidebar/AccountSidebar.tsx
 import { Box, GridItem, VStack } from "@chakra-ui/react"
 import { CustomDivider } from "./CustomDivider"
 import { SidebarHeader } from "./SidebarHeader"

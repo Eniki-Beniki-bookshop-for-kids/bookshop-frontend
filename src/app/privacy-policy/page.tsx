@@ -1,3 +1,5 @@
+// src/app/privacy-policy/page.tsx
+
 import { Box, Heading, Link, Text, VStack } from "@chakra-ui/react"
 import NextLink from "next/link"
 

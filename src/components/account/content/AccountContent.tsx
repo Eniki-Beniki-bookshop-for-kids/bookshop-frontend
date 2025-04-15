@@ -1,3 +1,4 @@
+//src/components/account/content/AccountContent.tsx
 import { useSidebarMenuContext } from "@/context/SidebarMenuContext"
 import { accountContentMap } from "@/types/constants"
 import { Box, GridItem, Heading } from "@chakra-ui/react"

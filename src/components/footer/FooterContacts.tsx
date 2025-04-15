@@ -1,3 +1,4 @@
+//src/components/footer/FooterContacts.tsx
 import { footerContacts } from "@/types/constants"
 import { HStack, Link, Text, VStack } from "@chakra-ui/react"
 import { FC } from "react"

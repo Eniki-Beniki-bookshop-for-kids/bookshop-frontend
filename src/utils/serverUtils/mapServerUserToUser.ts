@@ -16,7 +16,6 @@ export const mapServerUserToUser = (serverUser: ServerUser): User => ({
 	country: serverUser.country ?? null,
 	role: (serverUser.role as User["role"]) ?? null,
 	googleId: serverUser.googleId ?? null,
-	googleAccessToken: serverUser.googleAccessToken ?? null,
 	avatar: serverUser.avatar ?? null,
 	isActive: serverUser.isActive,
 	favoriteBooks: serverUser.favoriteBooks,

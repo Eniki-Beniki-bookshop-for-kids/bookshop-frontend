@@ -1,3 +1,4 @@
+//src/components/account/sidebar/SidebarHeader.tsx
 "use client"
 
 import { useAuthStore } from "@/stores/authStore"

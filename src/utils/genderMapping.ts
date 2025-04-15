@@ -1,4 +1,4 @@
-import { Gender as PrismaGender } from "@prisma/client"
+import { Gender as PrismaGender } from "../../prisma/generated/client"
 
 // Мапінг із локалізованих значень на значення Prisma
 const genderToPrismaMap: Record<string, PrismaGender> = {

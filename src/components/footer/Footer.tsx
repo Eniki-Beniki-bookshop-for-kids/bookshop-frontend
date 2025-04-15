@@ -1,3 +1,5 @@
+//src/components/footer/Footer.tsx
+
 import { Box, Flex, VStack } from "@chakra-ui/react"
 import { footerForBuyers, footerMenu } from "../../types/constants"
 import { FooterContacts } from "./FooterContacts"

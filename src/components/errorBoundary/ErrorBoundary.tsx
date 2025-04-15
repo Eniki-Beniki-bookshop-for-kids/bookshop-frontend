@@ -1,3 +1,4 @@
+// src/components/errorBoundary/ErrorBoundary.tsx
 import { Box } from "@chakra-ui/react"
 import React, { Component, ReactNode } from "react"
 import { ErrorBtn } from "./ErrorBtn"

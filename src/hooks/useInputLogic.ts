@@ -1,4 +1,4 @@
-// useInputLogic.ts
+// src/hooks/useInputLogic.ts
 "use client"
 
 import { useRef, useState } from "react"

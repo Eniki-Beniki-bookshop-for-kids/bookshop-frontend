@@ -1,3 +1,5 @@
+//src/components/account/content/WishlistContent.tsx
+
 import { Box, Text } from "@chakra-ui/react"
 
 export const WishlistContent = () => {

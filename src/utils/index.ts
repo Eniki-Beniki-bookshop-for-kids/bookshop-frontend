@@ -1,4 +1,4 @@
-import { formatDateForInput } from "./formatDate"
+import { formatDate } from "./formatDate"
 import { cutPhoneNumber, displayPhoneNumber } from "./formatPhoneNumber"
 import { fromPrismaGender, toPrismaGender } from "./genderMapping"
 import { getTailwindColor } from "./getTailwindColor"
@@ -9,7 +9,7 @@ import { verifyToken } from "./verifyToken"
 export {
 	cutPhoneNumber,
 	displayPhoneNumber,
-	formatDateForInput,
+	formatDate,
 	fromPrismaGender,
 	getTailwindColor,
 	toPrismaGender,

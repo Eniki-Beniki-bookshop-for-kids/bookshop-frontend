@@ -1,3 +1,4 @@
+//src/components/footer/FooterSocialMedia.tsx
 import { footerSocialMedia } from "@/types/constants"
 import { HStack, Image, Link, VStack } from "@chakra-ui/react"
 import { FooterColumnName } from "./FooterColumnName"

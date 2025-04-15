@@ -1,3 +1,4 @@
+//src/components/UserAvatar.tsx
 "use client"
 
 import { useUserAvatar } from "@/hooks/useUserAvatar"

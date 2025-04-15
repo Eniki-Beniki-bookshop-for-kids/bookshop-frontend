@@ -1,3 +1,4 @@
+//src/components/modals/autModal/AuthModal.tsx
 "use client"
 
 import { AuthProvider } from "@/context/AuthContext"
