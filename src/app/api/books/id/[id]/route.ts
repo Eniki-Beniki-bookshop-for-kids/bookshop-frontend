@@ -1,4 +1,4 @@
-// src/app/api/books/[id]/route.ts
+// src/app/api/books/id/[id]/route.ts
 import "server-only"
 
 import prisma from "@/lib/prismaClient"
