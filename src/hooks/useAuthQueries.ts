@@ -1,7 +1,7 @@
 // src/hooks/useAuthQueries.ts
 "use client"
 
-import { authWithEmail, fetchUser } from "@/app/api/client"
+import { authWithEmail, fetchUser } from "@/app/api/userClient"
 import { useAuthStore } from "@/stores/authStore"
 import { useToast } from "@chakra-ui/react"
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query"

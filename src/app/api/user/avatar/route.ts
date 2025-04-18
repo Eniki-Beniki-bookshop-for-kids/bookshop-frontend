@@ -8,7 +8,7 @@ import {
 	uploadAvatar,
 } from "@/lib/supabase/supabaseAvatar"
 import { verifyToken } from "@/utils"
-import { mapServerUserToUser } from "@/utils/serverUtils"
+import { mapServerUserToUser } from "@/utils/mapping"
 import { NextRequest, NextResponse } from "next/server"
 
 export async function POST(request: NextRequest) {

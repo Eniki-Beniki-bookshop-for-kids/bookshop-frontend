@@ -1,6 +1,12 @@
 // src/types/interfaces.ts
 import {
+	BookTypes as BookTypesFromPrisma,
+	Categories as CategoriesFromPrisma,
+	CoverType as CoverTypeFromPrisma,
 	Gender as GenderFromPrisma,
+	Genre as GenreFromPrisma,
+	Language as LanguageFromPrisma,
+	TargetAges as TargetAgesFromPrisma,
 	User as UserFromPrisma,
 } from "../../prisma/generated/client"
 import { authCredentials } from "./constants"
@@ -8,6 +14,12 @@ import { User } from "./models"
 
 export type PrismaGender = GenderFromPrisma
 export type PrismaUser = UserFromPrisma
+export type PrismaGenre = GenreFromPrisma
+export type PrismaCategories = CategoriesFromPrisma
+export type PrismaTargetAges = TargetAgesFromPrisma
+export type PrismaBookTypes = BookTypesFromPrisma
+export type PrismaLanguage = LanguageFromPrisma
+export type PrismaCoverType = CoverTypeFromPrisma
 
 export type AuthCredentials = typeof authCredentials
 
@@ -56,4 +68,44 @@ export interface AccountSettingField {
 	placeholder: string
 	field: keyof AccountFormData
 	isDisabled?: boolean
+}
+
+// Тип фільтрів книг для клієнтських параметрів
+export interface FilterBookParams {
+	status?: string
+	title?: string
+	author?: string
+	genre?: string
+	categories?: string[]
+	targetAges?: string[]
+	series?: string
+	publisher?: string
+	publicationYear?: string
+	bookType?: string[]
+	originalLanguage?: string
+	coverType?: string
+	priceMin?: string
+	priceMax?: string
+	page: number
+	limit: number
+	sortField?: string
+	sortOrder?: "asc" | "desc"
+}
+
+// Тип для серверних критеріїв
+export interface ServerFilterBookCriteria {
+	status?: string
+	title?: string
+	author?: string
+	genre?: PrismaGenre
+	categories?: PrismaCategories[]
+	targetAges?: PrismaTargetAges[]
+	series?: string
+	publisher?: string
+	publicationYear?: number
+	bookType?: PrismaBookTypes[]
+	originalLanguage?: PrismaLanguage
+	coverType?: PrismaCoverType
+	priceMin?: number
+	priceMax?: number
 }

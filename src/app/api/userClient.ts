@@ -1,4 +1,4 @@
-// src/app/api/client.ts
+// src/app/api/userClient.ts
 import apiClient from "@/lib/apiClient"
 import { ApiErrorResponse, AuthResponse } from "@/types/interfaces"
 import { User } from "@/types/models"
@@ -52,45 +52,45 @@ export const authWithEmail = async (
 }
 
 // Вихід з системи
-export const logout = async (
-	accessToken: string,
-	tokenType: string,
-): Promise<void> => {
-	try {
-		await apiClient.post(
-			`${BASE_ENDPOINT}/logout`,
-			{},
-			{
-				headers: {
-					Authorization: `${tokenType} ${accessToken}`,
-				},
-			},
-		)
-	} catch (error: unknown) {
-		const axiosError = error as AxiosError<ApiErrorResponse>
-		console.error(
-			`Error in logout (Status: ${axiosError.response?.status || "N/A"}):`,
-			axiosError.toJSON?.() || axiosError,
-		)
+// export const logout = async (
+// 	accessToken: string,
+// 	tokenType: string,
+// ): Promise<void> => {
+// 	try {
+// 		await apiClient.post(
+// 			`${BASE_ENDPOINT}/logout`,
+// 			{},
+// 			{
+// 				headers: {
+// 					Authorization: `${tokenType} ${accessToken}`,
+// 				},
+// 			},
+// 		)
+// 	} catch (error: unknown) {
+// 		const axiosError = error as AxiosError<ApiErrorResponse>
+// 		console.error(
+// 			`Error in logout (Status: ${axiosError.response?.status || "N/A"}):`,
+// 			axiosError.toJSON?.() || axiosError,
+// 		)
 
-		if (axiosError.response) {
-			const message =
-				axiosError.response.data?.message ||
-				`Failed to logout (Status: ${axiosError.response.status})`
-			throw new Error(message)
-		} else if (axiosError.request) {
-			throw new Error(
-				"No response received during logout. Please check your network.",
-			)
-		} else {
-			throw new Error(
-				`Error setting up logout request: ${
-					axiosError.message || "Unknown error"
-				}`,
-			)
-		}
-	}
-}
+// 		if (axiosError.response) {
+// 			const message =
+// 				axiosError.response.data?.message ||
+// 				`Failed to logout (Status: ${axiosError.response.status})`
+// 			throw new Error(message)
+// 		} else if (axiosError.request) {
+// 			throw new Error(
+// 				"No response received during logout. Please check your network.",
+// 			)
+// 		} else {
+// 			throw new Error(
+// 				`Error setting up logout request: ${
+// 					axiosError.message || "Unknown error"
+// 				}`,
+// 			)
+// 		}
+// 	}
+// }
 
 // Отримання даних користувача
 export const fetchUser = async (

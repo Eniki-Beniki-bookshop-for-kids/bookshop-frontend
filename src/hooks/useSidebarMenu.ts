@@ -22,7 +22,8 @@ export const useSidebarMenu = (initialSection: string = "settings") => {
 
 				// Очищаємо кастомні токени
 				logoutFromStore()
-				localStorage.removeItem("sb-brskvxpqvofojrxoxxjb-auth-token")
+				const projectId = process.env.SUPABASE_PROJECT_ID
+				localStorage.removeItem(`sb-${projectId}-auth-token`)
 
 				router.push("/")
 				toast({
