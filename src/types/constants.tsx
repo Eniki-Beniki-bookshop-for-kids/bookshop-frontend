@@ -19,8 +19,8 @@ import {
 	PigIcon,
 	SettingIcon,
 } from "../components/ui"
-import { AccountSettingField } from "./interfaces"
-import { Genre } from "./models"
+import { AccountSettingField, CatalogMenuItem } from "./interfaces"
+import { BookTypes, Categories, Genre, TargetAges } from "./models"
 import {
 	IButtonProps,
 	ImageLinkProps,
@@ -69,6 +69,53 @@ export const headerNav: NavbarProps[] = [
 	{ ...pageLink[3], headerType: "full" }, // blog
 	{ ...pageLink[6], headerType: "full" }, // delivery
 	{ ...hashLink[2], headerType: "full" }, // contacts
+]
+
+export const catalogMenu: CatalogMenuItem[] = [
+	{
+		label: "Художня література",
+		filter: { genre: Genre.Classics },
+	},
+	{
+		label: "Нехудожня література",
+		filter: { genre: Genre.NonFiction },
+	},
+	{
+		label: "Казки",
+		filter: { genre: Genre.fairyTales },
+	},
+	{
+		label: "Підліткова література",
+		filter: { categories: Categories.YoungAdult },
+	},
+	{
+		label: "Книги за віком",
+		filter: {
+			targetAges: [
+				TargetAges["5-8"],
+				TargetAges["8-12"],
+				TargetAges.Teenager,
+			].join(","),
+		},
+	},
+	{
+		label: "Малюкам",
+		filter: {
+			targetAges: [TargetAges["1-3"], TargetAges["3-5"]].join(","),
+		},
+	},
+	{
+		label: "Батькам",
+		filter: { categories: Categories.Parents },
+	},
+	{
+		label: "Розмальовки",
+		filter: { genre: Genre.Coloring },
+	},
+	{
+		label: "Електронні книги",
+		filter: { bookType: BookTypes.Ebook },
+	},
 ]
 
 export const footerMenu: PageProps[] = [

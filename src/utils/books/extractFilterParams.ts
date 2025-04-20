@@ -32,8 +32,8 @@ export const filterBookParams = (
 		priceMax: searchParams.get("price.max") || undefined,
 		page: parseInt(searchParams.get("page") || "1"),
 		limit: parseInt(searchParams.get("limit") || "10"),
-		sortField: searchParams.get("sort.field") || undefined,
-		sortOrder: searchParams.get("sort.order") as "asc" | "desc" | undefined,
+		sortField: searchParams.get("sort[field]") || undefined,
+		sortOrder: searchParams.get("sort[order]") as "asc" | "desc" | undefined,
 	}
 }
 

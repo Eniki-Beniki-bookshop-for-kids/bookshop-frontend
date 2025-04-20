@@ -47,31 +47,6 @@ const fetchData = async <T>(
 	}
 }
 
-// Запити до книг
-export const getAllBooks = async (): Promise<Book[]> => {
-	return fetchData<Book[]>(`${BOOKS_ENDPOINT}/all`, undefined, "all books")
-}
-
-export const getPopularBooks = async (): Promise<Book[]> => {
-	return fetchData<Book[]>(
-		`${BOOKS_ENDPOINT}/popular`,
-		undefined,
-		"popular books",
-	)
-}
-
-export const getDiscountedBooks = async (): Promise<Book[]> => {
-	return fetchData<Book[]>(
-		`${BOOKS_ENDPOINT}/discount`,
-		undefined,
-		"discounted books",
-	)
-}
-
-export const getNewBooks = async (): Promise<Book[]> => {
-	return fetchData<Book[]>(`${BOOKS_ENDPOINT}/new`, undefined, "new books")
-}
-
 export const getFilteredBooks = async (
 	filters: BookFilters,
 	page: number,
@@ -79,7 +54,7 @@ export const getFilteredBooks = async (
 	sort?: { field: string; order: "asc" | "desc" },
 ): Promise<{ books: Book[]; total: number }> => {
 	return fetchData<{ books: Book[]; total: number }>(
-		`${BOOKS_ENDPOINT}/catalog`,
+		`${BOOKS_ENDPOINT}/filters`,
 		{ ...filters, page, limit, sort },
 		"filtered books",
 	)

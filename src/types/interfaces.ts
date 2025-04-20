@@ -109,3 +109,8 @@ export interface ServerFilterBookCriteria {
 	priceMin?: number
 	priceMax?: number
 }
+
+export interface CatalogMenuItem {
+	label: string
+	filter: Record<string, string>
+}

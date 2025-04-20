@@ -1,5 +1,7 @@
+// src/app/appProvider.tsx
 "use client"
 
+import DevToolsInitializer from "@/components/DevToolsInitializer"
 import { ChakraProvider, Flex } from "@chakra-ui/react"
 import { GoogleOAuthProvider } from "@react-oauth/google"
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query"
@@ -25,21 +27,26 @@ export default function AppProvider({
 	children: React.ReactNode
 }) {
 	return (
-		<QueryClientProvider client={queryClient}>
-			<GoogleOAuthProvider clientId={process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID!}>
-				<ChakraProvider theme={theme}>
-					<ModalProvider>
-						<ErrorBoundary>
-							<Flex direction="column" minHeight="100vh">
-								<Header />
-								<Main>{children}</Main>
-								<Footer />
-								<AppModals />
-							</Flex>
-						</ErrorBoundary>
-					</ModalProvider>
-				</ChakraProvider>
-			</GoogleOAuthProvider>
-		</QueryClientProvider>
+		<>
+			<DevToolsInitializer />
+			<QueryClientProvider client={queryClient}>
+				<GoogleOAuthProvider
+					clientId={process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID!}
+				>
+					<ChakraProvider theme={theme}>
+						<ModalProvider>
+							<ErrorBoundary>
+								<Flex direction="column" minHeight="100vh">
+									<Header />
+									<Main>{children}</Main>
+									<Footer />
+									<AppModals />
+								</Flex>
+							</ErrorBoundary>
+						</ModalProvider>
+					</ChakraProvider>
+				</GoogleOAuthProvider>
+			</QueryClientProvider>{" "}
+		</>
 	)
 }

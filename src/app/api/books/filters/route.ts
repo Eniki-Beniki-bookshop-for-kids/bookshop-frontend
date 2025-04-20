@@ -16,6 +16,15 @@ export async function GET(request: Request) {
 	try {
 		// Витягуємо параметри
 		const params = filterBookParams(searchParams)
+		const { limit, page, sortField, sortOrder } = params
+
+		// Перевіряємо, чи limit та page є числом і більше рівне 1
+		if (isNaN(limit) || isNaN(page) || limit < 1 || page < 1) {
+			return NextResponse.json(
+				{ error: "Invalid pagination data (limit or page)" },
+				{ status: 400 },
+			)
+		}
 
 		// Перетворюємо у серверні критерії
 		const criteria = transformFilterParamsToServerCriteria(params)
@@ -24,8 +33,8 @@ export async function GET(request: Request) {
 		const where = buildBookWhereClause(criteria)
 
 		// Сортування
-		const orderBy: Record<string, "asc" | "desc"> = params.sortField
-			? { [params.sortField]: (params.sortOrder as "asc" | "desc") || "asc" }
+		const orderBy: Record<string, "asc" | "desc"> = sortField
+			? { [sortField]: (sortOrder as "asc" | "desc") || "asc" }
 			: { createdAt: "desc" }
 
 		// Виконуємо запит
@@ -33,8 +42,8 @@ export async function GET(request: Request) {
 			prisma.book.findMany({
 				where,
 				orderBy,
-				skip: (params.page - 1) * params.limit,
-				take: params.limit,
+				skip: (page - 1) * limit,
+				take: limit,
 			}),
 			prisma.book.count({ where }),
 		])

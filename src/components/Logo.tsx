@@ -21,7 +21,7 @@ export const Logo: FC<LogoProps> = ({
 				transition: "transform 0.2s ease-in-out",
 			}}
 		>
-			<Box bg={bg} borderRadius={borderRadius} display="inline-block">
+			<Box bg={bg} borderRadius={borderRadius} display="inline-block" p={2}>
 				<Image
 					src="/images/LOGO_v1.png"
 					alt="Логотип"

@@ -5,10 +5,12 @@ import { Box, Flex } from "@chakra-ui/react"
 import { usePathname } from "next/navigation"
 import { useMemo } from "react"
 
+import { SidebarMenuProvider } from "@/context/SidebarMenuContext"
 import { pageHeaderTypes, TypesHeader } from "@/types/constants"
+import { Logo } from "../Logo"
+import { CatalogSidebar } from "./CatalogSidebar"
 import { HeaderBg } from "./HeaderBg"
 import { HeaderMenu } from "./HeaderMenu"
-import { Logo } from "../Logo"
 import { NavBar } from "./NavBar"
 import { Phone } from "./Phone"
 
@@ -26,7 +28,7 @@ export const Header = () => {
 			as="header"
 			position="relative"
 			height={`${waveHeight}px`}
-			overflow="hidden"
+			// overflow="hidden"
 		>
 			<HeaderBg headerType={headerType} />
 			<Flex
@@ -45,9 +47,15 @@ export const Header = () => {
 					<Phone />
 				</Flex>
 				{headerType === TypesHeader.Full && (
-					<Box width="100%">
-						<HeaderMenu />
-					</Box>
+					<>
+						<SidebarMenuProvider>
+							<CatalogSidebar />
+						</SidebarMenuProvider>
+
+						<Box width="100%">
+							<HeaderMenu />
+						</Box>
+					</>
 				)}
 			</Flex>
 		</Box>

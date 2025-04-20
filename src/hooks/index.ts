@@ -1,3 +1,5 @@
+import { useHomePageBooks } from "./useHomePageBooks"
+import { useBooks } from "@/hooks/useBooks"
 import { useAuthCheck } from "./useAuthCheck"
 import { useAuthModal } from "./useAuthModal"
 import { useEmailLoginMutation, useUserQuery } from "./useAuthQueries"
@@ -33,4 +35,6 @@ export {
 	useUpdateUser,
 	useUserAvatar,
 	useUserQuery,
+	useBooks,
+	useHomePageBooks,
 }
