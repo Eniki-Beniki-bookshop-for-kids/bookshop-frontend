@@ -16,6 +16,7 @@ module.exports = {
 				customDarkGray: "#2E2E2E",
 				customGray: "#6A6A6A",
 				customLightGray: "#9C9C9C",
+				customMediumGray: "#FDFDFD",
 				customVeryLightGray: "#D0D0D0",
 				customStroke: "#D8D8D8",
 				customWhite: "#F2F2F2",

@@ -1,14 +1,13 @@
 //src/components/header/Header.tsx
 "use client"
 
-import { Box, Flex } from "@chakra-ui/react"
+import { Box, HStack, VStack } from "@chakra-ui/react"
 import { usePathname } from "next/navigation"
 import { useMemo } from "react"
 
-import { SidebarMenuProvider } from "@/context/SidebarMenuContext"
 import { pageHeaderTypes, TypesHeader } from "@/types/constants"
 import { Logo } from "../Logo"
-import { CatalogSidebar } from "./CatalogSidebar"
+import { CatalogHeader } from "../catalog"
 import { HeaderBg } from "./HeaderBg"
 import { HeaderMenu } from "./HeaderMenu"
 import { NavBar } from "./NavBar"
@@ -31,33 +30,27 @@ export const Header = () => {
 			// overflow="hidden"
 		>
 			<HeaderBg headerType={headerType} />
-			<Flex
-				justify="space-between"
+			<VStack
 				px={{ base: "20px", md: "80px" }}
 				align="center"
-				mx="auto"
 				marginTop="20px"
 				position="relative"
 				color="customBlack"
 				flexDirection="column"
+				spacing={3}
 			>
-				<Flex justify="space-between" width="100%" align="center">
+				<HStack justify="space-between" width="100%" align="center">
 					<Logo />
 					{headerType === TypesHeader.Full && <NavBar />}
 					<Phone />
-				</Flex>
+				</HStack>
 				{headerType === TypesHeader.Full && (
-					<>
-						<SidebarMenuProvider>
-							<CatalogSidebar />
-						</SidebarMenuProvider>
-
-						<Box width="100%">
-							<HeaderMenu />
-						</Box>
-					</>
+					<HStack w="100%" justify="space-between" align="center">
+						<CatalogHeader />
+						<HeaderMenu />
+					</HStack>
 				)}
-			</Flex>
+			</VStack>
 		</Box>
 	)
 }

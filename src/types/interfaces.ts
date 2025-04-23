@@ -113,4 +113,5 @@ export interface ServerFilterBookCriteria {
 export interface CatalogMenuItem {
 	label: string
 	filter: Record<string, string>
+	href: string
 }

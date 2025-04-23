@@ -75,18 +75,22 @@ export const catalogMenu: CatalogMenuItem[] = [
 	{
 		label: "Художня література",
 		filter: { genre: Genre.Classics },
+		href: "/catalog/classics",
 	},
 	{
 		label: "Нехудожня література",
 		filter: { genre: Genre.NonFiction },
+		href: "/catalog/nonfiction",
 	},
 	{
 		label: "Казки",
 		filter: { genre: Genre.fairyTales },
+		href: "/catalog/fairytales",
 	},
 	{
 		label: "Підліткова література",
 		filter: { categories: Categories.YoungAdult },
+		href: "/catalog/youngadult",
 	},
 	{
 		label: "Книги за віком",
@@ -97,24 +101,29 @@ export const catalogMenu: CatalogMenuItem[] = [
 				TargetAges.Teenager,
 			].join(","),
 		},
+		href: "/catalog/kids",
 	},
 	{
 		label: "Малюкам",
 		filter: {
 			targetAges: [TargetAges["1-3"], TargetAges["3-5"]].join(","),
 		},
+		href: "/catalog/babies",
 	},
 	{
 		label: "Батькам",
 		filter: { categories: Categories.Parents },
+		href: "/catalog/parents",
 	},
 	{
 		label: "Розмальовки",
 		filter: { genre: Genre.Coloring },
+		href: "/catalog/coloring",
 	},
 	{
 		label: "Електронні книги",
 		filter: { bookType: BookTypes.Ebook },
+		href: "/catalog/ebook",
 	},
 ]
 
@@ -159,6 +168,7 @@ export enum TypesHeader {
 	Full = "full",
 	Minimal = "minimal",
 }
+
 const minimalPaths: { [key: string]: TypesHeader.Minimal } = {
 	[pageLink[15].href]: TypesHeader.Minimal, // checkout
 	[pageLink[16].href]: TypesHeader.Minimal, // error

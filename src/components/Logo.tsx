@@ -25,7 +25,7 @@ export const Logo: FC<LogoProps> = ({
 				<Image
 					src="/images/LOGO_v1.png"
 					alt="Логотип"
-					width="150px"
+					width="112px"
 					minW={100}
 					objectFit="contain"
 				/>
