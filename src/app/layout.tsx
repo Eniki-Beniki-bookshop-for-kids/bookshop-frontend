@@ -1,6 +1,10 @@
 // src/app/layout.tsx
 import type { Metadata } from "next"
 import { Open_Sans } from "next/font/google"
+import "swiper/css"
+import "swiper/css/navigation"
+import "swiper/css/pagination"
+import "../styles/swiper-styles.css"
 import AppProvider from "./appProvider"
 import "./globals.css"
 

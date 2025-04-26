@@ -4,7 +4,7 @@ import { PrismaGender, PrismaUser } from "./interfaces"
 
 // ВАЖЛИВО!!! При додаванні нових полів у моделі, не забувайте оновлювати типи в prisma/schema.prisma та оновлювати базу даних через prisma migrate dev --name [назва міграції]
 export enum Genre {
-	Classics = "Класика",
+	Classics = "Xудожня література",
 	Fantasy = "Фентезі",
 	ScienceFiction = "Наукова фантастика",
 	Mystery = "Детектив",

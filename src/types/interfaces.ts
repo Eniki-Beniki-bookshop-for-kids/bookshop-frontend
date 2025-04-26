@@ -53,6 +53,13 @@ export interface ApiErrorResponse {
 	message: string
 }
 
+// Сайдбар на головні сторінці
+export interface HomeSidebarMenuItem {
+	label: string
+	filter: Record<string, string>
+	href: string
+}
+
 // визначення динамічних маршрутів
 export interface DynamicRoute {
 	basePath: string // Базовий шлях (наприклад, "/catalog")
@@ -115,10 +122,4 @@ export interface ServerFilterBookCriteria {
 	coverType?: PrismaCoverType
 	priceMin?: number
 	priceMax?: number
-}
-
-export interface CatalogMenuItem {
-	label: string
-	filter: Record<string, string>
-	href: string
 }

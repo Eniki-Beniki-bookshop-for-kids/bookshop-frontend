@@ -10,7 +10,13 @@ export const NavBar = () => {
 	const { hash } = useHashScroll()
 
 	return (
-		<Flex as="nav" gap={6} flex="1" justify="center">
+		<Flex
+			as="nav"
+			gap={6}
+			flex="1"
+			justify="center"
+
+		>
 			{headerNav.map(({ href, label }) => {
 				const isActive =
 					(href === "/" && hash === "") ||

@@ -22,7 +22,7 @@ import {
 import { formatSegmentLabel } from "../utils"
 import {
 	AccountSettingField,
-	CatalogMenuItem,
+	HomeSidebarMenuItem,
 	DynamicRoute,
 } from "./interfaces"
 import { BookTypes, Categories, Genre, TargetAges } from "./models"
@@ -60,36 +60,6 @@ export const pageLink: PageProps[] = [
 	{ href: "/error", label: "Оформлення замовлення" }, //16
 ]
 
-export const dynamicRoutes: DynamicRoute[] = [
-	{
-		basePath: "/catalog",
-		segmentIndex: 1,
-		getLabel: (segment: string) => {
-			// Спочатку шукаємо в catalogMenu
-			const catalogItem = catalogMenu.find(
-				item => item.href === `/catalog/${segment}`,
-			)
-			if (catalogItem) {
-				return catalogItem.label
-			}
-			// Якщо не знайшли в catalogMenu, шукаємо в genreLink
-			const genreItem = genreLink.find(
-				item => item.href === `/catalog/${segment}`,
-			)
-			if (genreItem) {
-				return genreItem.label
-			}
-			// Якщо не знайшли ні в catalogMenu, ні в genreLink, форматуємо сегмент
-			return formatSegmentLabel(segment)
-		},
-	},
-	{
-		basePath: "/blog",
-		segmentIndex: 1,
-		getLabel: (segment: string) => formatSegmentLabel(segment),
-	},
-]
-
 // УВАГА! Нові хеш-посилання додаються в кінець масиву
 export const hashLink: PageProps[] = [
 	{ href: "/#discounts", label: "Знижки" },
@@ -106,7 +76,7 @@ export const headerNav: NavbarProps[] = [
 	{ ...hashLink[2], headerType: "full" }, // contacts
 ]
 
-export const catalogMenu: CatalogMenuItem[] = [
+export const homeSidebarMenu: HomeSidebarMenuItem[] = [
 	{
 		label: "Художня література",
 		filter: { genre: Genre.Classics },
@@ -159,6 +129,36 @@ export const catalogMenu: CatalogMenuItem[] = [
 		label: "Електронні книги",
 		filter: { bookType: BookTypes.Ebook },
 		href: "/catalog/ebook",
+	},
+]
+
+export const dynamicRoutes: DynamicRoute[] = [
+	{
+		basePath: "/catalog",
+		segmentIndex: 1,
+		getLabel: (segment: string) => {
+			// Спочатку шукаємо в homeSidebarMenu
+			const catalogItem = homeSidebarMenu.find(
+				item => item.href === `/catalog/${segment}`,
+			)
+			if (catalogItem) {
+				return catalogItem.label
+			}
+			// Якщо не знайшли в homeSidebarMenu, шукаємо в genreLink
+			const genreItem = genreLink.find(
+				item => item.href === `/catalog/${segment}`,
+			)
+			if (genreItem) {
+				return genreItem.label
+			}
+			// Якщо не знайшли ні в homeSidebarMenu, ні в genreLink, форматуємо сегмент
+			return formatSegmentLabel(segment)
+		},
+	},
+	{
+		basePath: "/blog",
+		segmentIndex: 1,
+		getLabel: (segment: string) => formatSegmentLabel(segment),
 	},
 ]
 

@@ -27,11 +27,11 @@ export const Header = () => {
 			as="header"
 			position="relative"
 			height={`${waveHeight}px`}
-			// overflow="hidden"
+			fontSize={{ base: "12px", md: "14px", lg: "16px" }}
 		>
 			<HeaderBg headerType={headerType} />
 			<VStack
-				px={{ base: "20px", md: "80px" }}
+				px={{ md: "20px", lg: "80px" }}
 				align="center"
 				marginTop="20px"
 				position="relative"

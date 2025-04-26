@@ -1,29 +1,25 @@
-// src/components/catalog/CatalogSidebar.tsx
+// src/components/hero/HomeSidebarMenu.tsx
 "use client"
 
 import { useBooks } from "@/hooks"
-import { catalogMenu } from "@/types/constants"
+import { homeSidebarMenu } from "@/types/constants"
 import { Box, VStack } from "@chakra-ui/react"
 import { MenuItem } from "./MenuItem"
 
-export const CatalogSidebar = () => {
+export const HomeSidebarMenu = () => {
 	const { updateFilters } = useBooks()
 
 	return (
 		<Box
-			position="absolute"
-			top="86px"
-			left={{ base: "20px", md: "80px" }}
-			w="296px"
-			h="677px"
+			minWidth={{ md: "220px", lg: "296px" }}
+			h="full"
 			bg="#FFF"
-			paddingY={4}
-			paddingX={8}
+			paddingY={8}
+			paddingX={4}
 			rounded="30px"
-			zIndex="10"
 		>
 			<VStack align="start" spacing={5} paddingY="6px">
-				{catalogMenu.map(item => (
+				{homeSidebarMenu.map(item => (
 					<MenuItem
 						key={item.label}
 						item={item}

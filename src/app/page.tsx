@@ -3,6 +3,7 @@
 
 import { useAuthCheck, useHomePageBooks } from "@/hooks"
 import { Box, Text, VStack } from "@chakra-ui/react"
+import { Hero } from "../components/hero"
 import { Book } from "../types/models"
 
 export default function Home() {
@@ -11,10 +12,8 @@ export default function Home() {
 	const { bestsellerBooks, discountBooks, newBooks } = useHomePageBooks()
 
 	return (
-		<VStack spacing={8} py={4}>
-			<Text fontSize="4xl" fontWeight="bold" textAlign="center">
-				ЦЕ ГОЛОВНА СТОРІНКА
-			</Text>
+		<VStack spacing={8} py={8}>
+			<Hero />
 
 			{/* Карусель 1: Рекомендації для вас (Бестселери) */}
 			<Box w="full">

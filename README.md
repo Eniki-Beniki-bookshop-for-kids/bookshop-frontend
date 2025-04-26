@@ -10,5 +10,7 @@
 
 **Інформація для розробників**
 
-1. Запуск розробки - `npm run dev` (для розробки на localhost)
+1. Запуск розробки:
+   - `npm run prisma:generate` (створити клієнт Prisma)
+   - `npm run dev` (для розробки на localhost)
 2. Запуск ngrok - `ngrok http --domain=whippet-subtle-monkey.ngrok-free.app 3000` (для отримання статичного домену розробки)
