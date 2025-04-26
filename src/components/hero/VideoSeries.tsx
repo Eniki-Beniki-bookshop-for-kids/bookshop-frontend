@@ -1,9 +1,11 @@
 // src/components/hero/VideoSeries.tsx
 "use client"
 
-import { Box } from "@chakra-ui/react"
+import { Box, Image, Icon } from "@chakra-ui/react"
 import { Autoplay, Navigation, Pagination } from "swiper/modules"
 import { Swiper, SwiperSlide } from "swiper/react"
+import { FaPlay } from "react-icons/fa"
+import Link from "next/link"
 
 // Список відео з YouTube (ID відео)
 const videos = [
@@ -22,30 +24,51 @@ export const VideoSeries = () => {
 			rounded="30px"
 		>
 			<Swiper
-				modules={[Autoplay, Navigation, Pagination]} // Додаємо модулі Swiper
+				modules={[Autoplay, Navigation, Pagination]}
 				spaceBetween={0}
 				slidesPerView={1}
-				loop={true} // Безкінечна прокрутка
+				loop={true}
 				autoplay={{
-					delay: 8000, // Інтервал автопрокрутки
-					disableOnInteraction: false, // Не продовжувати автопрокрутку після взаємодії
+					delay: 8000,
+					disableOnInteraction: false, // не припиняти прокрутку після взаємодії
 				}}
-				navigation // Увімкнути стрілки навігації
-				pagination={{ clickable: true }} // Увімкнути пагінацію (крапки)
+				navigation
+				pagination={{ clickable: true }}
 				style={{ height: "100%", width: "100%" }}
 			>
 				{videos.map(video => (
 					<SwiperSlide key={video.id}>
 						<Box position="relative" w="full" h="full">
-							<iframe
-								width="100%"
-								height="100%"
-								src={`https://www.youtube-nocookie.com/embed/${video.id}`}
-								title={video.title}
-								allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-								allowFullScreen
-								style={{ borderRadius: "30px" }}
-							/>
+							<Link
+								href={`https://www.youtube.com/watch?v=${video.id}`}
+								target="_blank"
+								rel="noopener noreferrer"
+								style={{ display: "block", width: "100%", height: "100%" }}
+							>
+								<Image
+									src={`https://img.youtube.com/vi/${video.id}/hqdefault.jpg`}
+									alt={video.title}
+									objectFit="cover"
+									w="100%"
+									h="100%"
+									rounded="30px"
+								/>
+								{/* Іконка Play */}
+								<Box
+									position="absolute"
+									top="50%"
+									left="50%"
+									transform="translate(-50%, -50%)"
+									bg="rgba(0, 0, 0, 0.5)"
+									borderRadius="50%"
+									p={4}
+									display="flex"
+									alignItems="center"
+									justifyContent="center"
+								>
+									<Icon as={FaPlay} color="white" boxSize={8} />
+								</Box>
+							</Link>
 						</Box>
 					</SwiperSlide>
 				))}

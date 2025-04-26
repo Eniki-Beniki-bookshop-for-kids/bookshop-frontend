@@ -5,6 +5,7 @@ import { useAuthCheck, useHomePageBooks } from "@/hooks"
 import { Box, Text, VStack } from "@chakra-ui/react"
 import { Hero } from "../components/hero"
 import { Book } from "../types/models"
+import { PageTitle } from "../components"
 
 export default function Home() {
 	useAuthCheck()
@@ -14,6 +15,7 @@ export default function Home() {
 	return (
 		<VStack spacing={8} py={8}>
 			<Hero />
+			<PageTitle title="Інтернет-магазин дитячих книг ЕникиБеники" mb={0} />
 
 			{/* Карусель 1: Рекомендації для вас (Бестселери) */}
 			<Box w="full">
