@@ -1,3 +1,4 @@
+import { usePagination } from "./usePagination"
 import { useHomePageBooks } from "./useHomePageBooks"
 import { useBooks } from "@/hooks/useBooks"
 import { useAuthCheck } from "./useAuthCheck"
@@ -37,4 +38,5 @@ export {
 	useUserQuery,
 	useBooks,
 	useHomePageBooks,
+	usePagination,
 }

@@ -53,6 +53,13 @@ export interface ApiErrorResponse {
 	message: string
 }
 
+// визначення динамічних маршрутів
+export interface DynamicRoute {
+	basePath: string // Базовий шлях (наприклад, "/catalog")
+	segmentIndex: number // Індекс сегменту, який є динамічним (наприклад, 1 для "/catalog/[filter]")
+	getLabel: (segment: string) => string // Функція для отримання label для динамічного сегменту
+}
+
 export interface AccountFormData {
 	firstName: string
 	lastName: string

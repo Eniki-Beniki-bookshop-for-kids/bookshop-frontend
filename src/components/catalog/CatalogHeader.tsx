@@ -1,10 +1,10 @@
-// src/components/catalog/CatalogHeader.tsx
+// src/components/catalog/CatalogBtn.tsx
 
 import { Box, HStack, Text } from "@chakra-ui/react"
 import Link from "next/link"
 import { BookCatalogIcon } from "../ui"
 
-export const CatalogHeader = () => {
+export const CatalogBtn = () => {
 	return (
 		<Box
 			as={Link}

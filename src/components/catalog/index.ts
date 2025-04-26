@@ -1,5 +1,5 @@
 import { CatalogContent } from "./CatalogContent"
-import { CatalogHeader } from "./CatalogHeader"
+import { CatalogBtn } from "./CatalogHeader"
 import { CatalogSidebar } from "./CatalogSidebar"
 
-export { CatalogContent, CatalogHeader, CatalogSidebar }
+export { CatalogContent, CatalogBtn, CatalogSidebar }

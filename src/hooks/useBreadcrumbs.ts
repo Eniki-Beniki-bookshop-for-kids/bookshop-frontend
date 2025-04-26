@@ -1,9 +1,12 @@
 //src/hooks/useBreadcrumbs.ts
 "use client"
 
-import { genreLink, pageLink } from "@/types/constants"
+import { pageLink, dynamicRoutes } from "@/types/constants"
 import { PageProps } from "@/types/propsInterfaces"
 import { usePathname } from "next/navigation"
+import { formatSegmentLabel } from "../utils"
+
+// Інтерфейс для елементів breadcrumbs
 interface BreadcrumbItem extends PageProps {
 	isCurrent?: boolean
 }
@@ -18,51 +21,44 @@ export const useBreadcrumbs = () => {
 
 	// Формуємо масив breadcrumbs
 	const breadcrumbs: BreadcrumbItem[] = (() => {
-		const items: BreadcrumbItem[] = [pageLink[0]] // Головна
-		const pathSegments = pathname.split("/").filter(segment => segment) // ["catalog", "poetry"]
+		const items: BreadcrumbItem[] = [pageLink[0]] // Додаємо "Головна"
+		const pathSegments = pathname.split("/").filter(segment => segment)
 
 		let currentPath = ""
 		pathSegments.forEach((segment, index) => {
 			currentPath += `/${segment}`
 
-			// Якщо це /catalog, шукаємо в pageLink
-			if (currentPath === "/catalog") {
-				const page = pageLink.find(p => p.href === currentPath)
-				if (page) {
-					items.push({
-						label: page.label,
-						href: currentPath,
-						isCurrent: index === pathSegments.length - 1,
-					})
-				}
+			// Шукаємо в pageLink для статичних сторінок
+			const page = pageLink.find(p => p.href === currentPath)
+			if (page) {
+				items.push({
+					label: page.label,
+					href: currentPath,
+					isCurrent: index === pathSegments.length - 1,
+				})
+				return // Переходимо до наступного сегменту
 			}
-			// Якщо це жанр, шукаємо в genreLink
-			else if (pathSegments[0] === "catalog") {
-				const genre = genreLink.find(g => g.href === `/${segment}`)
-				if (genre) {
-					items.push({
-						label: genre.label,
-						href: currentPath,
-						isCurrent: index === pathSegments.length - 1,
-					})
-				} else {
-					items.push({
-						label: segment, // Показуємо сам сегмент, якщо жанр не знайдено
-						href: currentPath,
-						isCurrent: index === pathSegments.length - 1,
-					})
-				}
-			}
-			// Для інших сторінок шукаємо в pageLink
-			else {
-				const page = pageLink.find(p => p.href === currentPath)
-				if (page) {
-					items.push({
-						label: page.label,
-						href: currentPath,
-						isCurrent: index === pathSegments.length - 1,
-					})
-				}
+
+			// Перевіряємо, чи це динамічний маршрут
+			const dynamicRoute = dynamicRoutes.find(
+				route =>
+					currentPath.startsWith(route.basePath) &&
+					index === route.segmentIndex,
+			)
+
+			if (dynamicRoute) {
+				items.push({
+					label: dynamicRoute.getLabel(segment),
+					href: currentPath,
+					isCurrent: index === pathSegments.length - 1,
+				})
+			} else {
+				// Для невідомих маршрутів використовуємо форматований сегмент як label
+				items.push({
+					label: formatSegmentLabel(segment),
+					href: currentPath,
+					isCurrent: index === pathSegments.length - 1,
+				})
 			}
 		})
 

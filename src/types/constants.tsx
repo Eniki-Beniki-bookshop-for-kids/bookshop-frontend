@@ -19,7 +19,12 @@ import {
 	PigIcon,
 	SettingIcon,
 } from "../components/ui"
-import { AccountSettingField, CatalogMenuItem } from "./interfaces"
+import { formatSegmentLabel } from "../utils"
+import {
+	AccountSettingField,
+	CatalogMenuItem,
+	DynamicRoute,
+} from "./interfaces"
 import { BookTypes, Categories, Genre, TargetAges } from "./models"
 import {
 	IButtonProps,
@@ -53,6 +58,36 @@ export const pageLink: PageProps[] = [
 	{ href: "/account", label: "Особистий кабінет" }, //14
 	{ href: "/checkout", label: "Оформлення замовлення" }, //15
 	{ href: "/error", label: "Оформлення замовлення" }, //16
+]
+
+export const dynamicRoutes: DynamicRoute[] = [
+	{
+		basePath: "/catalog",
+		segmentIndex: 1,
+		getLabel: (segment: string) => {
+			// Спочатку шукаємо в catalogMenu
+			const catalogItem = catalogMenu.find(
+				item => item.href === `/catalog/${segment}`,
+			)
+			if (catalogItem) {
+				return catalogItem.label
+			}
+			// Якщо не знайшли в catalogMenu, шукаємо в genreLink
+			const genreItem = genreLink.find(
+				item => item.href === `/catalog/${segment}`,
+			)
+			if (genreItem) {
+				return genreItem.label
+			}
+			// Якщо не знайшли ні в catalogMenu, ні в genreLink, форматуємо сегмент
+			return formatSegmentLabel(segment)
+		},
+	},
+	{
+		basePath: "/blog",
+		segmentIndex: 1,
+		getLabel: (segment: string) => formatSegmentLabel(segment),
+	},
 ]
 
 // УВАГА! Нові хеш-посилання додаються в кінець масиву
@@ -127,6 +162,11 @@ export const catalogMenu: CatalogMenuItem[] = [
 	},
 ]
 
+export const genreLink = Object.keys(Genre).map(key => ({
+	href: `/catalog/${key.toLowerCase()}`,
+	label: Genre[key as keyof typeof Genre],
+}))
+
 export const footerMenu: PageProps[] = [
 	pageLink[1], // catalog
 	pageLink[2], // about
@@ -183,11 +223,6 @@ export const pageHeaderTypes = new Proxy(minimalPaths, {
 	},
 }) as { [key: string]: TypesHeader.Full | TypesHeader.Minimal }
 
-export const genreLink = Object.keys(Genre).map(key => ({
-	href: `/${key.toLowerCase()}`,
-	label: Genre[key as keyof typeof Genre],
-}))
-
 interface SidebarLink {
 	id: string
 	label: string
@@ -195,7 +230,7 @@ interface SidebarLink {
 	defaultProps?: IButtonProps
 }
 
-export const sidebarLinks: SidebarLink[] = [
+export const sidebarAccountLinks: SidebarLink[] = [
 	{ id: "bonuses", label: "Бонуси", icon: PigIcon },
 	{
 		id: "wishlist",

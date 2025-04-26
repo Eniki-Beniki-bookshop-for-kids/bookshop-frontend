@@ -7,7 +7,7 @@ import { useMemo } from "react"
 
 import { pageHeaderTypes, TypesHeader } from "@/types/constants"
 import { Logo } from "../Logo"
-import { CatalogHeader } from "../catalog"
+import { CatalogBtn } from "../catalog"
 import { HeaderBg } from "./HeaderBg"
 import { HeaderMenu } from "./HeaderMenu"
 import { NavBar } from "./NavBar"
@@ -46,7 +46,7 @@ export const Header = () => {
 				</HStack>
 				{headerType === TypesHeader.Full && (
 					<HStack w="100%" justify="space-between" align="center">
-						<CatalogHeader />
+						<CatalogBtn />
 						<HeaderMenu />
 					</HStack>
 				)}

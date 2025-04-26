@@ -1,3 +1,4 @@
+//src/components/Breadcrumbs.tsx
 "use client"
 
 import { useBreadcrumbs } from "@/hooks/useBreadcrumbs"

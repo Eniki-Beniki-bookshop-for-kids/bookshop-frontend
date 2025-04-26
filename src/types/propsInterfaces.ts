@@ -6,10 +6,12 @@ export interface PageProps {
 	label: string
 	href: string
 }
+
 export interface NavbarProps extends PageProps {
 	headerType?: "full" | "minimal"
 	isActive?: boolean
 }
+
 export interface IButtonProps {
 	height?: number
 	width?: number

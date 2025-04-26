@@ -16,6 +16,7 @@ import { CustomInputTemplate } from "./inputs/CustomInputTemplate"
 import { AccountSelectTemplate } from "./selects/AccountSelectTemplate"
 import { FilterSelectTemplate } from "./selects/FilterSelectTemplate"
 import { RangeSliderTemplate } from "./sliders/rangeSliderTemplate"
+import { ArrowDownIcon } from "./svg/arrowDownIcon"
 import { ArrowLeftIcon } from "./svg/arrowLeftIcon"
 import { ArrowRightIcon } from "./svg/arrowRightIcon"
 import { BellIcon } from "./svg/bellIcon"
@@ -44,6 +45,7 @@ import { WalletIcon } from "./svg/walletIcon"
 
 export {
 	AccountSelectTemplate,
+	ArrowDownIcon,
 	ArrowLeftIcon,
 	ArrowRightIcon,
 	BasketIconBtn,

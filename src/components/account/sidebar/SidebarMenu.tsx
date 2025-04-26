@@ -1,6 +1,6 @@
 //src/components/account/sidebar/SidebarMenu.tsx
 import { useSidebarMenuContext } from "@/context/SidebarMenuContext"
-import { sidebarLinks } from "@/types/constants"
+import { sidebarAccountLinks } from "@/types/constants"
 import { HStack, Text, VStack } from "@chakra-ui/react"
 import { Fragment } from "react"
 import { CustomDivider } from "./CustomDivider"
@@ -10,7 +10,7 @@ export const SidebarMenu = () => {
 
 	return (
 		<VStack align="start" spacing={3}>
-			{sidebarLinks.map((link, idx) => {
+			{sidebarAccountLinks.map((link, idx) => {
 				const isActive = activeSection === link.id
 				const IconComponent = link.icon
 				const color = isActive ? "customViolet" : "customBlack"

@@ -8,36 +8,13 @@ import { Book } from "../types/models"
 export default function Home() {
 	useAuthCheck()
 
-	const {
-		bestsellerBooks,
-		discountBooks,
-		newBooks,
-		isLoading,
-		error,
-		clearError,
-	} = useHomePageBooks()
+	const { bestsellerBooks, discountBooks, newBooks } = useHomePageBooks()
 
 	return (
 		<VStack spacing={8} py={4}>
 			<Text fontSize="4xl" fontWeight="bold" textAlign="center">
 				ЦЕ ГОЛОВНА СТОРІНКА
 			</Text>
-
-			{/* Стан завантаження та помилки */}
-			{isLoading && <Text>Завантаження...</Text>}
-			{error && (
-				<Box textAlign="center">
-					<Text color="red.500">{error}</Text>
-					<Text
-						as="button"
-						color="customViolet"
-						textDecoration="underline"
-						onClick={clearError}
-					>
-						Очистити помилку
-					</Text>
-				</Box>
-			)}
 
 			{/* Карусель 1: Рекомендації для вас (Бестселери) */}
 			<Box w="full">
