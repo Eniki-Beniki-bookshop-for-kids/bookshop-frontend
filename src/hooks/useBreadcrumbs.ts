@@ -1,10 +1,10 @@
 //src/hooks/useBreadcrumbs.ts
 "use client"
 
-import { pageLink, dynamicRoutes } from "@/types/constants"
+import { dynamicRoutes, pageLink } from "@/types/constants"
 import { PageProps } from "@/types/propsInterfaces"
+import { formatSegmentLabel } from "@/utils"
 import { usePathname } from "next/navigation"
-import { formatSegmentLabel } from "../utils"
 
 // Інтерфейс для елементів breadcrumbs
 interface BreadcrumbItem extends PageProps {
@@ -15,9 +15,7 @@ export const useBreadcrumbs = () => {
 	const pathname = usePathname()
 
 	// Не показуємо Breadcrumbs на головній сторінці
-	if (pathname === "/") {
-		return { breadcrumbs: [] }
-	}
+	if (pathname === "/") return { breadcrumbs: [] }
 
 	// Формуємо масив breadcrumbs
 	const breadcrumbs: BreadcrumbItem[] = (() => {

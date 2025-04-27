@@ -37,13 +37,17 @@ export async function GET(request: Request) {
 			? { [sortField]: (sortOrder as "asc" | "desc") || "asc" }
 			: { createdAt: "desc" }
 
-		// Виконуємо запит
+		// Виконуємо запит із включенням зв’язаних даних
 		const [books, total] = await Promise.all([
 			prisma.book.findMany({
 				where,
 				orderBy,
 				skip: (page - 1) * limit,
 				take: limit,
+				include: {
+					reviews: true, // Включаємо відгуки
+					orderBooks: true, // Включаємо orderBooks
+				},
 			}),
 			prisma.book.count({ where }),
 		])
@@ -55,7 +59,8 @@ export async function GET(request: Request) {
 			books: mappedBooks,
 			total,
 		})
-	} catch {
+	} catch (error) {
+		console.error("Error fetching books:", error)
 		return NextResponse.json(
 			{ error: "Failed to fetch filtered books" },
 			{ status: 500 },

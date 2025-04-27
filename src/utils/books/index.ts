@@ -1,3 +1,5 @@
+import { averageRating } from "./averageRating"
+import { getBookMarker } from "./getBookMarker"
 import {
 	buildBookWhereClause,
 	transformServerToClientBook,
@@ -12,4 +14,6 @@ export {
 	filterBookParams,
 	transformFilterParamsToServerCriteria,
 	transformServerToClientBook,
+	getBookMarker,
+	averageRating,
 }

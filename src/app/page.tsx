@@ -1,11 +1,11 @@
 // src/app/page.tsx
 "use client"
 
+import { PageTitle } from "@/components"
+import { BookCarousel } from "@/components/book"
+import { Hero } from "@/components/hero"
 import { useAuthCheck, useHomePageBooks } from "@/hooks"
-import { Box, Text, VStack } from "@chakra-ui/react"
-import { Hero } from "../components/hero"
-import { Book } from "../types/models"
-import { PageTitle } from "../components"
+import { VStack } from "@chakra-ui/react"
 
 export default function Home() {
 	useAuthCheck()
@@ -16,60 +16,14 @@ export default function Home() {
 		<VStack spacing={8} py={8}>
 			<Hero />
 			<PageTitle title="Інтернет-магазин дитячих книг ЕникиБеники" mb={0} />
-
-			{/* Карусель 1: Рекомендації для вас (Бестселери) */}
-			<Box w="full">
-				<Text fontSize="2xl" fontWeight="bold" mb={4}>
-					Рекомендації для вас
-				</Text>
-				{bestsellerBooks.length > 0 ? (
-					<Box>
-						{bestsellerBooks.map(book => (
-							<Text key={book.bookId}>
-								{book.title} - рік випуску {book.publicationYear}
-							</Text>
-						))}
-					</Box>
-				) : (
-					<Text color="gray.500">Немає бестселерів</Text>
-				)}
-			</Box>
-
-			{/* Карусель 2: Знижки */}
-			<Box w="full">
-				<Text fontSize="2xl" fontWeight="bold" mb={4}>
-					Знижки
-				</Text>
-				{discountBooks.length > 0 ? (
-					<Box>
-						{discountBooks.map((book: Book) => (
-							<Text key={book.bookId}>
-								{book.title} - знижка {book.discount}
-							</Text>
-						))}
-					</Box>
-				) : (
-					<Text color="gray.500">Немає книг зі знижками</Text>
-				)}
-			</Box>
-
-			{/* Карусель 3: Новинки */}
-			<Box w="full">
-				<Text fontSize="2xl" fontWeight="bold" mb={4}>
-					Новинки
-				</Text>
-				{newBooks.length > 0 ? (
-					<Box>
-						{newBooks.map(book => (
-							<Text key={book.bookId}>
-								{book.title} - з&quot;явилась на складі {book.createdAt}
-							</Text>
-						))}
-					</Box>
-				) : (
-					<Text color="gray.500">Немає новинок</Text>
-				)}
-			</Box>
+			<VStack spacing="80px" pt={10} w="full" align="start">
+				<BookCarousel
+					title="Бестселери та популярні книги"
+					books={bestsellerBooks}
+				/>
+				<BookCarousel title="Знижки" books={discountBooks} />
+				<BookCarousel title="Новинки" books={newBooks} />
+			</VStack>
 		</VStack>
 	)
 }

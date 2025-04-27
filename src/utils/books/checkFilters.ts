@@ -1,5 +1,9 @@
 // src/utils/books/checkFilters.ts
 import { ServerFilterBookCriteria } from "@/types/interfaces"
+import {
+	OrderBook as ClientOrderBook,
+	Review as ClientReview,
+} from "@/types/models"
 import { Prisma } from "../../../prisma/generated/client"
 import { mapArray, mapBooks } from "../mapping"
 
@@ -79,7 +83,9 @@ export const buildBookWhereClause = (
 
 // Мапінг серверної книги у клієнтську
 export const transformServerToClientBook = (
-	book: Prisma.BookGetPayload<object>,
+	book: Prisma.BookGetPayload<{
+		include: { reviews: true; orderBooks: true }
+	}>,
 ) => {
 	return {
 		...book,
@@ -96,5 +102,28 @@ export const transformServerToClientBook = (
 		paperType: book.paperType
 			? mapBooks.paperTypeServerToClient[book.paperType] || book.paperType
 			: undefined,
+		createdAt: book.createdAt.toISOString(),
+		updatedAt: book.updatedAt.toISOString(),
+		reviews: book.reviews.map(
+			(review): ClientReview => ({
+				reviewId: review.reviewId,
+				bookId: review.bookId,
+				reviewName: review.reviewName,
+				rating: review.rating,
+				reviewText: review.reviewText,
+				reviewDate: review.reviewDate.toISOString(),
+				source: review.source || undefined,
+				avatar: review.avatar || undefined,
+				createdAt: review.createdAt.toISOString(),
+				updatedAt: review.updatedAt.toISOString(),
+			}),
+		),
+		orderBooks: book.orderBooks.map(
+			(orderBook): ClientOrderBook => ({
+				orderId: orderBook.orderId,
+				bookId: orderBook.bookId,
+				quantity: orderBook.quantity,
+			}),
+		),
 	}
 }

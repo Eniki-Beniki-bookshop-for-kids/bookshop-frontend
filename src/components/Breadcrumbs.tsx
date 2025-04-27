@@ -9,9 +9,7 @@ import { FC } from "react"
 export const Breadcrumbs: FC = () => {
 	const { breadcrumbs } = useBreadcrumbs()
 
-	if (breadcrumbs.length === 0) {
-		return null
-	}
+	if (breadcrumbs.length === 0) return null
 
 	return (
 		<Box py={2} mt={5} mb={10}>

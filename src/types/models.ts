@@ -156,7 +156,7 @@ export interface Book {
 	isPublish: boolean // чи книга вже продається?
 	isGifted: boolean // чи подарункове видання?
 	totalSales?: number // Кількість проданих книг за весь час продажів (необов’язкове)
-	orders: Order[] // Масив замовлень, де присутня ця книга
+	orderBook: OrderBook[] // Масив замовлень, де присутня ця книга
 	createdAt: string // Дата створення запису про книгу у форматі ISO ("2024-01-01T12:00:00Z").
 	updatedAt: string // Дата останнього оновлення запису про книгу у форматі ISO ("2024-09-01T15:30:00Z")
 }
@@ -173,6 +173,12 @@ export interface Review {
 	avatar?: string // URL-адреса аватара критика (аватар можна генерувати автоматично)
 	createdAt: string // Дата створення відгуку про книгу у форматі ISO ("2024-01-01T12:00:00Z")
 	updatedAt: string // Дата останнього оновлення відгуку про книгу у форматі ISO ("2024-09-01T15:30:00Z")
+}
+
+export interface OrderBook {
+	orderId: number
+	bookId: number
+	quantity: number
 }
 
 // моделі користувача

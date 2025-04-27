@@ -1,3 +1,4 @@
+// src/utils/formatSegmentLabel.ts
 export const formatSegmentLabel = (segment: string): string => {
 	return segment
 		.split("-")
