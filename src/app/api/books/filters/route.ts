@@ -45,8 +45,8 @@ export async function GET(request: Request) {
 				skip: (page - 1) * limit,
 				take: limit,
 				include: {
-					reviews: true, // Включаємо відгуки
-					orderBooks: true, // Включаємо orderBooks
+					reviews: true,
+					orderBooks: true,
 				},
 			}),
 			prisma.book.count({ where }),

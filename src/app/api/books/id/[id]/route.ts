@@ -21,6 +21,10 @@ export async function GET(
 		// Шукаємо книгу за bookId
 		const book = await prisma.book.findUnique({
 			where: { bookId },
+			include: {
+				reviews: true,
+				orderBooks: true,
+			},
 		})
 
 		// Якщо книга не знайдена
