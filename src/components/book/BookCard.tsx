@@ -2,7 +2,7 @@
 "use client"
 
 import { Book } from "@/types/models"
-import { getBookMarker } from "@/utils/books"
+import { getBookMarker, getGenreSlug } from "@/utils/books"
 import { HStack, Text, VStack } from "@chakra-ui/react"
 import { useRouter } from "next/navigation"
 import { BookBadge } from "./BookBadge"
@@ -17,8 +17,11 @@ interface BookCardProps {
 export const BookCard = ({ book }: BookCardProps) => {
 	const router = useRouter()
 	const marker = getBookMarker(book)
-	const hasDiscount = book.discount > 0
-	const discount = hasDiscount ? -Math.round(book.discount * 100) : 0
+	const { bookId, discount, genre, title, author } = book
+
+	const hasDiscount = discount > 0
+	const discountCalc = hasDiscount ? -Math.round(discount * 100) : 0
+	const genreSlug = getGenreSlug(genre)
 
 	return (
 		<VStack
@@ -27,7 +30,7 @@ export const BookCard = ({ book }: BookCardProps) => {
 			w="auto"
 			h="auto"
 			cursor="pointer"
-			onClick={() => router.push(`/book/${book.bookId}`)}
+			onClick={() => router.push(`/catalog/book/${genreSlug}/${bookId}`)}
 			_hover={{ transform: "scale(1.02, 1.02)", transformOrigin: "top left" }}
 			transition="all 0.2s"
 		>
@@ -42,7 +45,7 @@ export const BookCard = ({ book }: BookCardProps) => {
 				p={2}
 			>
 				<HStack justifySelf="flex-start" spacing={2}>
-					{hasDiscount && <BookBadge text={`${discount.toString()}%`} />}
+					{hasDiscount && <BookBadge text={`${discountCalc.toString()}%`} />}
 					{marker && <BookBadge text={marker} />}
 				</HStack>
 				<BookImage book={book} />
@@ -50,10 +53,10 @@ export const BookCard = ({ book }: BookCardProps) => {
 
 			<VStack align="start" w="full" h="full" p={0} spacing={1}>
 				<Text fontSize="20px" color="customDarkGray">
-					{book.title}
+					{title}
 				</Text>
 				<Text fontSize="18px" color="customGray">
-					{book.author}
+					{author}
 				</Text>
 				<BookRating book={book} />
 				<BookPrice book={book} />

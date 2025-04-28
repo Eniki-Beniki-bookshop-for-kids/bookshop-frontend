@@ -22,8 +22,8 @@ import {
 import { formatSegmentLabel } from "../utils"
 import {
 	AccountSettingField,
-	HomeSidebarMenuItem,
 	DynamicRoute,
+	HomeSidebarMenuItem,
 } from "./interfaces"
 import { BookTypes, Categories, Genre, TargetAges } from "./models"
 import {
@@ -156,9 +156,19 @@ export const dynamicRoutes: DynamicRoute[] = [
 		},
 	},
 	{
-		basePath: "/blog",
-		segmentIndex: 1,
-		getLabel: (segment: string) => formatSegmentLabel(segment),
+		basePath: "/catalog/book",
+		segmentIndex: 2, // Сегмент "[genre]"
+		getLabel: (segment: string) => {
+			// Шукаємо в genreLink
+			const genreItem = genreLink.find(
+				item => item.href === `/catalog/${segment}`,
+			)
+			if (genreItem) {
+				return genreItem.label
+			}
+			// Якщо не знайшли в genreLink, форматуємо сегмент
+			return formatSegmentLabel(segment)
+		},
 	},
 ]
 

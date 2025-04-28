@@ -6,7 +6,6 @@ import { PageProps } from "@/types/propsInterfaces"
 import { formatSegmentLabel } from "@/utils"
 import { usePathname } from "next/navigation"
 
-// Інтерфейс для елементів breadcrumbs
 interface BreadcrumbItem extends PageProps {
 	isCurrent?: boolean
 }
@@ -26,6 +25,20 @@ export const useBreadcrumbs = () => {
 		pathSegments.forEach((segment, index) => {
 			currentPath += `/${segment}`
 
+			// Пропускаємо сегмент "book" у /catalog/book
+			if (currentPath === "/catalog/book") {
+				return // Пропускаємо "book"
+			}
+
+			// Пропускаємо сегмент "[bookId]" у /catalog/book/[genre]/[bookId]
+			if (
+				currentPath.startsWith("/catalog/book/") &&
+				pathSegments.length === 4 && // Переконуємося, що це повний шлях із 4 сегментами
+				index === 3 // Сегмент "[bookId]"
+			) {
+				return // Пропускаємо "[bookId]"
+			}
+
 			// Шукаємо в pageLink для статичних сторінок
 			const page = pageLink.find(p => p.href === currentPath)
 			if (page) {
@@ -34,7 +47,7 @@ export const useBreadcrumbs = () => {
 					href: currentPath,
 					isCurrent: index === pathSegments.length - 1,
 				})
-				return // Переходимо до наступного сегменту
+				return
 			}
 
 			// Перевіряємо, чи це динамічний маршрут

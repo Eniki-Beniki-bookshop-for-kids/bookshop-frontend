@@ -1,5 +1,4 @@
 import { averageRating } from "./averageRating"
-import { getBookMarker } from "./getBookMarker"
 import {
 	buildBookWhereClause,
 	transformServerToClientBook,
@@ -8,12 +7,15 @@ import {
 	filterBookParams,
 	transformFilterParamsToServerCriteria,
 } from "./extractFilterParams"
+import { getBookMarker } from "./getBookMarker"
+import { getGenreSlug } from "./getGenreSlug"
 
 export {
+	averageRating,
 	buildBookWhereClause,
 	filterBookParams,
+	getBookMarker,
+	getGenreSlug,
 	transformFilterParamsToServerCriteria,
 	transformServerToClientBook,
-	getBookMarker,
-	averageRating,
 }
