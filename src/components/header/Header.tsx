@@ -12,6 +12,7 @@ import { HeaderBg } from "./HeaderBg"
 import { HeaderMenu } from "./HeaderMenu"
 import { NavBar } from "./NavBar"
 import { Phone } from "./Phone"
+import { HeaderSearchInput } from "./HeaderSearchInput"
 
 export const Header = () => {
 	const pathname = usePathname()
@@ -47,6 +48,7 @@ export const Header = () => {
 				{headerType === TypesHeader.Full && (
 					<HStack w="100%" justify="space-between" align="center">
 						<CatalogBtn />
+						<HeaderSearchInput />
 						<HeaderMenu />
 					</HStack>
 				)}

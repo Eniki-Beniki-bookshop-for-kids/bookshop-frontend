@@ -1,3 +1,4 @@
+import { getSearchKey } from "./getSearchKey"
 import { averageRating } from "./averageRating"
 import {
 	buildBookWhereClause,
@@ -18,4 +19,5 @@ export {
 	getGenreSlug,
 	transformFilterParamsToServerCriteria,
 	transformServerToClientBook,
+	getSearchKey,
 }

@@ -35,6 +35,26 @@ export const buildBookWhereClause = (
 			break
 	}
 
+	if (criteria.searchTitleAuthor) {
+		where.OR = [
+			{ title: { contains: criteria.searchTitleAuthor, mode: "insensitive" } },
+			{ author: { contains: criteria.searchTitleAuthor, mode: "insensitive" } },
+		]
+	}
+
+	if (criteria.searchPublisher) {
+		where.publisher = {
+			contains: criteria.searchPublisher,
+			mode: "insensitive",
+		}
+	}
+	if (criteria.searchSeries) {
+		where.series = { contains: criteria.searchSeries, mode: "insensitive" }
+	}
+	if (criteria.searchAuthor) {
+		where.author = { contains: criteria.searchAuthor, mode: "insensitive" }
+	}
+
 	if (criteria.title) {
 		where.title = { contains: criteria.title, mode: "insensitive" }
 	}

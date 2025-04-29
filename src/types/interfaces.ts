@@ -106,6 +106,14 @@ export interface FilterBookParams {
 	sortOrder?: "asc" | "desc"
 }
 
+// Тип для визначення полів (ключів) пошуку книг
+export type SearchField =
+	| "titleAuthor"
+	| "description"
+	| "publisher"
+	| "series"
+	| "author"
+
 // Тип для серверних критеріїв
 export interface ServerFilterBookCriteria {
 	status?: string
@@ -122,4 +130,8 @@ export interface ServerFilterBookCriteria {
 	coverType?: PrismaCoverType
 	priceMin?: number
 	priceMax?: number
+	searchTitleAuthor?: string // Пошук по назві або автору
+	searchPublisher?: string // Пошук по видавництву
+	searchSeries?: string // Пошук по серії книг
+	searchAuthor?: string // Пошук по автору
 }

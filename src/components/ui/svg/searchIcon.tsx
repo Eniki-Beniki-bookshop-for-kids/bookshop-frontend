@@ -3,7 +3,7 @@ import { getTailwindColor } from "@/utils"
 import { FC } from "react"
 
 export const SearchIcon: FC<IButtonProps> = ({
-	colorFill = getTailwindColor("customGray") || "#6a6a6a",
+	colorFill = getTailwindColor("customDarkGray") || "#6a6a6a",
 	size = 26,
 }) => {
 	return (

@@ -13,6 +13,7 @@ import { FC } from "react"
 import { InputDate } from "./InputDate"
 import { InputPassword } from "./InputPassword"
 import { InputPhone } from "./InputPhone"
+import { InputSearch } from "./InputSearch"
 
 const commonInputStyles = {
 	_placeholder: { color: "customLightGray" },
@@ -29,7 +30,9 @@ export const CustomInputTemplate: FC<CustomInputProps> = ({
 	placeholder,
 	value,
 	isDisabled = false,
+	isSearch = false,
 	onChange,
+	onKeyDown,
 	error,
 	mb = 0,
 	mt = 0,
@@ -39,9 +42,10 @@ export const CustomInputTemplate: FC<CustomInputProps> = ({
 		inputRef,
 		inputType,
 		isPasswordField,
+		isSearchField,
 		togglePasswordVisibility,
 		handleIconClick,
-	} = useInputLogic(type)
+	} = useInputLogic(type, isSearch)
 
 	return (
 		<FormControl isInvalid={!!error} position="relative" mb={mb} mt={mt}>
@@ -53,10 +57,11 @@ export const CustomInputTemplate: FC<CustomInputProps> = ({
 					value={value || ""}
 					disabled={isDisabled}
 					onChange={onChange}
+					onKeyDown={onKeyDown}
 					{...commonInputStyles}
 					focusBorderColor="customViolet"
 					pr={pr}
-					pl={type === "tel" ? "100px" : "18px"}
+					pl={isSearchField ? "56px" : type === "tel" ? "100px" : "18px"}
 					sx={{
 						...(type === "date" && {
 							"::-webkit-calendar-picker-indicator": {
@@ -65,6 +70,7 @@ export const CustomInputTemplate: FC<CustomInputProps> = ({
 						}),
 					}}
 				/>
+				{isSearchField && <InputSearch />}
 				{isPasswordField && (
 					<InputPassword togglePasswordVisibility={togglePasswordVisibility} />
 				)}

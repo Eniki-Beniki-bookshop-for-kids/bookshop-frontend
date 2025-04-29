@@ -1,3 +1,4 @@
+import { useBookSearch } from "./useBookSearch"
 import { usePagination } from "./usePagination"
 import { useHomePageBooks } from "./useHomePageBooks"
 import { useBooks } from "@/hooks/useBooks"
@@ -39,4 +40,5 @@ export {
 	useBooks,
 	useHomePageBooks,
 	usePagination,
+	useBookSearch,
 }

@@ -1,3 +1,4 @@
 import { BookCarousel } from "./BookCarousel"
+import { BookSearchContent } from "./BookSearchContent"
 
-export { BookCarousel }
+export { BookCarousel, BookSearchContent }

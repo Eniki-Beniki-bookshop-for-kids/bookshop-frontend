@@ -85,8 +85,11 @@ export interface CustomInputProps {
 	placeholder: string
 	value: string
 	isDisabled?: boolean
+	isSearch?: boolean
 	onChange: (e: ChangeEvent<HTMLInputElement>) => void
-	error: string | undefined
+	onBlur?: () => void
+	onKeyDown?: (e: React.KeyboardEvent<HTMLInputElement>) => void
+	error?: string | undefined
 	mb?: number
 	mt?: number
 	pr?: string

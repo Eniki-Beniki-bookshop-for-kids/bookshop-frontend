@@ -1,4 +1,6 @@
 // src/app/api/user/save/route.ts
+import "server-only"
+
 import prisma from "@/lib/prismaClient"
 import { generateTokens } from "@/utils/serverUtils"
 import _ from "lodash"
