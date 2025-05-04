@@ -6,8 +6,9 @@ import { Box } from "@chakra-ui/react"
 import { CustomInputTemplate } from "../ui"
 
 export const HeaderSearchInput = () => {
-	const { query, handleSearch, handleSearchSubmit } =
-		useBookSearch("titleAuthor")
+	const { query, handleSearch, handleSearchSubmit } = useBookSearch({
+		searchField: "titleAuthor",
+	})
 
 	const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
 		if (e.key === "Enter") {

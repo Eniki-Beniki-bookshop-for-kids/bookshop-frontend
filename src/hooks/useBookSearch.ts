@@ -10,8 +10,8 @@ import { useCallback, useState } from "react"
 
 interface UseBookSearch {
 	searchField: SearchField
-	itemsPerPage: number
-	initialQuery: string
+	itemsPerPage?: number
+	initialQuery?: string
 }
 
 export const useBookSearch = ({
