@@ -5,6 +5,8 @@ import { PageTitle } from "@/components"
 import { BookSearchContent } from "@/components/book"
 import { Box } from "@chakra-ui/react"
 
+export const dynamic = "force-dynamic" // Вимикаємо SSR/SSG для цієї сторінки
+
 export default function BookSearchPage() {
 	return (
 		<Box pb={12}>
