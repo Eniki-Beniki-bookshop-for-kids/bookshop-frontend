@@ -4,7 +4,9 @@
 import { getFilteredBooks } from "@/app/api/booksClient"
 import { useBookStore } from "@/stores/bookStore"
 import { BookFilters, SearchField } from "@/types/interfaces"
+import { validateForm } from "@/utils"
 import { mapSearchParamsToFilters } from "@/utils/books"
+import { searchSchema } from "@/utils/validationSchemas"
 import { useRouter } from "next/navigation"
 import { useCallback, useState } from "react"
 
@@ -20,6 +22,7 @@ export const useBookSearch = ({
 	initialQuery = "",
 }: UseBookSearch) => {
 	const [query, setQuery] = useState(initialQuery)
+	const [errorMessage, setErrorMessage] = useState<string | null>(null)
 	const {
 		books,
 		total,
@@ -39,12 +42,6 @@ export const useBookSearch = ({
 			itemsToLoad?: number,
 			isAppend = false,
 		) => {
-			if (searchQuery.length < 3) {
-				setBooksData({ books: [], total: 0 })
-				clearError()
-				return
-			}
-
 			setLoading(true)
 			clearError()
 
@@ -73,10 +70,21 @@ export const useBookSearch = ({
 		[setLoading, clearError, setBooksData, searchField, itemsPerPage, setError],
 	)
 
-	const handleSearch = (newQuery: string) => setQuery(newQuery)
+	const handleSearch = (newQuery: string) => {
+		setQuery(newQuery)
+		if (errorMessage) {
+			setErrorMessage(null)
+		}
+	}
 
 	const handleSearchSubmit = () => {
-		if (query.length < 3) return
+		const { isValid, errors } = validateForm(searchSchema, { search: query })
+		if (!isValid) {
+			setErrorMessage(errors.search || "Некоректний запит")
+			return
+		}
+
+		setErrorMessage(null)
 		setBooksData({ books: [], total: 0 })
 		fetchBooks(query)
 		router.push(`/catalog/book/search?query=${encodeURIComponent(query)}`)
@@ -86,6 +94,7 @@ export const useBookSearch = ({
 		setQuery("")
 		setBooksData({ books: [], total: 0 })
 		clearError()
+		setErrorMessage(null)
 	}
 
 	return {
@@ -98,5 +107,6 @@ export const useBookSearch = ({
 		handleSearch,
 		handleSearchSubmit,
 		clearSearch,
+		errorMessage,
 	}
 }

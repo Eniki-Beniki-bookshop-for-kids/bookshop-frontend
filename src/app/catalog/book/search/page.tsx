@@ -1,4 +1,6 @@
 //src/app/catalog/book/search/page.tsx
+"use client"
+
 import { PageTitle } from "@/components"
 import { BookSearchContent } from "@/components/book"
 import { Box } from "@chakra-ui/react"

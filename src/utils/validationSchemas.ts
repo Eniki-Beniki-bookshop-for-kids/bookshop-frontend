@@ -81,3 +81,13 @@ export const settingsSchema = z.object({
 		.optional() as z.ZodType<string | null | undefined>,
 	avatar: z.string().optional(),
 })
+
+// Схема для перевірки заповнення поля пошуку книги
+export const searchSchema = z.object({
+	search: z
+		.string()
+		.optional()
+		.refine(val => !val || val.length >= 3, {
+			message: "Пошуковий запит має містити принаймні 3 символи",
+		}),
+})
