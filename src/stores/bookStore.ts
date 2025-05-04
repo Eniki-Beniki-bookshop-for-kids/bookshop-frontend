@@ -19,7 +19,7 @@ interface BookState {
 	limit: number
 	isLoading: boolean
 	error: string | null
-	setBooksData: (data: BooksResponse) => void
+	setBooksData: (data: BooksResponse, append?: boolean) => void
 	setFilters: (filters: Record<string, string>) => void
 	setPage: (page: number) => void
 	setLoading: (isLoading: boolean) => void
@@ -44,8 +44,12 @@ export const useBookStore = create<BookState>()(
 			isLoading: true,
 			error: null,
 
-			setBooksData: data =>
-				set(state => ({ ...state, books: data.books, total: data.total })),
+			setBooksData: (data, isAppend = false) =>
+				set(state => ({
+					...state,
+					books: isAppend ? [...state.books, ...data.books] : data.books,
+					total: data.total,
+				})),
 
 			setFilters: filters => set(state => ({ ...state, filters, page: 1 })),
 

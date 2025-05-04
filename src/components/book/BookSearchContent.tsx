@@ -1,36 +1,36 @@
 // src/components/book/BookSearchContent.tsx
 "use client"
 
-import { useEffect } from "react"
-import { useBookSearch } from "@/hooks"
-import { usePagination } from "@/hooks"
+import { useBookSearch, useLoadMore, usePagination } from "@/hooks"
 import { Box, SimpleGrid, Text, VStack } from "@chakra-ui/react"
 import { useSearchParams } from "next/navigation"
+import { useEffect } from "react"
+import { LoadMore, Pagination } from "../pagination"
 import { BookCard } from "./BookCard"
-import { Pagination, LoadMore } from "../pagination"
 
 export const BookSearchContent = () => {
 	const searchParamsClient = useSearchParams()
 	const query = searchParamsClient.get("query") || ""
 
-	const { books, total, isLoading, error, fetchBooks } = useBookSearch(
-		"titleAuthor",
-		query,
-	)
+	const itemsPerPage = 8
 
-	const itemsPerPage = 8 // Кількість книг на сторінці після пошуку
-
-	const {
-		currentPage,
-		totalPages,
-		pageNumbers,
-		currentItems,
-		remainingItems,
-		setCurrentPage,
-		loadMore,
-	} = usePagination({
-		totalItems: books,
+	const { books, total, isLoading, error, fetchBooks } = useBookSearch({
+		searchField: "titleAuthor",
 		itemsPerPage,
+		initialQuery: query,
+	})
+
+	const { currentPage, totalPages, pageNumbers, setCurrentPage } =
+		usePagination({
+			totalItemsCount: total,
+			itemsPerPage,
+			onPageChange: page => fetchBooks(query, page),
+		})
+
+	const { itemsLoaded, remainingItems, loadMore } = useLoadMore({
+		totalItemsCount: total,
+		itemsPerPage,
+		onLoadMore: items => fetchBooks(query, 1, items, true),
 	})
 
 	useEffect(() => {
@@ -70,7 +70,7 @@ export const BookSearchContent = () => {
 							spacing={4}
 							w="full"
 						>
-							{currentItems.map(book => (
+							{books.slice(0, itemsLoaded).map(book => (
 								<BookCard key={book.bookId} book={book} />
 							))}
 						</SimpleGrid>

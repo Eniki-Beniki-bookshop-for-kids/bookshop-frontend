@@ -1,4 +1,4 @@
-import { getSearchKey } from "./getSearchKey"
+import { mapSearchParamsToFilters } from "./mapSearchParamsToFilters"
 import { averageRating } from "./averageRating"
 import {
 	buildBookWhereClause,
@@ -19,5 +19,5 @@ export {
 	getGenreSlug,
 	transformFilterParamsToServerCriteria,
 	transformServerToClientBook,
-	getSearchKey,
+	mapSearchParamsToFilters,
 }

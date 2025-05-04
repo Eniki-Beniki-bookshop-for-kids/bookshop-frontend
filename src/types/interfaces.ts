@@ -10,7 +10,15 @@ import {
 	User as UserFromPrisma,
 } from "../../prisma/generated/client"
 import { authCredentials } from "./constants"
-import { User } from "./models"
+import {
+	BookTypes,
+	Categories,
+	CoverType,
+	Genre,
+	Language,
+	TargetAges,
+	User,
+} from "./models"
 
 export type PrismaGender = GenderFromPrisma
 export type PrismaUser = UserFromPrisma
@@ -84,11 +92,30 @@ export interface AccountSettingField {
 	isDisabled?: boolean
 }
 
+// Фільтри, які застосовуються для пошуку книг
+export interface BookFilters {
+	status?: "discount" | "new" | "popular" | "soon" | "bestseller"
+	title?: string
+	author?: string
+	description?: string
+	genre?: Genre
+	categories?: Categories[]
+	targetAges?: TargetAges[]
+	series?: string
+	publisher?: string
+	publicationYear?: number
+	bookType?: BookTypes[]
+	originalLanguage?: Language
+	coverType?: CoverType
+	price?: { min?: number; max?: number }
+}
+
 // Тип фільтрів книг для клієнтських параметрів
 export interface FilterBookParams {
 	status?: string
 	title?: string
 	author?: string
+	description?: string
 	genre?: string
 	categories?: string[]
 	targetAges?: string[]
@@ -119,6 +146,7 @@ export interface ServerFilterBookCriteria {
 	status?: string
 	title?: string
 	author?: string
+	description?: string
 	genre?: PrismaGenre
 	categories?: PrismaCategories[]
 	targetAges?: PrismaTargetAges[]

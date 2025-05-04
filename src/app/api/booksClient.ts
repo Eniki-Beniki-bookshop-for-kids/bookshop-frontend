@@ -1,34 +1,10 @@
 // src/app/api/booksClient.ts
 import apiClient from "@/lib/apiClient"
-import { ApiErrorResponse } from "@/types/interfaces"
-import {
-	Book,
-	BookTypes,
-	Categories,
-	CoverType,
-	Genre,
-	Language,
-	TargetAges,
-} from "@/types/models"
+import { ApiErrorResponse, BookFilters } from "@/types/interfaces"
+import { Book } from "@/types/models"
 import { AxiosError } from "axios"
 
 const BOOKS_ENDPOINT = "/api/books"
-
-interface BookFilters {
-	status?: "discount" | "new" | "popular" | "soon" | "bestseller"
-	title?: string
-	author?: string
-	genre?: Genre
-	categories?: Categories[]
-	targetAges?: TargetAges[]
-	series?: string
-	publisher?: string
-	publicationYear?: number
-	bookType?: BookTypes[]
-	originalLanguage?: Language
-	coverType?: CoverType
-	price?: { min?: number; max?: number }
-}
 
 // Узагальнена функція для виконання запитів
 const fetchData = async <T>(

@@ -3,15 +3,22 @@
 
 import { getFilteredBooks } from "@/app/api/booksClient"
 import { useBookStore } from "@/stores/bookStore"
-import { SearchField } from "@/types/interfaces"
-import { getSearchKey } from "@/utils/books"
+import { BookFilters, SearchField } from "@/types/interfaces"
+import { mapSearchParamsToFilters } from "@/utils/books"
 import { useRouter } from "next/navigation"
 import { useCallback, useState } from "react"
 
-export const useBookSearch = (
-	searchField: SearchField = "titleAuthor",
-	initialQuery: string = "",
-) => {
+interface UseBookSearch {
+	searchField: SearchField
+	itemsPerPage: number
+	initialQuery: string
+}
+
+export const useBookSearch = ({
+	searchField = "titleAuthor",
+	itemsPerPage = 10,
+	initialQuery = "",
+}: UseBookSearch) => {
 	const [query, setQuery] = useState(initialQuery)
 	const {
 		books,
@@ -26,7 +33,12 @@ export const useBookSearch = (
 	const router = useRouter()
 
 	const fetchBooks = useCallback(
-		async (searchQuery: string, page = 1) => {
+		async (
+			searchQuery: string,
+			page = 1,
+			itemsToLoad?: number,
+			isAppend = false,
+		) => {
 			if (searchQuery.length < 3) {
 				setBooksData({ books: [], total: 0 })
 				clearError()
@@ -37,15 +49,18 @@ export const useBookSearch = (
 			clearError()
 
 			try {
-				const searchKey = getSearchKey(searchField)
-				const filters: Record<string, string> = {
-					[searchKey]: searchQuery,
-				}
-				const data = await getFilteredBooks(filters, page, 10, {
+				const filters: BookFilters = mapSearchParamsToFilters(
+					searchField,
+					searchQuery,
+				)
+
+				const limit = itemsToLoad || itemsPerPage
+				const data = await getFilteredBooks(filters, page, limit, {
 					field: "title",
 					order: "asc",
 				})
-				setBooksData(data)
+
+				setBooksData(data, isAppend)
 			} catch (err) {
 				setError(
 					err instanceof Error ? err.message : "Не вдалося завантажити книги",
@@ -55,15 +70,16 @@ export const useBookSearch = (
 				setLoading(false)
 			}
 		},
-		[searchField, setBooksData, setLoading, setError, clearError],
+		[setLoading, clearError, setBooksData, searchField, itemsPerPage, setError],
 	)
 
 	const handleSearch = (newQuery: string) => setQuery(newQuery)
 
 	const handleSearchSubmit = () => {
-		if (query.length < 3) return // Не робимо запит, якщо менше 3 символів
+		if (query.length < 3) return
+		setBooksData({ books: [], total: 0 })
 		fetchBooks(query)
-		router.push(`catalog/book/search?query=${encodeURIComponent(query)}`)
+		router.push(`/catalog/book/search?query=${encodeURIComponent(query)}`)
 	}
 
 	const clearSearch = () => {

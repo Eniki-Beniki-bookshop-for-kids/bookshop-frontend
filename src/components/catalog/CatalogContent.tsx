@@ -16,18 +16,22 @@ export const CatalogContent = () => {
 
 	const initialItemsPerPage = 8 // Кількість елементів на сторінці
 
-	const { currentPage, totalPages, pageNumbers, currentItems, setCurrentPage } =
+	const { currentPage, totalPages, pageNumbers, setCurrentPage } =
 		usePagination({
-			totalItems: genreLink,
+			totalItemsCount: genreLink.length,
 			itemsPerPage: initialItemsPerPage,
 		})
+
+	const startIndex = (currentPage - 1) * initialItemsPerPage
+	const endIndex = startIndex + initialItemsPerPage
+	const currentItems = genreLink.slice(startIndex, endIndex)
 
 	return (
 		<Box mt={8}>
 			<GenreGrid
 				genres={currentItems}
 				catalogImages={catalogImages}
-				startIndex={0}
+				startIndex={startIndex}
 			/>
 			{totalPages > 1 && (
 				<Pagination

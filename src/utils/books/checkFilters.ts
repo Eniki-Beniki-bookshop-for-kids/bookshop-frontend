@@ -35,31 +35,24 @@ export const buildBookWhereClause = (
 			break
 	}
 
-	if (criteria.searchTitleAuthor) {
+	// Об'єднуємо title і author через OR для запиту на Прізму, якщо вони присутні і мають однакове значення
+	if (criteria.title && criteria.author && criteria.title === criteria.author) {
 		where.OR = [
-			{ title: { contains: criteria.searchTitleAuthor, mode: "insensitive" } },
-			{ author: { contains: criteria.searchTitleAuthor, mode: "insensitive" } },
+			{ title: { contains: criteria.title, mode: "insensitive" } },
+			{ author: { contains: criteria.author, mode: "insensitive" } },
 		]
-	}
-
-	if (criteria.searchPublisher) {
-		where.publisher = {
-			contains: criteria.searchPublisher,
-			mode: "insensitive",
+	} else {
+		// Інакше додаємо умови окремо (AND)
+		if (criteria.title) {
+			where.title = { contains: criteria.title, mode: "insensitive" }
+		}
+		if (criteria.author) {
+			where.author = { contains: criteria.author, mode: "insensitive" }
 		}
 	}
-	if (criteria.searchSeries) {
-		where.series = { contains: criteria.searchSeries, mode: "insensitive" }
-	}
-	if (criteria.searchAuthor) {
-		where.author = { contains: criteria.searchAuthor, mode: "insensitive" }
-	}
 
-	if (criteria.title) {
-		where.title = { contains: criteria.title, mode: "insensitive" }
-	}
-	if (criteria.author) {
-		where.author = { contains: criteria.author, mode: "insensitive" }
+	if (criteria.description) {
+		where.description = { contains: criteria.description, mode: "insensitive" }
 	}
 	if (criteria.genre) {
 		where.genre = criteria.genre

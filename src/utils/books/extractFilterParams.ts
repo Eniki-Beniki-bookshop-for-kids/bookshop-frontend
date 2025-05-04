@@ -19,6 +19,7 @@ export const filterBookParams = (
 		status: searchParams.get("status") || undefined,
 		title: searchParams.get("title") || undefined,
 		author: searchParams.get("author") || undefined,
+		description: searchParams.get("description") || undefined,
 		genre: searchParams.get("genre") || undefined,
 		categories: searchParams.get("categories")?.split(",") || undefined,
 		targetAges: searchParams.get("targetAges")?.split(",") || undefined,
@@ -45,6 +46,7 @@ export const transformFilterParamsToServerCriteria = (
 		status: params.status,
 		title: params.title,
 		author: params.author,
+		description: params.description,
 		genre: params.genre
 			? (mapBooks.genreClientToServer[params.genre] as PrismaGenre)
 			: undefined,

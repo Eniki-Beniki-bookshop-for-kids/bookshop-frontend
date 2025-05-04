@@ -47,6 +47,7 @@ export const BookCard = ({ book }: BookCardProps) => {
 				<HStack justifySelf="flex-start" spacing={2}>
 					{hasDiscount && <BookBadge text={`${discountCalc.toString()}%`} />}
 					{marker && <BookBadge text={marker} />}
+					{!marker && !hasDiscount && <BookBadge />}
 				</HStack>
 				<BookImage book={book} />
 			</VStack>

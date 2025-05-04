@@ -1,3 +1,4 @@
+import { useLoadMore } from "./useLoadMore"
 import { useBookSearch } from "./useBookSearch"
 import { usePagination } from "./usePagination"
 import { useHomePageBooks } from "./useHomePageBooks"
@@ -41,4 +42,5 @@ export {
 	useHomePageBooks,
 	usePagination,
 	useBookSearch,
+	useLoadMore,
 }
