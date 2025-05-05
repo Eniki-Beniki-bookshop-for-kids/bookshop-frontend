@@ -3,21 +3,21 @@
 
 import { useBookSearch, useLoadMore, usePagination } from "@/hooks"
 import { Box, SimpleGrid, Text, VStack } from "@chakra-ui/react"
-import { useSearchParams } from "next/navigation"
 import { useEffect } from "react"
 import { LoadMore, Pagination } from "../pagination"
 import { BookCard } from "./BookCard"
 
-export const BookSearchContent = () => {
-	const searchParamsClient = useSearchParams()
-	const query = searchParamsClient.get("query") || ""
+interface BookSearchContentProps {
+	initialQuery: string
+}
 
+export const BookSearchContent = ({ initialQuery }: BookSearchContentProps) => {
 	const itemsPerPage = 8
 
-	const { books, total, isLoading, error, fetchBooks } = useBookSearch({
+	const { books, total, isLoading, error, fetchBooks, query } = useBookSearch({
 		searchField: "titleAuthor",
 		itemsPerPage,
-		initialQuery: query,
+		initialQuery,
 	})
 
 	const { currentPage, totalPages, pageNumbers, setCurrentPage } =
