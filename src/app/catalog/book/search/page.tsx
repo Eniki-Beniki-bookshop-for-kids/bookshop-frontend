@@ -3,8 +3,6 @@ import { PageTitle } from "@/components"
 import { BookSearchContentWrapper } from "@/components/book"
 import { Box } from "@chakra-ui/react"
 
-export const renderingMode = "force-dynamic" // Вимикаємо SSR/SSG для цієї сторінки
-
 export default async function BookSearchPage({
 	searchParams,
 }: {
