@@ -4,6 +4,7 @@
 import { useBookSearch, useLoadMore, usePagination } from "@/hooks"
 import { Box, SimpleGrid, Text, VStack } from "@chakra-ui/react"
 import { useEffect } from "react"
+import { Loader } from "../Loader"
 import { LoadMore, Pagination } from "../pagination"
 import { BookCard } from "./BookCard"
 
@@ -14,11 +15,12 @@ interface BookSearchContentProps {
 export const BookSearchContent = ({ initialQuery }: BookSearchContentProps) => {
 	const itemsPerPage = 8
 
-	const { books, total, isLoading, error, fetchBooks, query } = useBookSearch({
-		searchField: "titleAuthor",
-		itemsPerPage,
-		initialQuery,
-	})
+	const { books, total, isLoading, error, fetchBooks, query, clearSearch } =
+		useBookSearch({
+			searchField: "titleAuthor",
+			itemsPerPage,
+			initialQuery,
+		})
 
 	const { currentPage, totalPages, pageNumbers, setCurrentPage } =
 		usePagination({
@@ -37,27 +39,26 @@ export const BookSearchContent = ({ initialQuery }: BookSearchContentProps) => {
 		fetchBooks(query, currentPage)
 	}, [query, currentPage, fetchBooks])
 
+	if (error) {
+		clearSearch()
+		console.error("Error loading searching books:", error)
+		throw new Error("Failed to load searching books")
+	}
+
 	return (
 		<Box mt={8}>
-			<VStack spacing={4} align="start" w="full">
+			<VStack spacing={4} align="center" w="full">
 				{query && (
-					<Text fontSize="lg" color="customGray">
+					<Text fontSize="lg" color="customGray" alignSelf="start">
 						{`Пошук за запитом: "${query}"`}
 					</Text>
 				)}
 				{isLoading && (
-					<Text fontSize="xl" color="customGray">
-						Завантаження...
-					</Text>
-				)}
-				{error && (
-					<Text fontSize="xl" color="red.500">
-						Помилка: {error}
-					</Text>
+					<Loader isLoading={isLoading} variant="metronome" size="60" />
 				)}
 				{!isLoading && !error && books.length === 0 && query.length >= 3 && (
-					<Text fontSize="xl" color="customGray">
-						Нічого не знайдено
+					<Text fontSize="24px" color="red" alignSelf="start">
+						За Вашим запитом не знайдено жодної книги
 					</Text>
 				)}
 				{!isLoading && !error && books.length > 0 && (

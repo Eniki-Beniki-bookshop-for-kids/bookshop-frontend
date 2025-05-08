@@ -1,4 +1,3 @@
-//src/hooks/useBreadcrumbs.ts
 "use client"
 
 import { dynamicRoutes, pageLink } from "@/types/constants"
@@ -58,11 +57,22 @@ export const useBreadcrumbs = () => {
 			)
 
 			if (dynamicRoute) {
-				items.push({
-					label: dynamicRoute.getLabel(segment),
-					href: currentPath,
-					isCurrent: index === pathSegments.length - 1,
-				})
+				// Спеціальна обробка для жанру в маршруті /catalog/book/[genre]/[bookId]
+				if (dynamicRoute.basePath === "/catalog/book" && index === 2) {
+					const genreSegment = pathSegments[2] // Сегмент genre
+					const correctPath = `/catalog/${genreSegment}` // Формуємо правильний шлях для жанру
+					items.push({
+						label: dynamicRoute.getLabel(segment),
+						href: correctPath,
+						isCurrent: index === pathSegments.length - 1,
+					})
+				} else {
+					items.push({
+						label: dynamicRoute.getLabel(segment),
+						href: currentPath,
+						isCurrent: index === pathSegments.length - 1,
+					})
+				}
 			} else {
 				// Для невідомих маршрутів використовуємо форматований сегмент як label
 				items.push({
