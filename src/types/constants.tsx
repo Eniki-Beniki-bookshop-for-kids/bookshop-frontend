@@ -78,6 +78,11 @@ export const headerNav: NavbarProps[] = [
 
 export const homeSidebarMenu: HomeSidebarMenuItem[] = [
 	{
+		label: "Всі книги",
+		filter: {},
+		href: "/catalog/all",
+	},
+	{
 		label: "Художня література",
 		filter: { genre: Genre.Classics },
 		href: "/catalog/classics",
@@ -165,6 +170,9 @@ export const dynamicRoutes: DynamicRoute[] = [
 			)
 			if (genreItem) {
 				return genreItem.label
+			}
+			if (segment === "search") {
+				return "Пошук"
 			}
 			// Якщо не знайшли в genreLink, форматуємо сегмент
 			return formatSegmentLabel(segment)
@@ -300,3 +308,7 @@ export const accountSettingFields: AccountSettingField[] = [
 		field: "dateOfBirth",
 	},
 ]
+
+export const noImageSrc =
+	"https://dummyimage.com/300x400/9c9c9c/FFFFFF.png&text=No+photo"
+export const whiteBoxSrc = "https://dummyimage.com/300x400/FFFFFF/FFFFFF.png"

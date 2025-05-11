@@ -29,7 +29,10 @@ export const MenuItem = ({ item, onUpdateFilters }: MenuItemProps) => {
 				}}
 				justify="space-between"
 			>
-				<Text fontSize={{ sm: "14px", md: "14px", lg: "16px" }}>
+				<Text
+					fontSize={{ sm: "14px", md: "14px", lg: "16px" }}
+					fontWeight={item.label === "Всі книги" ? 600 : 400}
+				>
 					{item.label}
 				</Text>
 				<ArrowRightIcon

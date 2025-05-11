@@ -1,11 +1,11 @@
-//src/components/account/sidebar/SidebarMenu.tsx
+//src/components/account/sidebar/AccountSidebarMenu.tsx
 import { useSidebarMenuContext } from "@/context/SidebarMenuContext"
 import { sidebarAccountLinks } from "@/types/constants"
 import { HStack, Text, VStack } from "@chakra-ui/react"
 import { Fragment } from "react"
 import { CustomDivider } from "./CustomDivider"
 
-export const SidebarMenu = () => {
+export const AccountSidebarMenu = () => {
 	const { activeSection, handleMenuClick } = useSidebarMenuContext()
 
 	return (

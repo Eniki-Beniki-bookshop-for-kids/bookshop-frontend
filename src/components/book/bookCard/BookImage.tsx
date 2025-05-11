@@ -1,6 +1,7 @@
 // src/components/book/BookImage.tsx
 import { Book } from "@/types/models"
 import { Box, Image } from "@chakra-ui/react"
+import { BookFallback } from "../BookFallback"
 
 interface BookCardProps {
 	book: Book
@@ -15,15 +16,7 @@ export const BookImage = ({ book }: BookCardProps) => {
 				objectFit="cover"
 				w="full"
 				h="full"
-				fallback={
-					<Image
-						src="https://dummyimage.com/300x400/9c9c9c/FFFFFF.png&text=No+photo"
-						alt="Немає зображення"
-						objectFit="cover"
-						w="full"
-						h="full"
-					/>
-				}
+				fallback={<BookFallback />}
 			/>
 		</Box>
 	)

@@ -35,3 +35,12 @@ export const getFilteredBooks = async (
 		"filtered books",
 	)
 }
+
+// отримання книги за bookId
+export const getBookById = async (bookId: string): Promise<Book> => {
+	return fetchData<Book>(
+		`${BOOKS_ENDPOINT}/id/${bookId}`,
+		undefined,
+		`book with ID ${bookId}`,
+	)
+}

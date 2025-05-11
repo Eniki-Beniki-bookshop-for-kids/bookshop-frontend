@@ -1,5 +1,5 @@
-import { BookSearchContentWrapper } from "./BookSearchContentWrapper"
+import { BookDetails } from "./bookDetails/BookDetails"
 import { BookCarousel } from "./BookCarousel"
-import { BookSearchContent } from "./BookSearchContent"
+import { BookSearchContentWrapper } from "./bookSearch/BookSearchContentWrapper"
 
-export { BookCarousel, BookSearchContent, BookSearchContentWrapper }
+export { BookCarousel, BookSearchContentWrapper, BookDetails }

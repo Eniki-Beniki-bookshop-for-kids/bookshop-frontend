@@ -6,7 +6,7 @@ import { Box } from "@chakra-ui/react"
 import { Navigation } from "swiper/modules"
 import { Swiper, SwiperSlide } from "swiper/react"
 import { PageTitle } from "../PageTitle"
-import { BookCard } from "./BookCard"
+import { BookCard } from "./bookCard"
 
 interface BookCarouselProps {
 	title: string

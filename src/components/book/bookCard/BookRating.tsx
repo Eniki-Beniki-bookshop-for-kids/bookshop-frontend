@@ -3,7 +3,7 @@ import { Book } from "@/types/models"
 import { averageRating } from "@/utils/books"
 import { HStack, Icon, Text } from "@chakra-ui/react"
 import { FaStar } from "react-icons/fa"
-import { CommentIcon } from "../ui"
+import { CommentIcon } from "../../ui"
 
 interface BookCardProps {
 	book: Book

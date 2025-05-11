@@ -6,6 +6,7 @@ import { ArrowDownIcon, ButtonTemplate } from "../ui"
 
 interface LoadMoreProps {
 	itemsPerPage: number
+	remainingItems: number
 	onLoadMore: () => void
 	isDisabled: boolean
 	itemsName?: string
@@ -13,10 +14,12 @@ interface LoadMoreProps {
 
 export const LoadMore = ({
 	itemsPerPage,
+	remainingItems,
 	onLoadMore,
 	isDisabled,
 	itemsName = "товарів",
 }: LoadMoreProps) => {
+	const isItemsMoreThanPerPage = remainingItems > itemsPerPage
 	return (
 		<HStack justify="center" my={8}>
 			<ButtonTemplate
@@ -30,7 +33,9 @@ export const LoadMore = ({
 				isDisabled={isDisabled}
 				iconAfter={<ArrowDownIcon />}
 			>
-				{`Показати ще ${itemsPerPage} ${itemsName}`}
+				{`Показати ще ${
+					isItemsMoreThanPerPage ? itemsPerPage : remainingItems
+				} ${itemsName}`}
 			</ButtonTemplate>
 		</HStack>
 	)

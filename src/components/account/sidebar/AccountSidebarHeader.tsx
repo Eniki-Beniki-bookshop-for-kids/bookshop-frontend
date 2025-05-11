@@ -1,4 +1,4 @@
-//src/components/account/sidebar/SidebarHeader.tsx
+//src/components/account/sidebar/AccountSidebarHeader.tsx
 "use client"
 
 import { useAuthStore } from "@/stores/authStore"
@@ -6,7 +6,7 @@ import { displayPhoneNumber } from "@/utils"
 import { Box, HStack, Text } from "@chakra-ui/react"
 import { UserAvatar } from "../.."
 
-export const SidebarHeader = () => {
+export const AccountSidebarHeader = () => {
 	const { user } = useAuthStore()
 
 	if (!user) {

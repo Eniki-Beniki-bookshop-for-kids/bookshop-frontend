@@ -1,7 +1,7 @@
 // src/hooks/useBooks.ts
 "use client"
 
-import { getFilteredBooks } from "@/app/api/booksClient"
+import { getBookById, getFilteredBooks } from "@/app/api/booksClient"
 import { useBookStore } from "@/stores/bookStore"
 import { Book } from "@/types/models"
 import { useCallback } from "react"
@@ -129,6 +129,31 @@ export const useBooks = (sort?: SortParams) => {
 		],
 	)
 
+	// Новий метод для фетчингу однієї книги за bookId
+	const fetchBookById = useCallback(
+		async (bookId: string): Promise<Book> => {
+			setLoading(true)
+			clearError()
+
+			try {
+				const book = await getBookById(bookId)
+				return book
+			} catch (error) {
+				setError(
+					error instanceof Error
+						? error.message
+						: typeof error === "string"
+						? error
+						: `Failed to load book with ID ${bookId}`,
+				)
+				throw error
+			} finally {
+				setLoading(false)
+			}
+		},
+		[setLoading, clearError, setError],
+	)
+
 	const updateFilters = (newFilters: Record<string, string>) => {
 		setFilters(newFilters)
 		fetchBooks(newFilters)
@@ -158,6 +183,7 @@ export const useBooks = (sort?: SortParams) => {
 		changePage,
 		refetchBooks,
 		fetchBooksByType,
+		fetchBookById,
 		clearError,
 	}
 }
