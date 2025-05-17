@@ -1,5 +1,5 @@
 import { formatSegmentLabel } from "./formatSegmentLabel"
-import { formatDate } from "./formatDate"
+import { formatDate, formatDateToString } from "./formatDate"
 import { cutPhoneNumber, displayPhoneNumber } from "./formatPhoneNumber"
 import { fromPrismaGender, toPrismaGender } from "./genderMapping"
 import { getTailwindColor } from "./getTailwindColor"
@@ -18,4 +18,5 @@ export {
 	validateForm,
 	verifyToken,
 	formatSegmentLabel,
+	formatDateToString,
 }

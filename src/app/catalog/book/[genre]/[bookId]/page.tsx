@@ -10,7 +10,7 @@ export default async function BookPage({ params }: BookPageProps) {
 	const { bookId } = await params
 
 	return (
-		<VStack>
+		<VStack w="full" align="start">
 			<BookDetails bookId={bookId} />
 		</VStack>
 	)

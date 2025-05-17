@@ -10,9 +10,9 @@ import { Logo } from "../Logo"
 import { CatalogBtn } from "../catalog"
 import { HeaderBg } from "./HeaderBg"
 import { HeaderMenu } from "./HeaderMenu"
+import { HeaderSearchInput } from "./HeaderSearchInput"
 import { NavBar } from "./NavBar"
 import { Phone } from "./Phone"
-import { HeaderSearchInput } from "./HeaderSearchInput"
 
 export const Header = () => {
 	const pathname = usePathname()

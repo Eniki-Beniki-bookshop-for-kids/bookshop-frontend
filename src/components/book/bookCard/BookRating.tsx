@@ -1,15 +1,15 @@
 // src/components/book/BookRating.tsx
-import { Book } from "@/types/models"
+import { Review } from "@/types/models"
 import { averageRating } from "@/utils/books"
 import { HStack, Icon, Text } from "@chakra-ui/react"
 import { FaStar } from "react-icons/fa"
 import { CommentIcon } from "../../ui"
 
 interface BookCardProps {
-	book: Book
+	reviews: Review[]
 }
 
-export const BookRating = ({ book }: BookCardProps) => {
+export const BookRating = ({ reviews }: BookCardProps) => {
 	return (
 		<HStack spacing={2}>
 			{[...Array(5)].map((_, i) => (
@@ -17,7 +17,7 @@ export const BookRating = ({ book }: BookCardProps) => {
 					key={i}
 					as={FaStar}
 					color={
-						i < Math.round(averageRating(book) || 0)
+						i < Math.round(averageRating(reviews) || 0)
 							? "customYellow"
 							: "customLightGray"
 					}
@@ -26,7 +26,7 @@ export const BookRating = ({ book }: BookCardProps) => {
 			))}
 			<CommentIcon size={14} colorFill="customDarkGray" />
 			<Text fontSize="16px" color="customDarkGray">
-				{book.reviews.length}
+				{reviews.length}
 			</Text>
 		</HStack>
 	)

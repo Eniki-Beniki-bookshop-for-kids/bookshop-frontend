@@ -4,11 +4,13 @@
 import { Loader } from "@/components"
 import { useBooks } from "@/hooks"
 import { Book } from "@/types/models"
-import { SimpleGrid, VStack } from "@chakra-ui/react"
+import { Grid, GridItem, VStack } from "@chakra-ui/react"
 import { useEffect, useState } from "react"
+import { BookDetailsContent } from "./BookDetailsContent"
+import { BookDetailsDeliveryInfo } from "./BookDetailsDeliveryInfo"
+import { BookDetailsImages } from "./BookDetailsImages"
 // import { BookDetailsContent } from "./BookDetailsContent"
 // import { BookDetailsDeliveryInfo } from "./BookDetailsDeliveryInfo"
-import { BookDetailsImages } from "./BookDetailsImages"
 
 interface BookDetailsProps {
 	bookId: string
@@ -41,16 +43,26 @@ export const BookDetails = ({ bookId }: BookDetailsProps) => {
 				<Loader isLoading={isLoading} variant="metronome" size="100" />
 			)}
 			{!isLoading && (
-				<SimpleGrid
-					columns={{ base: 1, md: 2, lg: 3 }}
-					spacing={8}
+				<Grid
+					templateAreas={`"img details" "info details"`}
+					gridTemplateRows={"auto auto"}
+					gridTemplateColumns={"35% auto"}
+					gap="32px"
+					px={{ sm: "16px", md: "0px" }}
+					pb="120px"
+					maxW="1440px"
 					w="full"
-					maxW="1200px"
 				>
-					<BookDetailsImages book={book} />
-					{/* <BookDetailsDeliveryInfo /> */}
-					{/* <BookDetailsContent book={book} /> */}
-				</SimpleGrid>
+					<GridItem area={"img"} bg="#FFF" borderRadius="30px" minW="300px">
+						<BookDetailsImages book={book} />
+					</GridItem>
+					<GridItem area={"info"} bg="#FFF" borderRadius="30px" minW="300px">
+						<BookDetailsDeliveryInfo />
+					</GridItem>
+					<GridItem area={"details"} bg="#FFF" borderRadius="30px">
+						<BookDetailsContent book={book} />
+					</GridItem>
+				</Grid>
 			)}
 		</VStack>
 	)

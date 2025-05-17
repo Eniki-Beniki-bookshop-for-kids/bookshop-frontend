@@ -1,8 +1,7 @@
 //src/utils/books/averageRating.ts
-import { Book } from "@/types/models"
+import { Review } from "@/types/models"
 
-export const averageRating = (book: Book): number | null =>
-	book.reviews.length
-		? book.reviews.reduce((sum, review) => sum + review.rating, 0) /
-		  book.reviews.length
+export const averageRating = (reviews: Review[]): number | null =>
+	reviews.length
+		? reviews.reduce((sum, review) => sum + review.rating, 0) / reviews.length
 		: 0

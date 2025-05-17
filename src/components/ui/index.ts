@@ -41,6 +41,7 @@ import { PhoneIcon } from "./svg/phoneIcon"
 import { PigIcon } from "./svg/pigIcon"
 import { SearchIcon } from "./svg/searchIcon"
 import { SettingIcon } from "./svg/settingsIcon"
+import { SuccessCircleIcon } from "./svg/successCircleIcon"
 import { WalletIcon } from "./svg/walletIcon"
 
 export {
@@ -65,6 +66,7 @@ export {
 	EyeToggleIconBtn,
 	FilterSelectTemplate,
 	FlagUkraine,
+	SuccessCircleIcon,
 	HeartIconBtn,
 	LogoApple,
 	LogoFB,

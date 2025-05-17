@@ -24,6 +24,14 @@ const theme = extendTheme({
 		body: "Open Sans, sans-serif",
 		heading: "Open Sans, sans-serif",
 	},
+	breakpoints: {
+		base: "0px",
+		sm: "425px",
+		md: "768px",
+		lg: "1024px",
+		xl: "1280px",
+		"2xl": "1440px",
+	},
 })
 
 export default theme

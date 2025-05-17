@@ -1,4 +1,6 @@
 // src/types/constants.tsx
+import { Carrier, PaymentMethod, ShippingMethod } from "@/types/models"
+import { formatDateToString, formatSegmentLabel } from "@/utils"
 import { ComponentType, ReactNode } from "react"
 import {
 	BonusesContent,
@@ -19,7 +21,6 @@ import {
 	PigIcon,
 	SettingIcon,
 } from "../components/ui"
-import { formatSegmentLabel } from "../utils"
 import {
 	AccountSettingField,
 	DynamicRoute,
@@ -185,6 +186,18 @@ export const genreLink = Object.keys(Genre).map(key => ({
 	label: Genre[key as keyof typeof Genre],
 }))
 
+export const paymentSystems: ImageLinkProps[] = [
+	{ src: "/images/logo_visa.png", alt: "Visa" },
+	{ src: "/images/logo_mastercard.png", alt: "MasterCard" },
+	{ src: "/images/logo_applepay.png", alt: "Apple Pay" },
+	{ src: "/images/logo_googlepay.png", alt: "Google Pay" },
+]
+
+export const carriers: ImageLinkProps[] = [
+	{ src: "/images/logo_nova_poshta.png", alt: Carrier.novaPost },
+	{ src: "/images/logo_ukrposhta.png", alt: Carrier.ukrPost },
+]
+
 export const footerMenu: PageProps[] = [
 	pageLink[1], // catalog
 	pageLink[2], // about
@@ -205,13 +218,6 @@ export const footerContacts: {
 	{ label: "Графік роботи CALL-CENTER" },
 	{ label: "Без вихідних 9:00 - 18:00" },
 	{ label: "ishop@eniki-beniki-factor.ua", isEmail: true },
-]
-
-export const footerPaymentMethods: ImageLinkProps[] = [
-	{ src: "/images/logo_visa.png", alt: "Visa" },
-	{ src: "/images/logo_mastercard.png", alt: "MasterCard" },
-	{ src: "/images/logo_applepay.png", alt: "Apple Pay" },
-	{ src: "/images/logo_googlepay.png", alt: "Google Pay" },
 ]
 
 export const footerSocialMedia: ImageLinkProps[] = [
@@ -307,6 +313,72 @@ export const accountSettingFields: AccountSettingField[] = [
 		placeholder: "Виберіть дату",
 		field: "dateOfBirth",
 	},
+]
+
+export const deliveryOptions: {
+	carrier?: Carrier
+	method: ShippingMethod
+	description: string
+	estimatedDeliveryDate: string
+	shippingCost: number
+}[] = [
+	{
+		carrier: Carrier.novaPost,
+		method: ShippingMethod.Courier,
+		description: "(1-3 дні)",
+		estimatedDeliveryDate: formatDateToString(3),
+		shippingCost: 90,
+	},
+	{
+		carrier: Carrier.novaPost,
+		method: ShippingMethod.Post,
+		description: "(1-3 дні)",
+		estimatedDeliveryDate: formatDateToString(3),
+		shippingCost: 70,
+	},
+	{
+		carrier: Carrier.novaPost,
+		method: ShippingMethod.Express,
+		description: "(1 день)",
+		estimatedDeliveryDate: formatDateToString(1),
+		shippingCost: 120,
+	},
+	{
+		carrier: Carrier.ukrPost,
+		method: ShippingMethod.Courier,
+		description: "(4-5 днів)",
+		estimatedDeliveryDate: formatDateToString(5),
+		shippingCost: 60,
+	},
+	{
+		carrier: Carrier.ukrPost,
+		method: ShippingMethod.Post,
+		description: "(3-5 днів)",
+		estimatedDeliveryDate: formatDateToString(5),
+		shippingCost: 40,
+	},
+	{
+		carrier: Carrier.ukrPost,
+		method: ShippingMethod.Express,
+		description: "(2-3 дні)",
+		estimatedDeliveryDate: formatDateToString(3),
+		shippingCost: 80,
+	},
+	{
+		method: ShippingMethod.Pickup,
+		description: "",
+		estimatedDeliveryDate: formatDateToString(0),
+		shippingCost: 0,
+	},
+]
+
+export const paymentMethods: PaymentMethod[] = [
+	PaymentMethod.CreditCard,
+	PaymentMethod.CashOnDelivery,
+	PaymentMethod.OnlineBanking,
+	PaymentMethod.GooglePay,
+	PaymentMethod.ApplePay,
+	PaymentMethod.PaymentLegalEntities,
 ]
 
 export const noImageSrc =

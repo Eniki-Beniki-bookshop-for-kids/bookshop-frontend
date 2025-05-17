@@ -92,18 +92,19 @@ export enum OrderStatus {
 }
 
 export enum ShippingMethod {
-	Courier = "Кур’єр", // Доставка кур’єром
-	Post = "Пошта", // Доставка через поштові служби
+	Courier = "Кур’єр", // Доставка кур’єром поштового оператора
+	Post = "Відділення", // Доставка на відділення поштового оператора
 	Pickup = "Самовивіз", // Самовивіз із магазину
 	Express = "Експрес-доставка", // Швидка доставка
 }
 
 export enum PaymentMethod {
-	CreditCard = "Кредитна карта", // Оплата кредитною картою
-	CashOnDelivery = "Накладений платіж", // Оплата при доставці
-	OnlineBanking = "Онлайн-банкінг", // Оплата через банківський переказ
-	GooglePay = "Google Pay", // Оплата через Google Pay
-	ApplePay = "Apple Pay", // Оплата через Apple Pay
+	CreditCard = "Картками Visa, Mastercard",
+	CashOnDelivery = "Післяплата",
+	OnlineBanking = "Банківський переказ онлайн",
+	GooglePay = "Google Pay",
+	ApplePay = "Apple Pay",
+	PaymentLegalEntities = "Оплата реквізитами для юр. осіб",
 }
 
 export enum Carrier {

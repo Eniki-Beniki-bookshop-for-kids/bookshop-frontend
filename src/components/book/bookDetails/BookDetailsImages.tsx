@@ -3,7 +3,7 @@
 
 import { whiteBoxSrc } from "@/types/constants"
 import { Book } from "@/types/models"
-import { Box, Image } from "@chakra-ui/react"
+import { Box, Image, VStack } from "@chakra-ui/react"
 import { useEffect, useState } from "react"
 import "swiper/css"
 import "swiper/css/pagination"
@@ -34,58 +34,64 @@ export const BookDetailsImages = ({ book }: BookDetailsImagesProps) => {
 	const thumbnailImages = allImages.filter(image => image !== selectedImage)
 
 	return (
-		<Box w="400px" paddingX={8} pt={8} pb={6} bg="#FFF" borderRadius="30px">
+		<VStack
+			px={8}
+			pt={8}
+			pb={6}
+			// h="500px"
+			w="full"
+			maxW={{ base: "300px", sm: "full" }}
+			minH="400px"
+		>
 			{/* Велике зображення */}
-			<Box
-				w="full"
-				h={{ base: "300px", md: "477px" }}
-				overflow="hidden"
-				position="relative"
-			>
+			<Box overflow="hidden" position="relative" w="100%" h="100%">
 				<Image
-					key={selectedImage} // важливо для коректного transition
 					src={selectedImage}
 					alt={book?.title || "Book image"}
 					objectFit="cover"
-					w="full"
-					h="full"
+					w="100%"
+					h="100%"
+					maxH="400px"
 					fallback={<BookFallback type="whiteBox" />}
-					transition="opacity 0.3s ease-in-out"
-					style={{ opacity: 1 }}
 				/>
 			</Box>
 
 			{/* Свайпер з маленькими картинками */}
-			{thumbnailImages.length > 0 && (
-				<Swiper
-					modules={[Pagination]}
-					spaceBetween={16}
-					slidesPerView={4}
-					pagination={{
-						clickable: true,
-						dynamicBullets: true,
-					}}
-					style={{ width: "100%", marginTop: "20px", paddingBottom: "24px" }}
-				>
-					{thumbnailImages.map((image, idx) => (
-						<SwiperSlide key={image + idx}>
-							<Box w="full" h="72px" cursor="pointer">
-								<Image
-									src={image}
-									alt={`Book ${book?.title} image #${idx + 1}`}
-									objectFit="cover"
-									w="full"
-									h="full"
-									onClick={() => handleImageSelect(image)}
-									fallback={<BookFallback type="whiteBox" />}
-									transition="all 0.2s ease-in-out"
-									_hover={{ transform: "scale(1.05)" }}
-								/>
-							</Box>
-						</SwiperSlide>
-					))}
-				</Swiper>
-			)}
-		</Box>
+			<Box w="full">
+				{thumbnailImages.length > 0 && (
+					<Swiper
+						modules={[Pagination]}
+						spaceBetween={16}
+						breakpoints={{
+							1024: { slidesPerView: 3 },
+							1280: { slidesPerView: 4 },
+						}}
+						pagination={{
+							clickable: true,
+							dynamicBullets: true,
+						}}
+						style={{ marginTop: "20px", paddingBottom: "24px" }}
+					>
+						{thumbnailImages.map((image, idx) => (
+							<SwiperSlide key={image + idx}>
+								<Box w="full" h="72px" cursor="pointer">
+									<Image
+										src={image}
+										alt={`Book ${book?.title} image #${idx + 1}`}
+										objectFit="cover"
+										w="full"
+										h="full"
+										onClick={() => handleImageSelect(image)}
+										fallback={<BookFallback type="whiteBox" />}
+										transition="all 0.2s ease-in-out"
+										_hover={{ transform: "scale(1.05)" }}
+									/>
+								</Box>
+							</SwiperSlide>
+						))}
+					</Swiper>
+				)}
+			</Box>
+		</VStack>
 	)
 }

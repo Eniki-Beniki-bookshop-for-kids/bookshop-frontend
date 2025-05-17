@@ -8,6 +8,116 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+model User {
+  userId        Int       @id @default(autoincrement())
+  email         String    @unique
+  password      String?
+  firstName     String?
+  lastName      String?
+  phoneNumber   String?
+  dateOfBirth   DateTime?
+  gender        Gender?
+  address       String?
+  city          String?
+  postalCode    String?
+  country       String?
+  role          UserRole  @default(User)
+  googleId      String?
+  avatar        String?
+  isActive      Boolean   @default(true)
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+  supabaseId    String?   @unique
+  favoriteBooks Int[]
+  orders        Order[]
+}
+
+model Book {
+  bookId           Int          @id @default(autoincrement())
+  title            String
+  author           String
+  originalTitle    String
+  genre            Genre        @default(Other)
+  categories       Categories[]
+  targetAges       TargetAges[]
+  series           String?
+  publisher        String
+  publicationYear  Int
+  bookType         BookTypes[]
+  pageCount        Int
+  paperType        PaperType?
+  language         Language
+  originalLanguage Language
+  translator       String?
+  coverType        CoverType
+  weight           Int?
+  dimensions       String?
+  isbn             String
+  articleNumber    String
+  price            Float
+  discount         Float        @default(0)
+  stockQuantity    Int
+  description      String?
+  images           String[]
+  isBestseller     Boolean      @default(false)
+  isPublish        Boolean      @default(true)
+  isGifted         Boolean      @default(false)
+  totalSales       Int?
+  createdAt        DateTime     @default(now())
+  updatedAt        DateTime     @updatedAt
+  orderBooks       OrderBook[]
+  reviews          Review[]
+}
+
+model Review {
+  reviewId   Int      @id @default(autoincrement())
+  bookId     Int
+  reviewName String
+  rating     Int      @default(0)
+  reviewText String
+  reviewDate DateTime
+  source     String?
+  avatar     String?
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+  book       Book     @relation(fields: [bookId], references: [bookId])
+}
+
+model Order {
+  orderId         Int            @id @default(autoincrement())
+  userId          Int
+  totalAmount     Float
+  orderDate       DateTime       @default(now())
+  shippingAddress String
+  shippingMethod  ShippingMethod @default(Pickup)
+  paymentMethod   PaymentMethod  @default(CashOnDelivery)
+  status          OrderStatus    @default(Pending)
+  user            User           @relation(fields: [userId], references: [userId])
+  orderBooks      OrderBook[]
+  shipping        Shipping?
+}
+
+model OrderBook {
+  orderId  Int
+  bookId   Int
+  quantity Int
+  book     Book  @relation(fields: [bookId], references: [bookId])
+  order    Order @relation(fields: [orderId], references: [orderId])
+
+  @@id([orderId, bookId])
+}
+
+model Shipping {
+  shippingId            Int       @id @default(autoincrement())
+  orderId               Int       @unique
+  trackingNumber        String?
+  estimatedDeliveryDate DateTime
+  actualDeliveryDate    DateTime?
+  carrier               Carrier   @default(novaPost)
+  shippingCost          Float
+  order                 Order     @relation(fields: [orderId], references: [orderId])
+}
+
 enum Genre {
   Classics
   Fantasy
@@ -109,6 +219,7 @@ enum PaymentMethod {
   OnlineBanking
   GooglePay
   ApplePay
+  PaymentLegalEntities
 }
 
 enum Carrier {
@@ -126,114 +237,4 @@ enum Gender {
   male
   female
   other
-}
-
-model User {
-  userId        Int       @id @default(autoincrement())
-  supabaseId    String?   @unique
-  email         String    @unique
-  password      String?
-  firstName     String?
-  lastName      String?
-  phoneNumber   String?
-  dateOfBirth   DateTime?
-  gender        Gender?
-  address       String?
-  city          String?
-  postalCode    String?
-  country       String?
-  role          UserRole  @default(User)
-  googleId      String?
-  avatar        String?
-  isActive      Boolean   @default(true)
-  favoriteBooks Int[]
-  createdAt     DateTime  @default(now())
-  updatedAt     DateTime  @updatedAt
-  orders        Order[]
-}
-
-model Book {
-  bookId           Int          @id @default(autoincrement())
-  title            String
-  author           String
-  originalTitle    String
-  genre            Genre        @default(Other)
-  categories       Categories[]
-  targetAges       TargetAges[]
-  series           String?
-  publisher        String
-  publicationYear  Int
-  bookType         BookTypes[]
-  pageCount        Int
-  paperType        PaperType?
-  language         Language
-  originalLanguage Language
-  translator       String?
-  coverType        CoverType
-  weight           Int?
-  dimensions       String?
-  isbn             String
-  articleNumber    String
-  price            Float
-  discount         Float        @default(0)
-  stockQuantity    Int
-  description      String?
-  images           String[]
-  isBestseller     Boolean      @default(false)
-  isPublish        Boolean      @default(true)
-  isGifted         Boolean      @default(false)
-  totalSales       Int?
-  createdAt        DateTime     @default(now())
-  updatedAt        DateTime     @updatedAt
-  reviews          Review[]
-  orderBooks       OrderBook[]
-}
-
-model Review {
-  reviewId   Int      @id @default(autoincrement())
-  bookId     Int
-  book       Book     @relation(fields: [bookId], references: [bookId])
-  reviewName String
-  rating     Int      @default(0)
-  reviewText String
-  reviewDate DateTime
-  source     String?
-  avatar     String?
-  createdAt  DateTime @default(now())
-  updatedAt  DateTime @updatedAt
-}
-
-model Order {
-  orderId         Int            @id @default(autoincrement())
-  userId          Int
-  user            User           @relation(fields: [userId], references: [userId])
-  totalAmount     Float
-  orderDate       DateTime       @default(now())
-  shippingAddress String
-  shippingMethod  ShippingMethod @default(Pickup)
-  paymentMethod   PaymentMethod  @default(CashOnDelivery)
-  status          OrderStatus    @default(Pending)
-  shipping        Shipping?
-  orderBooks      OrderBook[]
-}
-
-model OrderBook {
-  orderId  Int
-  bookId   Int
-  quantity Int
-  order    Order @relation(fields: [orderId], references: [orderId])
-  book     Book  @relation(fields: [bookId], references: [bookId])
-
-  @@id([orderId, bookId])
-}
-
-model Shipping {
-  shippingId            Int       @id @default(autoincrement())
-  orderId               Int       @unique
-  order                 Order     @relation(fields: [orderId], references: [orderId])
-  trackingNumber        String?
-  estimatedDeliveryDate DateTime
-  actualDeliveryDate    DateTime?
-  carrier               Carrier   @default(novaPost)
-  shippingCost          Float
 }
