@@ -1,3 +1,4 @@
+import { getBookFeatures } from "./getBookFeatures"
 import { mapSearchParamsToFilters } from "./mapSearchParamsToFilters"
 import { averageRating } from "./averageRating"
 import {
@@ -20,4 +21,5 @@ export {
 	transformFilterParamsToServerCriteria,
 	transformServerToClientBook,
 	mapSearchParamsToFilters,
+	getBookFeatures,
 }

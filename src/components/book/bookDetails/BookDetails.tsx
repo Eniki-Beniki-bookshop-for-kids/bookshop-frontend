@@ -47,8 +47,8 @@ export const BookDetails = ({ bookId }: BookDetailsProps) => {
 					templateAreas={`"img details" "info details"`}
 					gridTemplateRows={"auto auto"}
 					gridTemplateColumns={"35% auto"}
-					gap="32px"
-					pb="120px"
+					gap={{ base: "16px", md: "32px" }}
+					pb={{ base: "60px", md: "120px" }}
 					maxW="1440px"
 					w="full"
 				>

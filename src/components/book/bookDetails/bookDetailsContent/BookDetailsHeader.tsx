@@ -4,6 +4,7 @@
 import { Book } from "@/types/models"
 import { Box, HStack, Text, VStack } from "@chakra-ui/react"
 import { BookRating } from "../../bookCard"
+import { BookDetailsSectionName } from "./BookDetailsSectionName"
 
 interface BookDetailsHeaderProps {
 	book: Book
@@ -28,9 +29,7 @@ export const BookDetailsHeader = ({ book }: BookDetailsHeaderProps) => {
 			</VStack>
 
 			<VStack align="start" spacing={4}>
-				<Text fontSize={{ base: "16px", lg: "18px", xl: "20px" }}>
-					Тип книги
-				</Text>
+				<BookDetailsSectionName text="Тип книги" />
 				<HStack spacing={3}>
 					{bookType.map((type, idx) => (
 						<Box

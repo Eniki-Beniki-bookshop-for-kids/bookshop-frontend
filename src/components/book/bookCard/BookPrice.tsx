@@ -28,18 +28,21 @@ export const BookPrice = ({
 			{hasDiscount ? (
 				<>
 					<Text
+						as="span"
 						color="customGray"
 						textDecoration="line-through"
 						whiteSpace="nowrap"
 					>
 						{price} ₴
 					</Text>
-					<Text fontWeight="bold" whiteSpace="nowrap">
+					<Text as="span" fontWeight="bold" whiteSpace="nowrap">
 						{discountedPrice} ₴
 					</Text>
 				</>
 			) : (
-				<Text whiteSpace="nowrap">{price} ₴</Text>
+				<Text as="span" whiteSpace="nowrap">
+					{price} ₴
+				</Text>
 			)}
 		</HStack>
 	)
