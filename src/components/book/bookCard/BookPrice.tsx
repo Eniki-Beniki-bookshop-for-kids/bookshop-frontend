@@ -1,36 +1,45 @@
 // src/components/book/BookPrice.tsx
+import { adaptiveFontSize } from "@/types/constants"
 import { Book } from "@/types/models"
 import { HStack, Text } from "@chakra-ui/react"
 
-interface BookCardProps {
-	book: Book
+interface BookPriceProps {
+	price: Book["price"]
+	discount: Book["discount"]
+	fontSize?: number
 }
 
-export const BookPrice = ({ book }: BookCardProps) => {
-	const hasDiscount = book.discount > 0
+export const BookPrice = ({
+	price,
+	discount,
+	fontSize = 20,
+}: BookPriceProps) => {
+	const hasDiscount = discount > 0
 	const discountedPrice = hasDiscount
-		? Math.round(book.price * (1 - book.discount))
-		: book.price
+		? Math.round(price * (1 - discount))
+		: price
 
 	return (
-		<HStack spacing={2}>
+		<HStack
+			spacing={2}
+			color="customDarkGray"
+			fontSize={adaptiveFontSize(fontSize)}
+		>
 			{hasDiscount ? (
 				<>
 					<Text
-						fontSize="20px"
 						color="customGray"
 						textDecoration="line-through"
+						whiteSpace="nowrap"
 					>
-						{book.price} ₴
+						{price} ₴
 					</Text>
-					<Text fontSize="20px" color="customDarkGray" fontWeight="bold">
+					<Text fontWeight="bold" whiteSpace="nowrap">
 						{discountedPrice} ₴
 					</Text>
 				</>
 			) : (
-				<Text fontSize="20px" color="customDarkGray">
-					{book.price} ₴
-				</Text>
+				<Text whiteSpace="nowrap">{price} ₴</Text>
 			)}
 		</HStack>
 	)

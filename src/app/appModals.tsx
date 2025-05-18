@@ -1,3 +1,5 @@
+// src/app/AppModals.tsx
+
 "use client"
 
 import { AuthModal, CartModal } from "../components/modals"

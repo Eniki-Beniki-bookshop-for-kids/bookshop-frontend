@@ -17,7 +17,7 @@ interface BookCardProps {
 export const BookCard = ({ book }: BookCardProps) => {
 	const router = useRouter()
 	const marker = getBookMarker(book)
-	const { bookId, discount, genre, title, author, reviews } = book
+	const { bookId, discount, genre, title, author, reviews, price } = book
 
 	const hasDiscount = discount > 0
 	const discountCalc = hasDiscount ? -Math.round(discount * 100) : 0
@@ -60,7 +60,7 @@ export const BookCard = ({ book }: BookCardProps) => {
 					{author}
 				</Text>
 				<BookRating reviews={reviews} />
-				<BookPrice book={book} />
+				<BookPrice price={price} discount={discount} />
 			</VStack>
 		</VStack>
 	)

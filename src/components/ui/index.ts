@@ -19,6 +19,7 @@ import { RangeSliderTemplate } from "./sliders/rangeSliderTemplate"
 import { ArrowDownIcon } from "./svg/arrowDownIcon"
 import { ArrowLeftIcon } from "./svg/arrowLeftIcon"
 import { ArrowRightIcon } from "./svg/arrowRightIcon"
+import { ArrowUpIcon } from "./svg/arrowUpIcon"
 import { BellIcon } from "./svg/bellIcon"
 import { BookCatalogIcon } from "./svg/bookCatalogIcon"
 import { ChatIcon } from "./svg/chatIcon"
@@ -49,6 +50,7 @@ export {
 	ArrowDownIcon,
 	ArrowLeftIcon,
 	ArrowRightIcon,
+	ArrowUpIcon,
 	BasketIconBtn,
 	BellIcon,
 	BookCatalogIcon,
@@ -66,7 +68,6 @@ export {
 	EyeToggleIconBtn,
 	FilterSelectTemplate,
 	FlagUkraine,
-	SuccessCircleIcon,
 	HeartIconBtn,
 	LogoApple,
 	LogoFB,
@@ -86,6 +87,7 @@ export {
 	RangeSliderTemplate,
 	SearchIcon,
 	SettingIcon,
+	SuccessCircleIcon,
 	TelegramLoginButton,
 	TrashIconBtn,
 	UserIconBtn,

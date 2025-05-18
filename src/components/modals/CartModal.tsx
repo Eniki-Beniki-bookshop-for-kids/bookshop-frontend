@@ -14,7 +14,7 @@ import {
 	ModalOverlay,
 } from "@chakra-ui/react"
 import { FC } from "react"
-import { ModalTemplateProps } from "../../types/propsInterfaces"
+import { ModalTemplateProps } from "@/types/propsInterfaces"
 
 export const CartModal: FC<ModalTemplateProps> = ({ isOpen, onClose }) => {
 	return (

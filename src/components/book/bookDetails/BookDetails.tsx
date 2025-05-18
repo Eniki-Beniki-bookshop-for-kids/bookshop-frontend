@@ -6,7 +6,7 @@ import { useBooks } from "@/hooks"
 import { Book } from "@/types/models"
 import { Grid, GridItem, VStack } from "@chakra-ui/react"
 import { useEffect, useState } from "react"
-import { BookDetailsContent } from "./BookDetailsContent"
+import { BookDetailsContent } from "./bookDetailsContent/BookDetailsContent"
 import { BookDetailsDeliveryInfo } from "./BookDetailsDeliveryInfo"
 import { BookDetailsImages } from "./BookDetailsImages"
 // import { BookDetailsContent } from "./BookDetailsContent"
@@ -38,7 +38,7 @@ export const BookDetails = ({ bookId }: BookDetailsProps) => {
 	}
 
 	return (
-		<VStack>
+		<VStack align="start">
 			{isLoading && (
 				<Loader isLoading={isLoading} variant="metronome" size="100" />
 			)}
@@ -48,7 +48,6 @@ export const BookDetails = ({ bookId }: BookDetailsProps) => {
 					gridTemplateRows={"auto auto"}
 					gridTemplateColumns={"35% auto"}
 					gap="32px"
-					px={{ sm: "16px", md: "0px" }}
 					pb="120px"
 					maxW="1440px"
 					w="full"

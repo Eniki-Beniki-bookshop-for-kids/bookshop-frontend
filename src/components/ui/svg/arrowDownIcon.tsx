@@ -4,7 +4,7 @@ import { FC } from "react"
 
 export const ArrowDownIcon: FC<IButtonProps> = ({
 	colorFill = getTailwindColor("customBlack") || "#0E0E0E",
-	size = 18,
+	size = 18
 }) => {
 	return (
 		<svg

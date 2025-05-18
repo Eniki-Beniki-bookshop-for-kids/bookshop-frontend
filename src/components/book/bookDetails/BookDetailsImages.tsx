@@ -1,7 +1,7 @@
 // src/components/book/bookDetails/BookDetailsImages.tsx
 "use client"
 
-import { whiteBoxSrc } from "@/types/constants"
+import { adaptiveHeigh, whiteBoxSrc } from "@/types/constants"
 import { Book } from "@/types/models"
 import { Box, Image, VStack } from "@chakra-ui/react"
 import { useEffect, useState } from "react"
@@ -16,8 +16,8 @@ interface BookDetailsImagesProps {
 }
 
 export const BookDetailsImages = ({ book }: BookDetailsImagesProps) => {
-	const [selectedImage, setSelectedImage] = useState<string>(whiteBoxSrc)
 	const allImages = book?.images || []
+	const [selectedImage, setSelectedImage] = useState<string>(whiteBoxSrc)
 
 	useEffect(() => {
 		if (book && book.images.length > 0) {
@@ -34,24 +34,15 @@ export const BookDetailsImages = ({ book }: BookDetailsImagesProps) => {
 	const thumbnailImages = allImages.filter(image => image !== selectedImage)
 
 	return (
-		<VStack
-			px={8}
-			pt={8}
-			pb={6}
-			// h="500px"
-			w="full"
-			maxW={{ base: "300px", sm: "full" }}
-			minH="400px"
-		>
+		<VStack px={8} pt={8} pb={6} w="full">
 			{/* Велике зображення */}
-			<Box overflow="hidden" position="relative" w="100%" h="100%">
+			<Box overflow="hidden" position="relative" w="100%" h={adaptiveHeigh}>
 				<Image
 					src={selectedImage}
 					alt={book?.title || "Book image"}
 					objectFit="cover"
 					w="100%"
 					h="100%"
-					maxH="400px"
 					fallback={<BookFallback type="whiteBox" />}
 				/>
 			</Box>
@@ -63,8 +54,10 @@ export const BookDetailsImages = ({ book }: BookDetailsImagesProps) => {
 						modules={[Pagination]}
 						spaceBetween={16}
 						breakpoints={{
-							1024: { slidesPerView: 3 },
-							1280: { slidesPerView: 4 },
+							0: { slidesPerView: 2 },
+							425: { slidesPerView: 3 },
+							768: { slidesPerView: 4 },
+							1280: { slidesPerView: 5 },
 						}}
 						pagination={{
 							clickable: true,

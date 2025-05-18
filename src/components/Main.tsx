@@ -10,7 +10,7 @@ export const Main = ({ children }: { children: ReactNode }) => {
 			flex={1}
 			w="full"
 			pb={3}
-			px={{ md: "20px", lg: "80px" }}
+			px={{ base: 4, sm: 4, md: 5, lg: 10 }}
 			bg="customWhite"
 		>
 			<Breadcrumbs />

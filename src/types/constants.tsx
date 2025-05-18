@@ -40,6 +40,24 @@ export const authCredentials = {
 	confirmPassword: "",
 }
 
+export const adaptiveFontSize = (fontSize: number) => ({
+	base: `${fontSize - 8}px`,
+	sm: `${fontSize - 8}px`,
+	md: `${fontSize - 6}px`,
+	lg: `${fontSize - 4}px`,
+	xl: `${fontSize}px`,
+	"2xl": `${fontSize}px`,
+})
+
+export const adaptiveHeigh = {
+	base: "300px",
+	sm: "300px",
+	md: "300px",
+	lg: "360px",
+	xl: "477px",
+	"2xl": "477px",
+}
+
 // УВАГА! Нові сторінки додаються в кінець масиву
 export const pageLink: PageProps[] = [
 	{ href: "/", label: "Головна" }, //0
