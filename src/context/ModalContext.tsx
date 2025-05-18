@@ -6,7 +6,6 @@ import { Book } from "../types/models"
 
 interface ModalOptions {
 	book?: Book
-	[key: string]: any
 }
 
 interface ModalContextType {

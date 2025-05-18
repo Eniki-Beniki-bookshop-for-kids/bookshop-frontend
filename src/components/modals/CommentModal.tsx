@@ -31,13 +31,6 @@ export const CommentModal: FC<ModalTemplateProps> = ({ isOpen, onClose }) => {
 	const handleSubmit = () => {
 		const currentDate = new Date().toISOString()
 
-		const maxReviewId = modalOptions?.book
-			? (modalOptions.book.reviews || []).reduce(
-					(max, review) => Math.max(max, review.reviewId),
-					0,
-			  )
-			: 0
-
 		const review: Review = {
 			bookId: modalOptions?.book?.bookId || 0,
 			reviewId: (modalOptions?.book?.reviews?.length ?? 0) + 1,
