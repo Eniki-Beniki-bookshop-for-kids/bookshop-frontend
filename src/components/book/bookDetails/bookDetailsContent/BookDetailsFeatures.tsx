@@ -44,42 +44,40 @@ export const BookDetailsFeatures = ({ book }: BookDetailsFeaturesProps) => {
 				w="full"
 			>
 				<VStack w="full" align="start" spacing={2} ref={contentRef}>
-					{visibleFeatures.map((feature, index) => (
-						<>
-							<HStack
-								key={index}
-								w="full"
-								justify="space-between"
-								borderBottomWidth={1}
-								borderBottomColor="customStroke"
-								py={1}
+					{visibleFeatures.map((feature, idx) => (
+						<HStack
+							key={`${feature.value}+${idx}`}
+							w="full"
+							justify="space-between"
+							borderBottomWidth={1}
+							borderBottomColor="customStroke"
+							py={1}
+						>
+							<Text
+								as="span"
+								fontSize={{ base: "12px", lg: "14px", xl: "16px" }}
+								color="customBlack"
+								fontWeight="bold"
 							>
-								<Text
-									as="span"
-									fontSize={{ base: "12px", lg: "14px", xl: "16px" }}
-									color="customBlack"
-									fontWeight="bold"
-								>
-									{feature.key}
-								</Text>
-								<Text
-									as="span"
-									textAlign="end"
-									fontSize={{ base: "12px", lg: "14px", xl: "16px" }}
-									color="customDarkGray"
-								>
-									{feature.value || (
-										<Text
-											as="span"
-											fontSize={{ base: "12px", lg: "14px", xl: "16px" }}
-											color="customLightGray"
-										>
-											Немає даних
-										</Text>
-									)}
-								</Text>
-							</HStack>
-						</>
+								{feature.key}
+							</Text>
+							<Text
+								as="span"
+								textAlign="end"
+								fontSize={{ base: "12px", lg: "14px", xl: "16px" }}
+								color="customDarkGray"
+							>
+								{feature.value || (
+									<Text
+										as="span"
+										fontSize={{ base: "12px", lg: "14px", xl: "16px" }}
+										color="customLightGray"
+									>
+										Немає даних
+									</Text>
+								)}
+							</Text>
+						</HStack>
 					))}
 				</VStack>
 			</Box>

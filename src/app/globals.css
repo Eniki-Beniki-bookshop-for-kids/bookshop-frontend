@@ -7,6 +7,10 @@ html {
 }
 
 /* Кастомні стилі для Swiper */
+.swiper-slide {
+	height: auto !important;
+}
+
 .swiper-button-next,
 .swiper-button-prev {
 	color: #8748ff !important; /* customViolet */

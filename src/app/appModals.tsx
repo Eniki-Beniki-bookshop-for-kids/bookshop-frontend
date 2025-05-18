@@ -2,7 +2,7 @@
 
 "use client"
 
-import { AuthModal, CartModal } from "../components/modals"
+import { AuthModal, CartModal, CommentModal } from "../components/modals"
 import { useModal } from "../context/ModalContext"
 
 export const AppModals = () => {
@@ -15,6 +15,9 @@ export const AppModals = () => {
 			)}
 			{currentModal === "cart" && (
 				<CartModal isOpen={true} onClose={closeModal} />
+			)}
+			{currentModal === "comment" && (
+				<CommentModal isOpen={true} onClose={closeModal} />
 			)}
 		</>
 	)
