@@ -31,7 +31,7 @@ export const BookCard = ({ book }: BookCardProps) => {
 			h="auto"
 			cursor="pointer"
 			onClick={() => router.push(`/catalog/book/${genreSlug}/${bookId}`)}
-			_hover={{ transform: "scale(1.02, 1.02)", transformOrigin: "top left" }}
+			_hover={{ transform: "scale(1.01)" }}
 			transition="all 0.2s"
 		>
 			<VStack

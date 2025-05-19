@@ -66,7 +66,7 @@ export const useBooks = (sort?: SortParams) => {
 		],
 	)
 
-	// Метод для фетчингу книг за типом (для головної сторінки)
+	// для отримання книг за типом (для головної сторінки)
 	const fetchBooksByType = useCallback(
 		async (type: "bestsellerBooks" | "discountBooks" | "newBooks") => {
 			setLoading(true)
@@ -129,7 +129,15 @@ export const useBooks = (sort?: SortParams) => {
 		],
 	)
 
-	// Новий метод для фетчингу однієї книги за bookId
+	// Фетчинг книг за жанром
+	const fetchBooksByGenre = useCallback(
+		async (genre: string) => {
+			await fetchBooks({ genre })
+		},
+		[fetchBooks],
+	)
+
+	// для отримання книги за bookId
 	const fetchBookById = useCallback(
 		async (bookId: string): Promise<Book> => {
 			setLoading(true)
@@ -183,6 +191,7 @@ export const useBooks = (sort?: SortParams) => {
 		changePage,
 		refetchBooks,
 		fetchBooksByType,
+		fetchBooksByGenre,
 		fetchBookById,
 		clearError,
 	}

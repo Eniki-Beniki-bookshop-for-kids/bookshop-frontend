@@ -1,5 +1,11 @@
-import { BookDetails } from "./bookDetails/BookDetails"
 import { BookCarousel } from "./BookCarousel"
+import { BookDetails } from "./bookDetails/BookDetails"
+import { GenreBooksCarousel } from "./bookDetails/GenreBooksCarousel"
 import { BookSearchContentWrapper } from "./bookSearch/BookSearchContentWrapper"
 
-export { BookCarousel, BookSearchContentWrapper, BookDetails }
+export {
+	BookCarousel,
+	BookDetails,
+	BookSearchContentWrapper,
+	GenreBooksCarousel,
+}

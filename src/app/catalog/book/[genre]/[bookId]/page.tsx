@@ -1,5 +1,5 @@
 // src/app/catalog/book/[genre]/[bookId]/page.tsx
-import { BookDetails } from "@/components/book"
+import { BookDetails, GenreBooksCarousel } from "@/components/book"
 import { VStack } from "@chakra-ui/react"
 
 interface BookPageProps {
@@ -7,11 +7,12 @@ interface BookPageProps {
 }
 
 export default async function BookPage({ params }: BookPageProps) {
-	const { bookId } = await params
+	const { genre, bookId } = await params
 
 	return (
-		<VStack w="full" align="start">
+		<VStack w="full" align="start" spacing={{ base: "60px", md: "120px" }}>
 			<BookDetails bookId={bookId} />
+			<GenreBooksCarousel genre={genre} />
 		</VStack>
 	)
 }
