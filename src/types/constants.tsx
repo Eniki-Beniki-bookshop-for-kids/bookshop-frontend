@@ -224,6 +224,12 @@ export const statusOptions = [
 	{ label: "Бестселери", value: "bestseller", filter: { isBestseller: true } },
 ]
 
+export const ageOptions = Object.entries(TargetAges).map(([value, label]) => ({
+	value,
+	label,
+	filter: value as TargetAges,
+}))
+
 // Блок констант для рендеру сторінки книги
 export const paymentSystems: ImageLinkProps[] = [
 	{ src: "/images/logo_visa.png", alt: "Visa" },

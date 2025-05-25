@@ -1,9 +1,18 @@
 "use client"
 
-import { FilterSelectTemplateProps } from "@/types/propsInterfaces"
 import { Box, Select } from "@chakra-ui/react"
 import { useState } from "react"
 import { MdArrowDropDown, MdArrowDropUp } from "react-icons/md"
+
+interface FilterSelectTemplateProps {
+	placeholder?: string
+	options: { value: string; label: string }[]
+	onChange?: (value: string) => void
+	defaultValue?: string
+	error?: string
+	mb?: number | string
+	mt?: number | string
+}
 
 export const FilterSelectTemplate = ({
 	placeholder = "Сортування",

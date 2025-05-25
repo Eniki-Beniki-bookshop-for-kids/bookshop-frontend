@@ -3,20 +3,17 @@
 
 import { Loader } from "@/components/Loader"
 import { ButtonTemplate, RangeSliderTemplate } from "@/components/ui"
+import { useFilter } from "@/context/FilterContext"
 import { usePriceRange } from "@/hooks"
-import { BookFilters } from "@/types/interfaces"
 import { HStack, Text, VStack } from "@chakra-ui/react"
 import { useEffect, useState } from "react"
 import { FilterTitle } from "./FilterTitle"
 
-export const PriceFilter = ({
-	onFilterChange,
-}: {
-	onFilterChange: (filters: BookFilters) => void
-}) => {
+export const PriceFilter = () => {
+	const { filters, updateFilters } = useFilter()
 	const { priceRange: fetchedRange, loading, error } = usePriceRange()
 	const [isExpanded, setIsExpanded] = useState(true)
-	const [priceRange, setPriceRange] = useState<[number, number]>([0, 10000])
+	const [priceRange, setPriceRange] = useState<[number, number]>(fetchedRange)
 
 	useEffect(() => {
 		if (!loading && !error) {
@@ -29,8 +26,24 @@ export const PriceFilter = ({
 	}
 
 	const handleSubmit = () => {
-		onFilterChange({ price: { min: priceRange[0], max: priceRange[1] } })
+		updateFilters({ price: { min: priceRange[0], max: priceRange[1] } })
 	}
+
+	useEffect(() => {
+		if (filters.price) {
+			const { min = fetchedRange[0], max = fetchedRange[1] } = filters.price
+			setPriceRange([min, max])
+		} else {
+			setPriceRange(fetchedRange)
+		}
+	}, [filters.price, fetchedRange])
+
+	// Додатковий useEffect для скидання priceRange при зміні filters
+	useEffect(() => {
+		if (Object.keys(filters).length === 0) {
+			setPriceRange(fetchedRange)
+		}
+	}, [filters, fetchedRange])
 
 	return (
 		<VStack align="start" spacing={5}>
@@ -51,6 +64,7 @@ export const PriceFilter = ({
 						min={fetchedRange[0]}
 						max={fetchedRange[1]}
 						defaultValue={fetchedRange}
+						value={priceRange}
 						onChange={handleChange}
 					/>
 					<HStack w="full" justify="space-between">

@@ -46,29 +46,11 @@ export interface RadioCheckboxTemplateProps {
 	onChange?: (value: string) => void
 }
 
-export interface RangeSliderTemplateProps {
-	min?: number
-	max?: number
-	defaultValue?: [number, number]
-	onChange?: (value: [number, number]) => void
-}
-
 export interface AccountSelectTemplateProps extends SelectProps {
 	error?: string
 	mb?: number | string
 	mt?: number | string
 	children?: ReactNode
-}
-
-// Для FilterSelectTemplate
-export interface FilterSelectTemplateProps {
-	placeholder?: string
-	options: { value: string; label: string }[]
-	onChange?: (value: string) => void
-	defaultValue?: string
-	error?: string
-	mb?: number | string
-	mt?: number | string
 }
 
 export interface ModalTemplateProps {

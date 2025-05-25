@@ -95,7 +95,7 @@ export interface AccountSettingField {
 // Фільтри, які застосовуються для пошуку книг
 type StatusValue = (typeof statusOptions)[number]["value"]
 export interface BookFilters {
-	status?: StatusValue
+	status?: StatusValue[]
 	title?: string
 	author?: string
 	description?: string
@@ -109,6 +109,7 @@ export interface BookFilters {
 	originalLanguage?: Language
 	coverType?: CoverType
 	price?: { min?: number; max?: number }
+	[key: string]: unknown
 }
 
 // Тип фільтрів книг для клієнтських параметрів

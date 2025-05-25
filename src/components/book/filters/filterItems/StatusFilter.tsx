@@ -2,18 +2,17 @@
 "use client"
 
 import { MultipleCheckboxTemplate } from "@/components/ui"
+import { useFilter } from "@/context/FilterContext"
 import { statusOptions } from "@/types/constants"
-import { BookFilters } from "@/types/interfaces"
 import { VStack } from "@chakra-ui/react"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { FilterTitle } from "./FilterTitle"
 
-export const StatusFilter = ({
-	onFilterChange,
-}: {
-	onFilterChange: (filters: BookFilters) => void
-}) => {
-	const [selectedStatuses, setSelectedStatuses] = useState<string[]>([])
+export const StatusFilter = () => {
+	const { filters, updateFilters } = useFilter()
+	const [selectedStatuses, setSelectedStatuses] = useState<string[]>(
+		filters.status || [],
+	)
 	const [isExpanded, setIsExpanded] = useState(true)
 
 	const handleChange = (value: string, checked: boolean) => {
@@ -21,15 +20,12 @@ export const StatusFilter = ({
 			? [...selectedStatuses, value]
 			: selectedStatuses.filter(s => s !== value)
 		setSelectedStatuses(newStatuses)
-
-		// Комбінуємо фільтри з statusOptions
-		const filters: BookFilters = newStatuses.reduce((acc, status) => {
-			const option = statusOptions.find(opt => opt.value === status)
-			return { ...acc, ...option?.filter } as BookFilters
-		}, {} as BookFilters)
-
-		onFilterChange(filters)
+		updateFilters({ status: newStatuses.length > 0 ? newStatuses : undefined })
 	}
+
+	useEffect(() => {
+		setSelectedStatuses(filters.status || [])
+	}, [filters.status])
 
 	return (
 		<VStack align="start" spacing={5}>
@@ -44,8 +40,10 @@ export const StatusFilter = ({
 						<MultipleCheckboxTemplate
 							key={option.value}
 							label={option.label}
-							isChecked={selectedStatuses.includes(option.value)}
-							onChange={checked => handleChange(option.value, checked)}
+							isChecked={selectedStatuses.includes(option.value as string)}
+							onChange={checked =>
+								handleChange(option.value as string, checked)
+							}
 						/>
 					))}
 			</VStack>

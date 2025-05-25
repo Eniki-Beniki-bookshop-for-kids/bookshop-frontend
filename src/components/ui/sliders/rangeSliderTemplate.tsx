@@ -1,6 +1,5 @@
 "use client"
 
-import { RangeSliderTemplateProps } from "@/types/propsInterfaces"
 import {
 	Box,
 	RangeSlider,
@@ -8,28 +7,35 @@ import {
 	RangeSliderThumb,
 	RangeSliderTrack,
 } from "@chakra-ui/react"
-import { useState } from "react"
+
+interface RangeSliderTemplateProps {
+	min?: number
+	max?: number
+	defaultValue?: [number, number]
+	value?: [number, number]
+	onChange?: (value: [number, number]) => void
+}
 
 export const RangeSliderTemplate = ({
 	min = 0,
 	max = 10000,
-	defaultValue = [0, 2000],
+	defaultValue = [0, 10000],
+	value,
 	onChange,
 }: RangeSliderTemplateProps) => {
-	const [values, setValues] = useState<[number, number]>(defaultValue)
+	const controlledValue = value || defaultValue
 
 	const handleChange = (newValues: [number, number]) => {
-		setValues(newValues)
 		onChange?.(newValues)
 	}
 
 	return (
-		<Box width="full" maxWidth="400px">
+		<Box width="full" maxWidth="400px" px={2}>
 			<RangeSlider
 				aria-label={["min", "max"]!}
 				min={min}
 				max={max}
-				value={values}
+				value={controlledValue}
 				onChange={handleChange}
 			>
 				{/* Трек-лінія */}

@@ -17,13 +17,15 @@ export const buildBookWhereClause = (
 	const where: BookWhereInput = {}
 
 	// Обробка статусу, виходячи з фільтрів в константі statusOptions
-	if (criteria.status) {
-		const statusRule = statusOptions.find(
-			option => option.value === criteria.status,
-		)?.filter
-		if (statusRule) {
-			Object.assign(where, statusRule)
-		}
+	if (
+		criteria.status &&
+		Array.isArray(criteria.status) &&
+		criteria.status.length > 0
+	) {
+		where.OR = criteria.status.map(
+			status =>
+				statusOptions.find(option => option.value === status)?.filter || {},
+		)
 	}
 
 	// Об'єднуємо title і author через OR для запиту на Призму, якщо вони присутні і мають однакове значення

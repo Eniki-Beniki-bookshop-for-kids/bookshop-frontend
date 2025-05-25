@@ -1,16 +1,20 @@
 // src/components/book/filters/FilterSidebar.tsx
 "use client"
 
-import { BookFilters } from "@/types/interfaces"
-import { HStack, Text, VStack } from "@chakra-ui/react"
-import { FilterIcon } from "../../ui"
-import { PriceFilter, StatusFilter } from "./filterItems"
+import { FilterIcon } from "@/components/ui"
+import { useFilter } from "@/context/FilterContext"
+import { Button, HStack, Text, VStack } from "@chakra-ui/react"
+import { AgeFilter, PriceFilter, StatusFilter } from "./filterItems"
+import { useEffect } from "react"
 
-interface FilterSidebarProps {
-	onFilterChange: (filters: BookFilters) => void
-}
+export const FilterSidebar = ({ initialFilter }: { initialFilter: string }) => {
+	const { filters, resetFilters } = useFilter()
 
-export const FilterSidebar = ({ onFilterChange }: FilterSidebarProps) => {
+	useEffect(() => {
+		console.log(initialFilter)
+		console.log(filters)
+	}, [initialFilter, filters])
+
 	return (
 		<VStack
 			align="stretch"
@@ -26,8 +30,12 @@ export const FilterSidebar = ({ onFilterChange }: FilterSidebarProps) => {
 				<FilterIcon />
 				<Text fontSize={{ base: "20px", lg: "24px" }}>Фільтри</Text>
 			</HStack>
-			<StatusFilter onFilterChange={onFilterChange} />
-			<PriceFilter onFilterChange={onFilterChange} />
+			<Button onClick={resetFilters} colorScheme="red" variant="outline">
+				Скинути всі фільтри
+			</Button>
+			<StatusFilter />
+			<PriceFilter />
+			<AgeFilter />
 		</VStack>
 	)
 }
