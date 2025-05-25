@@ -23,6 +23,7 @@ const fetchData = async <T>(
 	}
 }
 
+// отримання всіх книг за мульти-фільтрами
 export const getFilteredBooks = async (
 	filters: BookFilters,
 	page: number,
@@ -43,4 +44,13 @@ export const getBookById = async (bookId: string): Promise<Book> => {
 		undefined,
 		`book with ID ${bookId}`,
 	)
+}
+
+// отримання діапазону цін
+export const getPriceRange = async (): Promise<[number, number]> => {
+	return fetchData<{ priceRange: [number, number] }>(
+		"/api/price-range",
+		undefined,
+		"price range",
+	).then(data => data.priceRange)
 }

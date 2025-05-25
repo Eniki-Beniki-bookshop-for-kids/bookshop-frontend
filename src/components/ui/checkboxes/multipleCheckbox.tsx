@@ -1,8 +1,8 @@
 "use client"
 
-import { Checkbox } from "@chakra-ui/react"
+import { CheckboxTemplateProps } from "@/types/propsInterfaces"
+import { Checkbox, Text } from "@chakra-ui/react"
 import { useState } from "react"
-import { CheckboxTemplateProps } from "../../../types/propsInterfaces"
 
 export const MultipleCheckboxTemplate = ({
 	isChecked = false,
@@ -58,7 +58,11 @@ export const MultipleCheckboxTemplate = ({
 			}}
 			{...props}
 		>
-			{label && <span>{label}</span>}
+			{label && (
+				<Text as="span" fontSize={{ base: "14px", md: "16px", lg: "18px" }}>
+					{label}
+				</Text>
+			)}
 		</Checkbox>
 	)
 }

@@ -27,6 +27,7 @@ import { CommentIcon } from "./svg/commentIcon"
 import { DeliveryIcon } from "./svg/deliveryIcon"
 import { EmailIcon } from "./svg/emailIcon"
 import { ExchangeIcon } from "./svg/exchangeIcon"
+import { FilterIcon } from "./svg/filterIcon"
 import { FlagUkraine } from "./svg/flagUkraine"
 import { LogoApple } from "./svg/logoApple"
 import { LogoFB } from "./svg/logoFB"
@@ -66,6 +67,7 @@ export {
 	EmailIcon,
 	ExchangeIcon,
 	EyeToggleIconBtn,
+	FilterIcon,
 	FilterSelectTemplate,
 	FlagUkraine,
 	HeartIconBtn,

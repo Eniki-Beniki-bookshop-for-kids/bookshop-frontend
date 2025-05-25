@@ -129,7 +129,7 @@ export const useBooks = (sort?: SortParams) => {
 		],
 	)
 
-	// Фетчинг книг за жанром
+	// за жанром
 	const fetchBooksByGenre = useCallback(
 		async (genre: string) => {
 			await fetchBooks({ genre })

@@ -9,7 +9,7 @@ import {
 	TargetAges as TargetAgesFromPrisma,
 	User as UserFromPrisma,
 } from "../../prisma/generated/client"
-import { authCredentials } from "./constants"
+import { authCredentials, statusOptions } from "./constants"
 import {
 	BookTypes,
 	Categories,
@@ -93,8 +93,9 @@ export interface AccountSettingField {
 }
 
 // Фільтри, які застосовуються для пошуку книг
+type StatusValue = (typeof statusOptions)[number]["value"]
 export interface BookFilters {
-	status?: "discount" | "new" | "popular" | "soon" | "bestseller"
+	status?: StatusValue
 	title?: string
 	author?: string
 	description?: string

@@ -1,4 +1,5 @@
 // src/utils/books/checkFilters.ts
+import { statusOptions } from "@/types/constants"
 import { ServerFilterBookCriteria } from "@/types/interfaces"
 import {
 	OrderBook as ClientOrderBook,
@@ -15,34 +16,24 @@ export const buildBookWhereClause = (
 ): BookWhereInput => {
 	const where: BookWhereInput = {}
 
-	switch (criteria.status) {
-		case "discount":
-			where.discount = { gt: 0 }
-			break
-		case "new":
-			where.createdAt = {
-				gte: new Date(Date.now() - 30 * 24 * 60 * 60 * 1000), // нова книга - менше 30 днів як на складі
-			}
-			break
-		case "popular":
-			where.totalSales = { gte: 1000 } // популярна книга - більше 1000 продажів
-			break
-		case "soon":
-			where.isPublish = false
-			break
-		case "bestseller":
-			where.isBestseller = true
-			break
+	// Обробка статусу, виходячи з фільтрів в константі statusOptions
+	if (criteria.status) {
+		const statusRule = statusOptions.find(
+			option => option.value === criteria.status,
+		)?.filter
+		if (statusRule) {
+			Object.assign(where, statusRule)
+		}
 	}
 
-	// Об'єднуємо title і author через OR для запиту на Прізму, якщо вони присутні і мають однакове значення
+	// Об'єднуємо title і author через OR для запиту на Призму, якщо вони присутні і мають однакове значення
 	if (criteria.title && criteria.author && criteria.title === criteria.author) {
 		where.OR = [
 			{ title: { contains: criteria.title, mode: "insensitive" } },
 			{ author: { contains: criteria.author, mode: "insensitive" } },
 		]
 	} else {
-		// Інакше додаємо умови окремо (AND)
+		// Інакше додаємо умови окремо
 		if (criteria.title) {
 			where.title = { contains: criteria.title, mode: "insensitive" }
 		}
@@ -94,7 +85,7 @@ export const buildBookWhereClause = (
 	return where
 }
 
-// Мапінг серверної книги у клієнтську
+// Маппинг серверної книги у клієнтську
 export const transformServerToClientBook = (
 	book: Prisma.BookGetPayload<{
 		include: { reviews: true; orderBooks: true }

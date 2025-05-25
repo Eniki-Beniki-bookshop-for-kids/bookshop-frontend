@@ -9,7 +9,6 @@ export const Hero = () => {
 	return (
 		<HStack
 			align="center"
-			justifyContent="space-between"
 			w="full"
 			h={{ base: "300px", md: "400px", lg: "500px" }}
 			spacing={8}

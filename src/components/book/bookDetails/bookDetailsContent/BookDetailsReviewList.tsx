@@ -8,13 +8,7 @@ import "swiper/css"
 import "swiper/css/autoplay"
 import { Swiper, SwiperSlide } from "swiper/react"
 
-interface BookDetailsReviewListProps {
-	reviews: Review[]
-}
-
-export const BookDetailsReviewList = ({
-	reviews,
-}: BookDetailsReviewListProps) => {
+export const BookDetailsReviewList = ({ reviews }: { reviews: Review[] }) => {
 	return (
 		<Swiper
 			direction="vertical"

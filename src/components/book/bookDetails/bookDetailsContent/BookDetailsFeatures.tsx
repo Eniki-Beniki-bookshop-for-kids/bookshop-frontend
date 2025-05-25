@@ -5,14 +5,10 @@ import { Book } from "@/types/models"
 import { getBookFeatures } from "@/utils/books"
 import { Box, HStack, Text, VStack } from "@chakra-ui/react"
 import { useEffect, useRef, useState } from "react"
+import { CollapseBtn } from "../../CollapseBtn"
 import { BookDetailsSectionName } from "./BookDetailsSectionName"
-import { BookDetailsShowMoreBtn } from "./BookDetailsShowMoreBtn"
 
-interface BookDetailsFeaturesProps {
-	book: Book
-}
-
-export const BookDetailsFeatures = ({ book }: BookDetailsFeaturesProps) => {
+export const BookDetailsFeatures = ({ book }: { book: Book }) => {
 	const [isExpanded, setIsExpanded] = useState(false)
 	const [showToggleButton, setShowToggleButton] = useState(false)
 	const [fullHeight, setFullHeight] = useState(0)
@@ -82,7 +78,7 @@ export const BookDetailsFeatures = ({ book }: BookDetailsFeaturesProps) => {
 				</VStack>
 			</Box>
 			{showToggleButton && (
-				<BookDetailsShowMoreBtn
+				<CollapseBtn
 					toggleDescription={toggleDescription}
 					isExpanded={isExpanded}
 					textForCollapse="Сховати всі характеристики"

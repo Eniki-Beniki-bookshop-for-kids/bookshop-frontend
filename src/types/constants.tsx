@@ -204,6 +204,27 @@ export const genreLink = Object.keys(Genre).map(key => ({
 	label: Genre[key as keyof typeof Genre],
 }))
 
+// Блок констант для рендеру та виконання фільтрів
+export const statusOptions = [
+	{ label: "Знижки", value: "discount", filter: { discount: { gt: 0 } } },
+	{
+		label: "Нові книги",
+		value: "new",
+		filter: {
+			createdAt: { gte: new Date(Date.now() - 180 * 24 * 60 * 60 * 1000) },
+		},
+	},
+	{
+		label: "Популярні",
+		value: "popular",
+		filter: { totalSales: { gte: 1000 } },
+	},
+	{ label: "Передзамовлення", value: "preorder", filter: { stockQuantity: 0 } },
+	{ label: "Скоро у продажу", value: "soon", filter: { isPublish: false } },
+	{ label: "Бестселери", value: "bestseller", filter: { isBestseller: true } },
+]
+
+// Блок констант для рендеру сторінки книги
 export const paymentSystems: ImageLinkProps[] = [
 	{ src: "/images/logo_visa.png", alt: "Visa" },
 	{ src: "/images/logo_mastercard.png", alt: "MasterCard" },
@@ -216,6 +237,7 @@ export const carriers: ImageLinkProps[] = [
 	{ src: "/images/logo_ukrposhta.png", alt: Carrier.ukrPost },
 ]
 
+// Блок констант для футера
 export const footerMenu: PageProps[] = [
 	pageLink[1], // catalog
 	pageLink[2], // about

@@ -1,11 +1,11 @@
 // src/components/hero/VideoSeries.tsx
 "use client"
 
-import { Box, Image, Icon } from "@chakra-ui/react"
+import { Box, Icon, Image } from "@chakra-ui/react"
+import Link from "next/link"
+import { FaPlay } from "react-icons/fa"
 import { Autoplay, Navigation, Pagination } from "swiper/modules"
 import { Swiper, SwiperSlide } from "swiper/react"
-import { FaPlay } from "react-icons/fa"
-import Link from "next/link"
 
 // Список відео з YouTube (ID відео)
 const videos = [
@@ -22,6 +22,7 @@ export const VideoSeries = () => {
 			h={{ base: "300px", md: "400px", lg: "500px" }}
 			overflow="hidden"
 			rounded="30px"
+			maxW="768px"
 		>
 			<Swiper
 				modules={[Autoplay, Navigation, Pagination]}

@@ -13,6 +13,7 @@ import { useHomePageBooks } from "./useHomePageBooks"
 import { useInputLogic } from "./useInputLogic"
 import { useLoadMore } from "./useLoadMore"
 import { usePagination } from "./usePagination"
+import { usePriceRange } from "./usePriceRange"
 import { useResizedImages } from "./useResizedImages"
 import { useSearchManagement } from "./useSearchManagement"
 import { useSettingsForm } from "./useSettingsForm"
@@ -38,6 +39,7 @@ export {
 	useInputLogic,
 	useLoadMore,
 	usePagination,
+	usePriceRange,
 	useResizedImages,
 	useSearchManagement,
 	useSettingsForm,

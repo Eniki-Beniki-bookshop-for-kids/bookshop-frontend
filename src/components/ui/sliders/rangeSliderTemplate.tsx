@@ -1,15 +1,14 @@
 "use client"
 
+import { RangeSliderTemplateProps } from "@/types/propsInterfaces"
 import {
 	Box,
 	RangeSlider,
 	RangeSliderFilledTrack,
-	RangeSliderMark,
 	RangeSliderThumb,
 	RangeSliderTrack,
 } from "@chakra-ui/react"
 import { useState } from "react"
-import { RangeSliderTemplateProps } from "../../../types/propsInterfaces"
 
 export const RangeSliderTemplate = ({
 	min = 0,
@@ -25,7 +24,7 @@ export const RangeSliderTemplate = ({
 	}
 
 	return (
-		<Box p={4} width="sm">
+		<Box width="full" maxWidth="400px">
 			<RangeSlider
 				aria-label={["min", "max"]!}
 				min={min}
@@ -53,7 +52,7 @@ export const RangeSliderTemplate = ({
 				/>
 
 				{/* Мітки (цифри знизу) */}
-				<RangeSliderMark
+				{/* <RangeSliderMark
 					value={values[0]}
 					mt="2"
 					ml="-2.5"
@@ -70,7 +69,7 @@ export const RangeSliderTemplate = ({
 					color="customDarkGray"
 				>
 					{values[1]}
-				</RangeSliderMark>
+				</RangeSliderMark> */}
 			</RangeSlider>
 		</Box>
 	)

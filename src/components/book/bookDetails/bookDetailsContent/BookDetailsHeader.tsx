@@ -6,11 +6,7 @@ import { Box, HStack, Text, VStack } from "@chakra-ui/react"
 import { BookRating } from "../../bookCard"
 import { BookDetailsSectionName } from "./BookDetailsSectionName"
 
-interface BookDetailsHeaderProps {
-	book: Book
-}
-
-export const BookDetailsHeader = ({ book }: BookDetailsHeaderProps) => {
+export const BookDetailsHeader = ({ book }: { book: Book }) => {
 	const { title, author, reviews, bookType } = book
 
 	return (

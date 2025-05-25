@@ -8,11 +8,7 @@ import { Button, HStack, VStack } from "@chakra-ui/react"
 import { BookDetailsReviewList } from "./BookDetailsReviewList"
 import { BookDetailsSectionName } from "./BookDetailsSectionName"
 
-interface BookDetailsReviewsProps {
-	book: Book
-}
-
-export const BookDetailsReviews = ({ book }: BookDetailsReviewsProps) => {
+export const BookDetailsReviews = ({ book }: { book: Book }) => {
 	const { reviews } = book
 
 	const countReviews = reviews.length

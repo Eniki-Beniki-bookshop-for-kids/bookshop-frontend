@@ -6,11 +6,9 @@ import { useBooks } from "@/hooks"
 import { Book } from "@/types/models"
 import { Grid, GridItem, VStack } from "@chakra-ui/react"
 import { useEffect, useState } from "react"
-import { BookDetailsContent } from "./bookDetailsContent/BookDetailsContent"
+import { BookDetailsContent } from "./bookDetailsContent"
 import { BookDetailsDeliveryInfo } from "./BookDetailsDeliveryInfo"
 import { BookDetailsImages } from "./BookDetailsImages"
-// import { BookDetailsContent } from "./BookDetailsContent"
-// import { BookDetailsDeliveryInfo } from "./BookDetailsDeliveryInfo"
 
 interface BookDetailsProps {
 	bookId: string

@@ -1,6 +1,8 @@
 // src/app/catalog/[filter]/page.tsx
+import { PageTitle } from "@/components"
+import { FilterBooks } from "@/components/book"
 import { genreLink } from "@/types/constants"
-import { Box, Heading, Text } from "@chakra-ui/react"
+import { Box } from "@chakra-ui/react"
 
 export default async function FilterPage({
 	params,
@@ -11,12 +13,9 @@ export default async function FilterPage({
 	const genreItem = genreLink.find(item => item.href === `/catalog/${filter}`)
 
 	return (
-		<Box py={10} px={{ base: "20px", md: "80px" }}>
-			<Heading as="h1" size="lg" mb={6}>
-				{genreItem ? genreItem.label : "Категорія"}
-			</Heading>
-			<Text>Це сторінка для жанру: {filter}</Text>
-			<Text>Тут будуть відображатися книги цього жанру.</Text>
+		<Box pb={12}>
+			<PageTitle title={genreItem?.label || ""} />
+			<FilterBooks initialFilter={filter} />
 		</Box>
 	)
 }

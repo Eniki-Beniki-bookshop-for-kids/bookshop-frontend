@@ -4,16 +4,10 @@
 import { Book } from "@/types/models"
 import { Box, Text, VStack } from "@chakra-ui/react"
 import { useEffect, useRef, useState } from "react"
+import { CollapseBtn } from "../../CollapseBtn"
 import { BookDetailsSectionName } from "./BookDetailsSectionName"
-import { BookDetailsShowMoreBtn } from "./BookDetailsShowMoreBtn"
 
-interface BookDetailsDescriptionProps {
-	book: Book
-}
-
-export const BookDetailsDescription = ({
-	book,
-}: BookDetailsDescriptionProps) => {
+export const BookDetailsDescription = ({ book }: { book: Book }) => {
 	const { description } = book
 	const [isExpanded, setIsExpanded] = useState(false)
 	const [showToggleButton, setShowToggleButton] = useState(false)
@@ -55,7 +49,7 @@ export const BookDetailsDescription = ({
 				</Text>
 			</Box>
 			{showToggleButton && (
-				<BookDetailsShowMoreBtn
+				<CollapseBtn
 					toggleDescription={toggleDescription}
 					isExpanded={isExpanded}
 				/>
