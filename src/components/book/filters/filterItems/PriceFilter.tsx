@@ -38,7 +38,7 @@ export const PriceFilter = () => {
 		}
 	}, [filters.price, fetchedRange])
 
-	// Додатковий useEffect для скидання priceRange при зміні filters
+	// для скидання priceRange при зміні filters (без натискання кнопки "Застосувати")
 	useEffect(() => {
 		if (Object.keys(filters).length === 0) {
 			setPriceRange(fetchedRange)

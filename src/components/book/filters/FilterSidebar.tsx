@@ -5,15 +5,9 @@ import { FilterIcon } from "@/components/ui"
 import { useFilter } from "@/context/FilterContext"
 import { Button, HStack, Text, VStack } from "@chakra-ui/react"
 import { AgeFilter, PriceFilter, StatusFilter } from "./filterItems"
-import { useEffect } from "react"
 
-export const FilterSidebar = ({ initialFilter }: { initialFilter: string }) => {
-	const { filters, resetFilters } = useFilter()
-
-	useEffect(() => {
-		console.log(initialFilter)
-		console.log(filters)
-	}, [initialFilter, filters])
+export const FilterSidebar = () => {
+	const { resetFilters } = useFilter()
 
 	return (
 		<VStack

@@ -8,10 +8,10 @@ import { FilterSidebar } from "./FilterSidebar"
 
 export const FilterBooks = ({ initialFilter }: { initialFilter: string }) => {
 	return (
-		<FilterProvider>
+		<FilterProvider initialFilter={initialFilter}>
 			<HStack spacing={{ base: 4, md: 6, lg: 8 }}>
-				<FilterSidebar initialFilter={initialFilter} />
-				<FilterBookGrid />
+				<FilterSidebar />
+				<FilterBookGrid initialFilter={initialFilter} />
 			</HStack>
 		</FilterProvider>
 	)

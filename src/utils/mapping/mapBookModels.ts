@@ -120,11 +120,28 @@ export const mapArray = (
 	values: string[] | undefined,
 	map: Record<string, string>,
 ): string[] | undefined => {
-	if (!values) return undefined
+	if (!values || values.length === 0) return undefined
 	return values.map(value => map[value] || value)
 }
 
-export const mapBooks = {
+interface MapBooks {
+	targetAgesClientToServer: Record<string, string>
+	targetAgesServerToClient: Record<string, string>
+	categoriesClientToServer: Record<string, string>
+	categoriesServerToClient: Record<string, string>
+	paperTypeClientToServer: Record<string, string>
+	paperTypeServerToClient: Record<string, string>
+	coverTypeClientToServer: Record<string, string>
+	coverTypeServerToClient: Record<string, string>
+	languageClientToServer: Record<string, string>
+	languageServerToClient: Record<string, string>
+	bookTypesClientToServer: Record<string, string>
+	bookTypesServerToClient: Record<string, string>
+	genreClientToServer: Record<string, string>
+	genreServerToClient: Record<string, string>
+}
+
+export const mapBooks: MapBooks = {
 	targetAgesClientToServer,
 	targetAgesServerToClient,
 	categoriesClientToServer,
